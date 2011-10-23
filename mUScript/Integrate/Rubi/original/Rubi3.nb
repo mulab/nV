@@ -1,0 +1,175 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[      6244,        166]
+NotebookOptionsPosition[      5589,        141]
+NotebookOutlinePosition[      5997,        158]
+CellTagsIndexPosition[      5954,        155]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[TextData[{
+ StyleBox["Rubi",
+  FontSlant->"Italic"],
+ " 3"
+}], "Title",
+ CellChangeTimes->{{3.4897813784127054`*^9, 3.4897813794267073`*^9}, 
+   3.518320509030015*^9},
+ TextAlignment->Center],
+
+Cell["A Rule-based Indefinite Integrator", "Subtitle",
+ CellChangeTimes->{{3.4897814556796412`*^9, 3.4897814580976458`*^9}},
+ TextAlignment->Center,
+ FontWeight->"Bold"],
+
+Cell["Crafted by Albert D. Rich, Applied Logician", "Subsubtitle",
+ TextAlignment->Center],
+
+Cell[TextData[{
+ "Store this ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " notebook file and the Rubi package files in a directory of your choice.  \
+Then use ",
+ StyleBox["Mathematica'",
+  FontSlant->"Italic"],
+ "s Evaluation>Evaluate Initialization Cells command to evaluate the cells in \
+this notebook and load the integrator and show-stepper.  This may require a \
+minute or two, depending on the speed of your computer."
+}], "Text",
+ CellChangeTimes->{{3.4897816406959662`*^9, 3.489781641288767*^9}, {
+   3.4897816777304316`*^9, 3.489781737369336*^9}, {3.489781785947821*^9, 
+   3.4897818697199683`*^9}, {3.4905072763181257`*^9, 3.490507283291338*^9}, {
+   3.4905073468458495`*^9, 3.490507371852693*^9}, {3.4905080078118114`*^9, 
+   3.490508028559848*^9}, {3.4905107317414007`*^9, 3.4905107735806737`*^9}, 
+   3.490510813766344*^9, {3.4905108637176323`*^9, 3.490510901812899*^9}, {
+   3.490511168120967*^9, 3.4905112618615313`*^9}, {3.490511322108837*^9, 
+   3.490511340345269*^9}, {3.490511371077323*^9, 3.4905113713113236`*^9}},
+ FontSize->14],
+
+Cell[TextData[{
+ "If ",
+ StyleBox["ShowSteps",
+  FontWeight->"Bold"],
+ " is True, as the integration rules are loaded their definitions are \
+automatically modified to display the steps Rubi uses to integrate \
+expressions.  To load the integrator without this considerable overhead, \
+change the value of the following assignment to False ",
+ StyleBox["before",
+  FontSlant->"Italic"],
+ " loading the integrator."
+}], "Text",
+ CellChangeTimes->{{3.4897816406959662`*^9, 3.489781641288767*^9}, {
+   3.4897816777304316`*^9, 3.489781737369336*^9}, {3.489781785947821*^9, 
+   3.4897818697199683`*^9}, {3.48978190503843*^9, 3.489781921356059*^9}, {
+   3.489781958094124*^9, 3.4897819858777723`*^9}, 3.4905074310943985`*^9, {
+   3.4905074899377017`*^9, 3.4905075045861273`*^9}, {3.4905076088723106`*^9, 
+   3.4905077000388703`*^9}, {3.4905077353105326`*^9, 
+   3.4905077417533436`*^9}, {3.4905077785850086`*^9, 
+   3.4905078144338713`*^9}, {3.490507855789544*^9, 3.4905078566007457`*^9}, {
+   3.490507922557661*^9, 3.490507970886546*^9}, {3.4905082544950447`*^9, 
+   3.4905082803130894`*^9}, {3.4905083779848614`*^9, 
+   3.4905083782812614`*^9}, {3.4905084158617277`*^9, 3.490508416033328*^9}, {
+   3.4905088136396275`*^9, 3.490508818304035*^9}, {3.490511426847421*^9, 
+   3.4905114499666615`*^9}},
+ FontSize->14],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ShowSteps", "=", "True"}], ";"}]], "Code",
+ CellChangeTimes->{{3.4897820121794186`*^9, 3.4897820382626643`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"RulesDirectory", "=", 
+   RowBox[{"NotebookDirectory", "[", "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Get", "[", 
+   RowBox[{
+    RowBox[{"NotebookDirectory", "[", "]"}], "<>", "\"\<LoadRules.m\>\""}], 
+   "]"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"If", "[", 
+   RowBox[{"ShowSteps", ",", " ", 
+    RowBox[{"StepFunction", "[", "Int", "]"}]}], "]"}], ";"}]}], "Code",
+ CellChangeTimes->{{3.4897813390382366`*^9, 3.489781344779046*^9}, {
+  3.489782578869215*^9, 3.489782580725618*^9}, {3.490508624536095*^9, 
+  3.49050875250312*^9}, {3.4905090125087767`*^9, 3.49050901444318*^9}, {
+  3.490509114111755*^9, 3.4905091205077662`*^9}, {3.490510930204949*^9, 
+  3.490510959673401*^9}, {3.518320785100402*^9, 3.518320823170455*^9}, {
+  3.518321371471223*^9, 3.5183214048112693`*^9}, {3.518321436071313*^9, 
+  3.5183214540713387`*^9}, {3.518321503801408*^9, 3.5183215396314583`*^9}}],
+
+Cell["\<\
+To see the steps required to integrate the following expression, move the \
+cursor to the line below and press Shift-Enter to evaluate the cell.  Then \
+repeat this process on the intermediate results until the expression is \
+completely integrated.\
+\>", "Text",
+ CellChangeTimes->{{3.4897816406959662`*^9, 3.489781641288767*^9}, {
+   3.4897816777304316`*^9, 3.489781737369336*^9}, {3.489781785947821*^9, 
+   3.4897818697199683`*^9}, {3.48978190503843*^9, 3.489781921356059*^9}, {
+   3.489781958094124*^9, 3.4897819858777723`*^9}, {3.4897820637063093`*^9, 
+   3.4897820981199694`*^9}, 3.4897822161497765`*^9, {3.4897840774906487`*^9, 
+   3.4897840907506723`*^9}, {3.4897842079224777`*^9, 
+   3.4897842092952805`*^9}, {3.4905088717965293`*^9, 3.490508881172146*^9}, {
+   3.4905089196730137`*^9, 3.4905089314354343`*^9}},
+ FontSize->14],
+
+Cell[BoxData[
+ RowBox[{"Int", "[", 
+  RowBox[{
+   FractionBox[
+    RowBox[{"Sec", "[", "x", "]"}], 
+    SqrtBox[
+     RowBox[{"1", "+", 
+      RowBox[{"Sin", "[", "x", "]"}]}]]], ",", " ", "x"}], "]"}]], "Code",
+ CellChangeTimes->{3.4905089424334536`*^9}]
+}, Open  ]]
+},
+AutoGeneratedPackage->None,
+WindowSize->{1912, 961},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+Magnification->1.3000000715255737`,
+FrontEndVersion->"7.0 for Microsoft Windows (64-bit) (February 18, 2009)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 196, 7, 107, "Title"],
+Cell[766, 31, 169, 3, 64, "Subtitle"],
+Cell[938, 36, 90, 1, 37, "Subsubtitle"],
+Cell[1031, 39, 1060, 20, 62, "Text"],
+Cell[2094, 61, 1308, 25, 62, "Text"],
+Cell[3405, 88, 147, 3, 58, "Code"],
+Cell[3555, 93, 912, 19, 105, "Code"],
+Cell[4470, 114, 845, 14, 38, "Text"],
+Cell[5318, 130, 255, 8, 84, "Code"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

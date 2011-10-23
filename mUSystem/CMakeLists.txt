@@ -1,0 +1,5 @@
+include_directories(${mU_HEADER_DIR})
+AUX_SOURCE_DIRECTORY(. MUSYSTEM_SRCS)
+add_library(musystem SHARED ${MUSYSTEM_SRCS})
+add_precompiled_header(musystem ${CMAKE_CURRENT_SOURCE_DIR}/StdAfx.h)
+target_link_libraries(musystem mukernel)

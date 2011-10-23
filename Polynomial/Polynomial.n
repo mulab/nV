@@ -1,0 +1,23 @@
+CInstall["nvpolynomial"]
+
+Begin[System]
+
+CInterface["nvpolynomial",
+Value[`Minus,`Divide,`Plus,`Times,`Power,`Compare,`Less,`Equal,`Greater,`LessEqual,`Unequal,`GreaterEqual,
+`ToCPE,`FromCPE,`ExpandFromCPE,
+`ToCRE,`FromCRE,`ExpandFromCRE,`Expand,
+`DivExact,`Div,`PolynomialRemainder,`PolynomialQuotient,`PolynomialQuotientRemainder,`PseudoRemainder,
+`Variables,`Coefficient,`Degree,
+`GroebnerBasis,`CharacterSet,
+`PolynomialGCD,`PolynomialLCM,`FactorList,`Factor,`Collect
+]]
+(*`CPE`Pretty[x_`CPE] := `FromCPE[x]*)
+`CPE`Pretty := `FromCPE
+`CRE`Pretty := `FromCRE
+
+End[]
+
+Attributes[Minus] = {Listable}
+Attributes[Divide] = {Listable}
+Attributes[Plus] = {OneIdentity,Flat,Orderless,Listable}
+Attributes[Times] = {OneIdentity,Flat,Orderless,Listable}

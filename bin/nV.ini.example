@@ -1,0 +1,3 @@
+(*<< Path["../Link/NTL/LinkNTL.n"]
+<< Path["../Link/flint/LinkFLINT.n"]
+<< Path["../Link/yafu/LinkYAFU.n"]*)

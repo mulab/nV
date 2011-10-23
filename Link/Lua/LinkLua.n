@@ -1,0 +1,24 @@
+CInstall["nvlinklua"]
+
+Lua`Lua
+
+Begin[$Lua]
+
+CInterface["nvlinklua",
+Value[`Open,`State`push],
+`State`openlibs[],
+`State`dofile[_String],
+`State`dostring[_String],
+`State`at[_Integer],
+`State`pop[_Integer],
+`State`type[_Integer],
+`State`typename[_Integer]
+]
+
+`State`pop[] := `State`pop[1]
+
+End[]
+
+Lua = Lua`Open[]
+Lua.openlibs[]
+Lua.dostring["require 'nvlinklua'"]

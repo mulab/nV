@@ -1,0 +1,30 @@
+CInstall["mulink"]
+
+(*Symbol[Null,"mU"]*)
+mU`mU
+
+Begin[$mU]
+
+CInterface["mulink",
+Value[mU`mU,`Eval,`Main,`Object],
+`nV[_`Object],
+`Read[_String,_],
+`Object`eval[],
+`Object`nV[]
+]
+
+End[]
+
+System`Modulus
+System`Solve[x_] := mU`mU[System`Solve][x].nV[]
+System`CoefficientList[x_,y_] := mU`mU[System`CoefficientList][x,y].nV[]
+System`FromCoefficientList[x_,y_] := mU`mU[System`FromCoefficientList][x,y].nV[]
+Attributes[System`Do] = {HoldAll}
+System`Do[x_,lst_List] := mU`mU[System`Do][x,lst].nV[]
+Attributes[System`Table] = {HoldAll}
+System`Table[x_,lst_List] := mU`mU[System`Table][x,lst].nV[]
+System`D[f_,x_] := mU`mU[System`D][f,x].nV[]
+System`Integrate[f_,x_] := mU`mU[System`Integrate][f,x].nV[]
+(*System`Pretty[x_] := mU`mU[System`Pretty][x].nV[] /; FreeQ[Integer[Real,Rational],Head[x]]
+System`N[x_System] := mU`mU[System`N][x].nV[]
+System`N[x_System,y_Integer] := mU`mU[System`N][x,y].nV[]*)

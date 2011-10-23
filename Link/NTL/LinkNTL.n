@@ -1,0 +1,11 @@
+CInstall["nvlinkntl"]
+
+NTL`NTL
+
+Begin[$NTL]
+
+CInterface["nvlinkntl",
+Value[`Add,`Sub,`Mul,`Sqr,`PseudoDivRem,`PseudoDiv,`PseudoRem,`DivRem,`Div,`Rem,`Divide,`Content,`PrimitivePart,`GCD,`TraceMod,`Resultant,`NormMod,`Discriminant,`CharPolyMod,`MinPolyMod,`XGCD,`Factor]
+]
+
+End[]

@@ -1,0 +1,11 @@
+CInstall["nvlinkyafu"]
+YAFU`YAFU
+Begin[$YAFU]
+
+CInterface["nvlinkyafu",
+Value[`FactorInteger]
+]
+
+End[]
+
+System`FactorInteger[x_Integer] := YAFU`FactorInteger[x]

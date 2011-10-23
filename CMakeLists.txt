@@ -1,0 +1,25 @@
+cmake_minimum_required(VERSION 2.6)
+
+project(nV CXX)
+
+set(nV_HEADER_DIR ${nV_SOURCE_DIR}/Include)
+set(nV_OUTPUT_DIR ${nV_SOURCE_DIR}/${CMAKE_BUILD_TYPE})
+set(EXECUTABLE_OUTPUT_PATH ${nV_OUTPUT_DIR})
+set(LIBRARY_OUTPUT_PATH ${nV_OUTPUT_DIR})
+
+include(${nV_SOURCE_DIR}/config.cmake)
+include(${nV_SOURCE_DIR}/PCH_GCC.cmake)
+
+add_subdirectory(Kernel)
+add_subdirectory(Parser)
+add_subdirectory(System)
+add_subdirectory(nV)
+add_subdirectory(Number)
+add_subdirectory(Polynomial)
+add_subdirectory(Matrix)
+add_subdirectory(String)
+add_subdirectory(Graphics)
+add_subdirectory(mUKernel)
+add_subdirectory(mUSystem)
+add_subdirectory(mULink)
+add_subdirectory(mU)

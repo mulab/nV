@@ -1,0 +1,10 @@
+yafu[x_Integer]:=Module[{s=ToString[x],f},
+Run["rm -rf log"];
+Run["./yafu \"factor(" <> s <> ")\" -of log -silent"];
+f=File["log"];
+s=Read[f,String];
+Close[f];
+Run["rm -rf log"];
+s=ToExpression["Hold[" <> s <> "]"]
+]
+

@@ -1,0 +1,2 @@
+include_directories(D:/Python/include)
+link_directories(D:/Python/libs)

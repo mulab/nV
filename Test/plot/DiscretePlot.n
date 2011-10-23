@@ -1,0 +1,6 @@
+DiscretePlot[Cos[x],{x,-3,3,0.2}]
+DiscretePlot[{2*Sin[x]+x,Cos[x]},{x,2,5,0.5}]
+DiscretePlot[{Tan[x],Sin[x]},{x,-3.14,6.28,0.2}]
+DiscretePlot[{Tan[x],Cot[x] },{x,0,6.28,0.2},Options[FillToCurve->{0,1}]]
+DiscretePlot[{Tan[x],Cot[x],Cos[x]},{x,1,5,0.2},Options[NoFilling->True]]
+DiscretePlot[{1/x,Tan[x],Cot[x]},{x,-1,5,0.2},Options[Joined->True]]

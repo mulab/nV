@@ -1,0 +1,6 @@
+ContourPlot[Cos[x]+Cos[y],{x,0,4*3.14},{y,0,4*3.14}]
+ContourPlot[Tan[x]+Cos[y],{x,0,4*3.14},{y,0,4*3.14}]
+ContourPlot[Sin[x+y^2],{x,-3,3},{y,-2,2}]
+ContourPlot[{(v+u)*Cos[u],(v+u)*Sin[u]},{u,0,12.56},{v,0,5}]
+ContourPlot[x^4-2*x^2+y^4-2*y^2+1,{x,-2,2},{y,-2,2}]
+ContourPlot[y+Sin[x^2+3*y],{x,-3,3},{y,-3,3}]

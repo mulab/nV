@@ -1,0 +1,15 @@
+CInstall["pythoninnv"]
+
+(*Symbol[Null,"Python"]*)
+Python`Python
+
+Begin[Python]
+
+CInterface["pythoninnv",
+Assign[`Object],
+Value[`init,`close,`Object,`execute,`eval,`locals,`globals,`builtins,`import]
+]
+
+`init[]
+
+End[]

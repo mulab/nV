@@ -1,0 +1,18 @@
+Begin["System`"]
+
+CInstall["mugraphics"]
+
+CProc["mugraphics",Plot,Plot3D,ListPlot,ParametricCurvePlot,ParametricRegionPlot,PolarPlot,ParametricCurvePlot3D,ParametricSurfacePlot3D,ContourPlot3D,ContourPlot]
+
+SetAttributes[Plot, HoldAll]
+SetAttributes[Plot3D, HoldAll]
+SetAttributes[ListPlot, HoldAll]
+SetAttributes[ParametricCurvePlot, HoldAll]
+SetAttributes[ParametricRegionPlot, HoldAll]
+SetAttributes[PolarPlot, HoldAll]
+SetAttributes[ParametricCurvePlot3D, HoldAll]
+SetAttributes[ParametricSurfacePlot3D, HoldAll]
+SetAttributes[ContourPlot3D, HoldAll]
+SetAttributes[ContourPlot, HoldAll]
+
+End[]

@@ -1,0 +1,23 @@
+CInstall["nvembedjava"]
+
+(*Symbol[Null,"Java"]*)
+Java`Java
+
+Begin[Java]
+
+CInterface["nvembedjava",
+Assign[`Object],
+Value[Java`Java,`Cast,`Class,`Init,`New,`Object,`Object`cast,`Object`new],
+`nV[_`Object],
+`Object`class[],
+`Object`exec[_],
+`Object`get[_],
+`Object`nV[],
+`Object`set[_,_]
+]
+
+`Init["-verbose:jni",
+"-Djava.class.path=" <> Path[] <> "..\\Link\\Java\\Java",
+"-Djava.library.path=" <> Path[]]
+
+End[]

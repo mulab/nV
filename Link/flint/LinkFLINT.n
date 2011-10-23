@@ -1,0 +1,10 @@
+CInstall["nvlinkflint"]
+FLINT`FLINT
+Begin[$FLINT]
+
+CInterface["nvlinkflint",
+Value[`QAdd,`QMul,`QPower,ZAdd,`ZMul,`ZPower]
+]
+
+End[]
+(*Print["flint loaded"]*)

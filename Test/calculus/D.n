@@ -1,0 +1,8 @@
+D[x^n,x]
+D[Sin[x]^10,x]
+D[D[Sin[x*y]/(x^2+y^2),x],y]
+D[1,x]
+D[x,y]
+D[ArcTan[x],x]
+D[x^5.1+Exp[x^4.02]-9.8*y,x]
+D[(x+1)/(2*x),x]

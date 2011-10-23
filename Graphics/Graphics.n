@@ -1,0 +1,64 @@
+CInstall["nvgraphics"]
+Begin[System`Graphics]
+
+CInterface["nvgraphics",
+Value[System`Plot,System`ListPlot,System`DiscretePlot,System`Plot3D,System`ParametricPlot,System`PolarPlot,System`ContourPlot,System`ParametricRegionPlot,System`ContourPlot3D,System`ParametricPlot3D,System`DensityPlot,System`ParametricSurfacePlot3D]
+]
+
+Attributes[System`Plot] = {HoldAll}
+Attributes[System`ListPlot] = {HoldAll}
+Attributes[System`DiscretePlot] = {HoldAll}
+Attributes[System`Plot3D] = {HoldAll}
+Attributes[System`ParametricPlot] = {HoldAll}
+Attributes[System`PolarPlot] = {HoldAll}
+Attributes[System`ContourPlot] = {HoldAll}
+Attributes[System`ParametricRegionPlot] = {HoldAll}
+Attributes[System`ContourPlot3D] = {HoldAll}
+Attributes[System`ParametricPlot3D] = {HoldAll}
+Attributes[System`DensityPlot] = {HoldAll}
+Attributes[System`ParametricSurfacePlot3D] = {HoldAll}
+
+End[]
+
+Begin[System]
+`Graphics2D
+`Graphics3D
+`Shape
+`GraphicsComplex
+`PlotRange
+`Polygon
+`FlatSpace
+`Color3f
+`Color255
+`Axes
+`Auto
+`ColorFunction
+`FillToCurve
+`FillToAxes
+`GraphLabel
+`True
+`Mesh
+`DoubleSurface
+`Surface
+`LightedSurface
+`ColorfulLine
+`PointList
+`QuadArray
+`TriangleArray
+`Curve
+`Real
+`Integer
+`Minus
+`ColorPolygon
+`AxesLabel
+`GraphLabel
+`Joined
+`NoFilling
+`Line
+`Options
+`NormalSpace
+`Hue
+`Directive
+`ColorPolygon
+End[]
+

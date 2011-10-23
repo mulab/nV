@@ -1,0 +1,60 @@
+CInstall["nvnumber"]
+Begin[System`Number]
+
+CInterface["nvnumber",
+Value[`Cast,`Minus,`Divide,`Plus,`Times,`Power,`Factorial,`Binomial,`Fibonacci,`Lucas],
+System`Integer`neg[],
+System`Integer`add[_Integer],
+System`Integer`mul[_Integer],
+System`Integer`div[_Integer],
+System`Integer`pow[_Integer],
+System`Rational`neg[],
+System`Rational`add[_Rational],
+System`Rational`mul[_Rational],
+System`Rational`div[],
+System`Rational`div[_Rational],
+System`Rational`pow[_Integer],
+System`Real`neg[],
+System`Real`add[_Real],
+System`Real`mul[_Real],
+System`Real`div[],
+System`Real`div[_Real],
+System`Real`pow[_Integer]
+]
+
+End[]
+
+Begin[System]
+
+CInterface["nvnumber",
+Value[`PrimeQ,`OddQ,`EvenQ,`SquareQ,`NextPrime,`IntegerLength,`CoprimeQ,`GCD,`LCM,`ExtendedGCD,`RandomInteger,`RandomPrime,`FactorInteger,`N,`Precision,`NI,`RealI,`IntervalN]
+]
+
+`Euler
+`Factorial[x_Integer] := `Number`Factorial[x]
+`Binomial[n_Integer,k_Integer] := `Number`Binomial[n,k]
+`Fibonacci[x_Integer] := `Number`Fibonacci[x]
+`Lucas[x_Integer] := `Number`Lucas[x]
+
+End[]
+
+Begin[System`Number]
+
+`Heads = {"Log","Log2","Log10","Exp","Exp2","Exp10","Cos","Sin","Tan","Sec","Csc","Cot","ArcCos","ArcSin","ArcTan","Cosh","Sinh","Tanh","Coth","Sech","Csch","ArcCosh","ArcSinh","ArcTanh","Gamma","LogGamma","Zeta","Erf","Erfc","Sqrt"}
+
+M[h_] := System`Number.{h}
+
+ClearAttributes[CInterface,HoldRest]
+CInterface["nvnumber",
+Value@@(M /@ `Heads)
+]
+SetAttributes[CInterface,HoldRest]
+
+M[h_] := SetDelayed@@(Hold[(System.{H})[x_Real],(System`Number.{H})[x]] /. H->h)
+M /@ `Heads
+M[h_] := SetDelayed@@(Hold[(System.{H})[x_RealI],(System`Number.{H})[x]] /. H->h)
+M /@ `Heads
+
+M[h_] =.
+
+End[]

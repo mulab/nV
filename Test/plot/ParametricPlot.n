@@ -1,0 +1,8 @@
+ParametricPlot[{Sin[u],Sin[2*u]},{u,0,7}]
+ParametricPlot[{{Sin[u],Sin[2*u]},{Tan[u],u*Sin[u]}},{u,0,7}]
+ParametricPlot[{{2*Cos[t],2*Sin[t]},{2*Cos[t],Sin[t]},{Cos[t],2*Sin[t]},{Cos[t],Sin[t]}},{t,0,6.3}]
+ParametricPlot[{{Sin[u]*u,Cos[u]*u}},{u,0,100}]
+ParametricPlot[{Tan[u],u*Sin[u]},{u,0,12.56},Options[ColorFunction[u*Cos[u]]]]
+ParametricPlot[{x,Sin[x^2]},{x,0,10}]
+ParametricPlot[{Cos[u],Sin[3*u]},{u,0,10*3.14}]
+ParametricPlot[{Tan[u*u]+u,Sin[3*u]},{u,0,3.14}]

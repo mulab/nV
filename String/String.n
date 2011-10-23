@@ -1,0 +1,13 @@
+CInstall["nvstring"]
+Begin[System`String]
+
+CInterface["nvstring",
+Value[`Join],
+`add[_String],
+`len[]
+]
+
+End[]
+
+StringJoin = System`String`Join
+Path[x_String] := Path[].add[x]

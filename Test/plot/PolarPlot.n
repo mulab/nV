@@ -1,0 +1,5 @@
+PolarPlot[t,{t,0,4*3.14}]
+PolarPlot[Sin[12*t],{t,0,6.28}]
+PolarPlot[Sin[6*t],{t,0,6.28},Options[ColorFunction[Sin[t]]]]
+PolarPlot[{1,1+1/10*Sin[10*t],1,1,1,1},{t,0,6.28}]
+PolarPlot[Exp[1]^(t/10.0),{t,0,30}]
