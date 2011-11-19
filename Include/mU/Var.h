@@ -1,3 +1,12 @@
+/* var_t
+ *   |
+ *   |-----|-----|-----|-----|-----|----|-----|
+ * int_t rat_t flt_t str_t sym_t vec_t ex_t obj_t    
+ *                                            |
+ *                                      |-----|-----|
+ *                                    tab_t pat_t complex_t
+ * */
+
 #pragma once
 
 namespace mU {
