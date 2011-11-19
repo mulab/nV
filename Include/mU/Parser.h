@@ -105,7 +105,7 @@ private:
 		tag_t tag;
 		int value; //依据具体tag而定。建议改成union或enum，也可以和tag_t合并
 	};
-	std::vector<node_t> m_node; //最后代码生成结果
+	std::vector<node_t> m_node; //表达式树结点
 	std::multimap<size_t,size_t> m_child; //和m_node一起构成树，从父亲指向孩子
 	stdext::hash_set<wstring> m_entry; //字符串池，wstring的c_str()返回字符串地址不会改变，用来节约内存
 	std::map<size_t,const wchar*> m_note; //从m_node下标指向m_entry管理的内容
@@ -146,15 +146,15 @@ private:
 	size_t sequence();
 	size_t primary();
 
-	std::vector<var> m_code;
+	std::vector<var> m_code; //管理最后生成的var树的所有var
 	std::stack<std::pair<Var,size_t> > code_stack;
 	typedef std::multimap<size_t,size_t>::const_iterator iter_t;
 	iter_t lower(size_t i);
 	iter_t upper(size_t i);
 	size_t count(size_t i);
-	void emit(Var);
-	void head(size_t n);
-	void gen(size_t m);
+	void emit(Var); //填充表达式
+	void head(size_t n); //生成长为n（头部也算）的表达式
+	void gen(size_t m); //将中间数据结构的m为根的子树代码生成到对应var树，放入m_code
 };
 //////////////////////////////////////
 }
