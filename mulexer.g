@@ -1,44 +1,35 @@
-grammar For_test;
+lexer grammar mulexer;
 
-option {
-	
+options {
+	language=C;
 }
 
-ID  :	('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
+IDENTIFIER
+	:	('_' | 'a'..'z' | 'A'..'Z' | '\u0080'..'\uFFFE') ('_' | 'a'..'z' | 'A'..'Z' | '0'..'9' | '\u0080'..'\uFFFE')*
+	;
+
+INTEGER
+	:	('0'..'9')+
     ;
 
-INT :	'0'..'9'+
-    ;
-
-FLOAT
-    :   ('0'..'9')* '.' ('0'..'9')* EXPONENT?
-    |   ('0'..'9')+ EXPONENT
+REAL
+    :   ('0'..'9')* '.' ('0'..'9')+
     ;
 
 COMMENT
-    :   '//' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
-    |   '(*' ( options {greedy=false;} : . )* '*)' {$channel=HIDDEN;}
+    :   '(*' ( options {greedy=false;} : . )* '*)' {$channel=HIDDEN;}
     ;
 
 WS  :   ( ' '
     	|	'\t'
 		|	'\r'
 	    | 	'\n'
-	    ) {$channel=HIDDEN;}
+	    ) {}
     ;
 
 STRING
     :  '"' ( ESC_SEQ | ~('\\'|'"') )* '"'
     ;
-
-CHAR:  '\'' ( ESC_SEQ | ~('\''|'\\') ) '\''
-    ;
-
-fragment
-EXPONENT : ('e'|'E') ('+'|'-')? ('0'..'9')+ ;
-
-fragment
-HEX_DIGIT : ('0'..'9'|'a'..'f'|'A'..'F') ;
 
 fragment
 ESC_SEQ
@@ -56,7 +47,7 @@ OCTAL_ESC
 
 fragment
 UNICODE_ESC
-    :   '\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
+    :   '\\' 'u' ('0'..'9'|'a'..'f'|'A'..'F') ('0'..'9'|'a'..'f'|'A'..'F') ('0'..'9'|'a'..'f'|'A'..'F') ('0'..'9'|'a'..'f'|'A'..'F')
     ;
 
 SEMICOLON
@@ -213,10 +204,6 @@ LT_OP
 
 GT_OP
 	:	'>'
-	;
-
-PLUS
-	:	'+'
 	;
 
 STAR
