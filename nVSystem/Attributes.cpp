@@ -2,7 +2,7 @@
 
 namespace nV {
 var Attributes(Kernel& k, sym x) {
-    std::unordered_map<sym, Kernel::Attribute>::const_iterator
+    boost::unordered_map<sym, Kernel::Attribute>::const_iterator
     iter = k.attributes.find(x);
     if (iter != k.attributes.end())
         return nV::list(iter->second.size(), iter->second.begin());
@@ -45,7 +45,7 @@ CAPI bool ASSIGN(Attributes)(Kernel& k, const Tuple& x, const var& y) {
 }
 CAPI void VALUE(ClearAttributes)(Kernel& k, var& r, Tuple& x) {
     if (x.size == 3 && x[1].isSymbol()) {
-        std::unordered_map<sym, Kernel::Attribute>::iterator
+        boost::unordered_map<sym, Kernel::Attribute>::iterator
         iter = k.attributes.find(x[1].symbol());
         if (iter == k.attributes.end())
             return;

@@ -44,7 +44,7 @@ CAPI void VALUE(CTest)(Kernel& k, var& r, Tuple& x) {
 namespace {
 class Dispatch : public Match {
     // typedef std::map<var, var> UMap;
-    typedef std::unordered_map<var, var> UMap;
+    typedef boost::unordered_map<var, var> UMap;
     UMap mMap;
 public:
     Dispatch(const Tuple& x) {

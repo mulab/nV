@@ -1,3 +1,5 @@
-AUX_SOURCE_DIRECTORY(. STRING_SRCS)
-add_library(nvstring SHARED ${STRING_SRCS})
-target_link_libraries(nvstring nvkernel) 
+new_shared_library(nvstring)
+
+target_link_libraries(nvstring nvkernel)
+
+install(FILES String.n DESTINATION String)
