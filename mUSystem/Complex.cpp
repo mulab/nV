@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "common.h"
 #include <mU/Number.h>
 #include <mU/Complex.h>
 #include <mU/System.h>
