@@ -5,7 +5,7 @@
 namespace nV {
 void Grammar::print(Kernel& k, wostream& o, wchar x) const {
     /*if (x >= 0x0080) {
-        std::unordered_map<wint, uint>::const_iterator
+        boost::unordered_map<wint, uint>::const_iterator
         iter = unicode.find((wint)x);
         if (iter != unicode.end()) {
             o << L"\\[" << character[iter->second].named << L']';
@@ -128,7 +128,7 @@ void Grammar::print(Kernel& k, wostream& o, const Tuple& x, uint y) const {
                     print(k, o, x[1].symbol());
                     return;
                 }
-                std::unordered_map<sym, uint>::const_iterator iter = postfixSymbol.find(h);
+                boost::unordered_map<sym, uint>::const_iterator iter = postfixSymbol.find(h);
                 if (iter != postfixSymbol.end()) {
                     const Oper &op = oper[iter->second];
                     if (op.prec < y) {
@@ -157,7 +157,7 @@ void Grammar::print(Kernel& k, wostream& o, const Tuple& x, uint y) const {
                     return;
                 }
             } else if (x.size > 2) {
-                std::unordered_map<sym, uint>::const_iterator iter = infixSymbol.find(h);
+                boost::unordered_map<sym, uint>::const_iterator iter = infixSymbol.find(h);
                 if (iter != infixSymbol.end()) {
                     const Oper &op = oper[iter->second];
                     if (op.prec < y) o << L'(';

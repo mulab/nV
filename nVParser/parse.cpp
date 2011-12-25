@@ -98,7 +98,7 @@ expression
 ;
 */
 void Parser::Parsing::shift(Frame &s) {
-    std::unordered_map<Token, uint>::const_iterator iter;
+    boost::unordered_map<Token, uint>::const_iterator iter;
     switch (s.mode) {
     case mode_start://#.
     case mode_prefix://prefix.
