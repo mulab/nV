@@ -1,4 +1,5 @@
-include_directories(${mU0Link_HEADER_DIR})
-AUX_SOURCE_DIRECTORY(. MU0EMBED_SRCS)
-add_library(mu0embed SHARED ${MU0EMBED_SRCS})
-target_link_libraries(mu0embed mu0link kernel)
+new_shared_library(mu0embed)
+
+target_link_libraries(mu0embed mu0link)
+
+install(FILES mU0.u mU0Test.u DESTINATION Link/mU0/Embed)
