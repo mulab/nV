@@ -37,7 +37,7 @@ var py_convert( PyObject *o)
 		r = $.False;
 	} else if (PyString_Check(o)) {
 		char *s;
-		int len;
+		Py_ssize_t len;
 		PyString_AsStringAndSize(o, &s, &len);
 		//这种赋值方式完全吗？
 		r = new String(mbs2wcs(s));

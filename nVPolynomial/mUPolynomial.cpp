@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "common.h"
 #include <mU/Number.h>
 #include <mU/System.h>
 #include "mU/wrap.h"
@@ -80,7 +80,7 @@ CAPI void mUInstall()
 	tag_modulus=Sym(_W("Modulus"),System);
 	tag_root=Sym(_W("Root"),System);
 
-	random::randomize();
+	mU::random::randomize();
 	UniSolveInitialize();
 	ComplexInitialize();
 

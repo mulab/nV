@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "common.h"
 #include "objects/integer.h"
 #include "objects/rational.h"
 #include "objects/interface.h"

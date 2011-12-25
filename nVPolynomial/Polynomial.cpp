@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "common.h"
 #include <nV/Polynomial.h>
 #include <mU/Polynomial_impl.h>
 #ifdef _MSC_VER

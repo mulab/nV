@@ -1,3 +1,4 @@
-AUX_SOURCE_DIRECTORY(. PARSER_SRCS)
-add_library(nvparser SHARED ${PARSER_SRCS})
+new_shared_library(nvparser)
+
 target_link_libraries(nvparser nvkernel nvpolynomial)
+add_definitions(-DPARSER_EXPORTS)

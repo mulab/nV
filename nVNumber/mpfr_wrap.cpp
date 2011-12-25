@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "common.h"
 #include "mpfr_wrap.h"
 
 namespace nV {

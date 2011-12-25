@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "common.h"
 /** \file
 \brief 一元方程实（复）根隔离
 */

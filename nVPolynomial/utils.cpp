@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "common.h"
 #include "utils.h"
 #include <nV/Number.h>
 

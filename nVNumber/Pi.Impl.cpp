@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "common.h"
 /* Pi computation using Chudnovsky's algortithm.
 
  * Copyright 2002, 2005 Hanhong Xue (macroxue at yahoo dot com)

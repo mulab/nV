@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "common.h"
 /** \file
 \brief 一元方程精确解
 */

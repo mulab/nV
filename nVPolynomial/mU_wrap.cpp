@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "common.h"
 #include "mU_wrap.h"
 #include "nV/Number.h"
 #include "CRE.h"

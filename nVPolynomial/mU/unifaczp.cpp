@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "common.h"
 /**
 \file
 \brief 有限域Zp上多项式因子分解.

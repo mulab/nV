@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "common.h"
 /** \file
 \brief 复合函数分解
 */

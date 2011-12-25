@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "common.h"
 /**
 \file
 \brief 多元多项式GCD in Zp[X]

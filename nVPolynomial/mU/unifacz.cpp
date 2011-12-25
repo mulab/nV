@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "common.h"
 /**
 \file
 \brief 整系数一元多项式因子分解，利用poly_z

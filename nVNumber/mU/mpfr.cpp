@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "common.h"
 #include <mU/Function.h>
 #include "mpfr.h"
 #ifdef _MSC_VER

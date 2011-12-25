@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "common.h"
 /** \file
 \brief 多项式模快里用到的生成随机数的类
 \todo 随机生成多项式移至此处

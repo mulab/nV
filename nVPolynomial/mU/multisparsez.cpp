@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "common.h"
 /**
 \file
 \brief 多元多项式基本函数 in Z[x]

@@ -1,6 +1,14 @@
-include_directories(./)
-file(GLOB NUMBER_SRCS "*.cpp")
-file(GLOB_RECURSE MU_NUMBER_SRCS mU "*.cpp")
-add_library(nvnumber SHARED ${NUMBER_SRCS} ${MU_NUMBER_SRCS})
-add_precompiled_header(nvnumber ${CMAKE_CURRENT_SOURCE_DIR}/StdAfx.h)
-target_link_libraries(nvnumber nvkernel musystem boost_thread mpfr mpfi) 
+new_shared_library(nvnumber)
+
+include_directories(.)
+add_common_to_target(nvnumber)
+target_link_libraries(nvnumber
+    nvkernel
+    musystem
+    ${Boost_SYSTEM_LIBRARIES}
+    ${mpfr_LIBRARIES}
+    ${mpfi_LIBRARIES}
+)
+add_definitions(-DNUMBER_EXPORTS)
+
+install(FILES mUNumber.m Number.n DESTINATION Number)

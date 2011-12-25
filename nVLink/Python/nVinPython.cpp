@@ -222,7 +222,7 @@ static PyObject *nVObject_getattr(PyObject *obj, PyObject *attr)
 
 	//此处最好是PythonConvert函数，用于将PyObject转换为nV里面的数据结构
 	char *s;
-	int len;
+	Py_ssize_t len;
 
 	//PyString_AsStringAndSize返回值为0是正常的？怎么与标准说明不一样
 	if (0 != PyString_AsStringAndSize(attr, &s, &len) || 0 == s){
@@ -264,7 +264,7 @@ static int nVObject_setattr(PyObject *obj, PyObject *attr, PyObject *value)
 	PyObject *ret = NULL;
 
 	char *s;
-	int len;
+	Py_ssize_t len;
 	//PyString_AsStringAndSize返回值为0是正常的？怎么与标准说明不一样
 	if (0 != PyString_AsStringAndSize(attr, &s, &len) || 0 == s) {
 		PyErr_SetString(PyExc_RuntimeError, "can not get string");
@@ -323,9 +323,9 @@ static PyObject *nVObject_iternext(nVObject *obj)
 	return ret;
 }
 
-static int nVObject_length(nVObject *obj)
+static Py_ssize_t nVObject_length(nVObject *obj)
 {
-	int len = 0;
+	Py_ssize_t len = 0;
 	return len;
 }
 
@@ -334,7 +334,7 @@ static PyObject *nVObject_subscript(PyObject *obj, PyObject *key)
 	return nVObject_getattr(obj, key);
 }
 
-static int nVObject_ass_subscript(PyObject *obj,
+static Py_ssize_t nVObject_ass_subscript(PyObject *obj,
 				PyObject *key, PyObject *value)
 {
 	return nVObject_setattr(obj, key, value);
@@ -418,7 +418,7 @@ PyObject *nV_run(PyObject *args, int in)
         } else if (!strcmp(e.what(), "error")) {
 		//	printf("error\n");
 			PyErr_SetString(PyExc_RuntimeError, "nVexception: parse error happened!" );
-            wcout << std::setw(pinpython.parsing.column + in) << _W("^\n");
+            wcout << std::setw(pinpython.parsing->column + in) << _W("^\n");
 		}
 		stream.clear();
 		return 0;

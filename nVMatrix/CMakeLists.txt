@@ -1,6 +1,7 @@
-include_directories(./)
-file(GLOB MATRIX_SRCS "*.cpp")
-AUX_SOURCE_DIRECTORY(mU/ MU_MATRIX_SRCS)
-add_library(nvmatrix SHARED ${MATRIX_SRCS} ${MU_MATRIX_SRCS})
-add_precompiled_header(nvmatrix ${CMAKE_CURRENT_SOURCE_DIR}/StdAfx.h)
+new_shared_library(nvmatrix)
+
+include_directories(.)
+add_common_to_target(nvmatrix)
 target_link_libraries(nvmatrix nvkernel nvnumber mukernel musystem) 
+
+install(FILES mUMatrix.m DESTINATION Matrix)

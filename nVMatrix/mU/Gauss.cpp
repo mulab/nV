@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "common.h"
 #include "Matrix.h"
 
 using boost::scoped_array;

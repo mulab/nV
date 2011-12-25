@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "common.h"
 #include "CRE.h"
 namespace nV {
 	namespace SparseArray {

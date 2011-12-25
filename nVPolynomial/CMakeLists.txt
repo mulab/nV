@@ -1,12 +1,12 @@
-include_directories(./)
-file(GLOB POLYNOMIAL_SRCS "*.cpp")
-AUX_SOURCE_DIRECTORY(mU/ MU_POLYNOMIAL_SRCS)
-add_library(nvpolynomial SHARED ${POLYNOMIAL_SRCS} ${MU_POLYNOMIAL_SRCS})
-add_precompiled_header(nvpolynomial ${CMAKE_CURRENT_SOURCE_DIR}/StdAfx.h)
-target_link_libraries(nvpolynomial nvkernel nvnumber mukernel musystem) 
-if(DEFINED USE_NTL_FLINT)
-  set_property(
-  SOURCE ${POLYNOMIAL_SRCS}
-  APPEND PROPERTY COMPILE_DEFINITIONS CPE_USE_NTL_FLINT
-  )
-endif()
+new_shared_library(nvpolynomial)
+
+include_directories(.)
+add_common_to_target(nvpolynomial)
+target_link_libraries(nvpolynomial nvkernel nvnumber mukernel musystem)
+add_definitions(-DPOLYNOMIAL_EXPORTS)
+
+install(FILES mUPolynomial.m Polynomial.n DESTINATION Polynomial)
+
+if (USE_NTL_FLINT)
+    add_definitions(-DCPE_USE_NTL_FLINT)
+endif ()

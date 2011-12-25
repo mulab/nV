@@ -1,19 +1,22 @@
-cmake_minimum_required(VERSION 2.6)
+add_subdirectory(doc)
 
-project(nVLinkPython CXX)
+include_directories(${PYTHON_INCLUDE_DIRS})
 
-include_directories(${nVLinkPython_SOURCE_DIR}/../../Include)
-link_directories(${nVLinkPython_SOURCE_DIR}/../.. ${nVLinkPython_SOURCE_DIR}/../../Lib)
-#find_package(Python)
-include(PythonConfig.cmake)
+new_shared_library (nvinpython
+    nVinPython.cpp
+    nVutils.cpp
+    pythonObject.cpp
+)
+target_link_libraries(nvinpython nV nVKernel nVParser
+    nVPolynomial nVString nVSystem ${PYTHON_LIBRARIES})
 
-#add_subdirectory(Bind)
-#add_subdirectory(Embed)
+new_shared_library (pythoninnv
+    PythoninnV.cpp
+    pythonObject.cpp
+    nVutils.cpp
+    nVinPython.cpp
+)
+target_link_libraries(pythoninnv nvinpython nvkernel ${PYTHON_LIBRARIES})
 
-#AUX_SOURCE_DIRECTORY(. NVLINKPYTHON_SRCS)
-SET(PYTHONINNV_SRCS PythoninnV.cpp pythonObject.cpp nVutils.cpp nVinPython.cpp)
-SET(NVINPYTHON_SRCS nVinPython.cpp nVutils.cpp PythonObject.cpp)
-add_library(nvinpython SHARED ${NVINPYTHON_SRCS})
-add_library(pythoninnv SHARED ${PYTHONINNV_SRCS})
-target_link_libraries(nvinpython nV nVKernel nVParser nVPolynomial nVString nVSystem python27)
-target_link_libraries(pythoninnv nvinpython nvkernel python27)
+install(FILES pythoninnv.n DESTINATION Link/Python)
+install(FILES setup.py DESTINATION Link/Python)

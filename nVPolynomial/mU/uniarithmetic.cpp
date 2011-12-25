@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "common.h"
 /** \file
 \brief 一元多项式基本算术运算
 \todo 有待修改补充,基本运算函数的目标和源是否可为同一地址的标注

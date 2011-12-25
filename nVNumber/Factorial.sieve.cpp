@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "common.h"
 #include <cstdlib>
 #include <cmath>
 #include "Factorial.sieve.h"

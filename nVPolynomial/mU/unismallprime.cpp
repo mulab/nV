@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "common.h"
 /**
 \file
 \brief Ğ¡ËØÊıBerlekampËã·¨.

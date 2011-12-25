@@ -1,4 +1,4 @@
-//#include "StdAfx.h"
+//#include "common.h"
 #include <nV/Number.h>
 //#include <limits>
 
@@ -48,7 +48,7 @@ var IntervalN(Kernel& k, const var& x, uint n) {
         Tuple* t = x.tuple().clone();										//t: the expression
 //        t->tuple[0] = IntervalN(k, t->tuple[0], n);
         if (t->tuple[0].isSymbol()) {
-            std::unordered_map<sym, Kernel::Attribute>::const_iterator
+            boost::unordered_map<sym, Kernel::Attribute>::const_iterator
             iter = k.attributes.find(t->tuple[0].symbol());
             if (iter != k.attributes.end()) {
                 if (!iter->second.count($.NHoldAll)) {

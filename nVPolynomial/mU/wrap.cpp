@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "common.h"
 #include <mU/Polynomial_impl.h>
 #include "polyfloat.h"
 #include "wrap.h"
