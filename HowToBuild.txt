@@ -1,0 +1,161 @@
+Quick Start for Windows, Visual Studio, 32bit, 不编译任何可选内容
+  >> 准备
+      假设你已经有了 nV 的整个源文件文件夹, 假设路径为 xx/nV
+
+      然后你需要 4 个额外的库, 它们都需要 32bit 的版本
+        *) Boost
+            下载安装 Boost. 设一个环境变量 BOOST_ROOT 为你的
+            安装文件夹.
+
+        *) GMP, MPFR, MPFI
+            这 3 个库, 每个库都需要相应的 .dll 和 .lib
+            文件. 把所有这些文件放在 xx/extra 下. 并
+            将 xx/extra 加入 PATH 环境变量.
+
+      最后你需要下载安装一个 CMake.
+
+  >> CMake 配置
+      打开 CMake,
+          源文件文件夹设为 xx/nV
+          build 文件夹设为 xx/build
+
+      点击 Configure 按钮. CMake 会提示问你生成什么样的工程
+      文件, 选择和你的 Visual Studio 版本相应的, 注意不要选
+      择 64 位的. 此后很可能会显示错误信息, 这是正常的.
+
+      在 CMake 的变量列表中做一些改动:
+         * 将的 USE_XXX 的 YES 都改成 NO.
+         * CMAKE_INSTALL_PREFIX 改为 xx/install
+
+      重新点击 Configure 按钮. 如果仍然有错误信息的话, 说明
+      有地方出了问题, 你应该修好相应的问题再继续.
+
+      如果没有问题, 点击 Generate 按钮. xx/build 下就应该有
+      了很多 Visual Studio 的工程文件.
+
+  >> VS 编译
+      用 VS 打开 xx/build/nV.sln. 生成其中的 ALL_BUILD 工程,
+      编译所有的内容. 再生成 INSTALL 工程, 就会把编译好的文
+      件安装到 xx/install.
+
+  >> 运行
+      运行 xx/install/bin/mu.exe
+
+Advanced Configuration
+  >> CMake 配置参数
+        CMAKE_INSTALL_PREFIX
+            安装路径
+
+        CMAKE_FIND_PREFIX
+            路径
+
+            会试图在这里找外部库. 当然除了这里之外, 还会在一
+            些'系统默认'的地方找, 比方说 PATH 环境变量.
+
+        EXTRA_INCLUDE
+            路径
+
+            由于部分的库, 只能 自动找 和 配置 用于链接的
+            object 文件, 头文件需要在这里配置.
+
+        USE_*
+            YES/NO
+
+            表示是否编译相应的可选部分.
+            设为 YES 意味着很可能需要更多的外部库
+
+  >> 一般情况下的配置
+        首先, 建议 build文件夹 和 源文件文件夹 区分开.
+        这是因为 build文件夹里会产生很多比较乱的文件, 而
+        CMake 不提供比较方便的办法对这些文件进行清除.
+
+        其次, 建议 install 之后再运行. 因为 build 好了之后
+        各个编译好的 .exe 和 .dll 分布比较散乱. install 了
+        之后, 它们的相对位置会直接形成 可运行 的状态.
+
+        关于外部库, 有 3 个部分
+            * 头文件, 对于部分的库, 这些需要加在 EXTRA_INCLUDE,
+              另一些库可以让 CMake 自动找.
+
+            * 用来链接的 .lib/.a  对于这些, 需要让它们能够被
+              CMake 找到, 比方说加在 CMAKE_FIND_PREFIX 里.
+              或者也可以手动去修改 xxx_LIBRARIES 这样的 CMake 变量
+
+            * .dll  它们需要在运行的时候, 能被可执行文件找到.
+              建议加入 PATH 里
+
+Dependences
+    Boost
+
+    GMP
+
+    MPFR
+
+    MPFI: Multiple Precision Floating-point Interval library
+        http://perso.ens-lyon.fr/nathalie.revol/software.html
+
+        要求比较高的版本
+        我的 Ubuntu 10.04 LTS 的这个包的版本不够高, 我是下载了最
+        新的源文件包手动编译的
+
+Optional Dependences
+    USE_JAVA
+        JNI: Java Native Interface
+
+    USE_NTL_FLINT
+        NTL: A Library for doing Number Theory
+             http://www.shoup.net/ntl/
+
+            我们需要 configure 时, NTL_GMP_LIP=on
+
+        flint: Fast Library for Number Theory
+               http://www.flintlib.org/
+
+            2.2 版本在 GMP 64 位的检测上, 在我的环境下有点问题
+                把 longlong.h 里的 __GMP_BITS_PER_MP_LIMB 替换成 GMP_LIMB_BITS
+
+    USE_YAFU
+        yafu: Yet Another Factorization Utility
+            http://sourceforge.net/projects/yafu/
+
+            最终发现, mathmu 用的是一个改过的 yafu
+            它增加了 nVLink/yafu/yafu/export.h 里的 3 个函数
+            所以我就不管了
+
+            yafu 本来只提供可执行文件的编译, 需要改 Makefile 编译出一个 shared library
+            把 ggnfs disable 需要在 include/factor.h 里手动把 USE_NFS 揪掉
+
+        yafu 的编译可能额外需要 以下2个库
+            GMP-ECM: Elliptic Curve Method for Integer Factorization
+                http://ecm.gforge.inria.fr/
+        
+            ggnfs: GPL'd implementation of the General Number Field Sieve
+                http://www.math.ttu.edu/~cmonico/software/ggnfs/
+
+                我这里有一些和 64 位相关的问题, 我放弃了
+
+    USE_Python
+        Python
+            目前不能编译, nVLink/Python/nVinPython.cpp, 428 行, 有一个
+                pinpython.code()
+            的调用, 但是 nVParser 没有这个函数
+
+    USE_Lua
+        Lua 5.1
+
+        Luabind: "Luabind is a library that helps you create bindings between C++ and Lua"
+            http://www.rasterbar.com/products/luabind.html
+
+        boost-build
+            Luabind 编译可能需要 boost-build
+
+    USE_ECL (untested)
+        ECL: "an implementation of the Common Lisp language"
+            http://ecls.sourceforge.net/
+
+            原来的 CMake 中有这么一句注释:
+                add -lpthread for gdb after using Ecl
+
+    USE_MU0 (untested)
+        MU0, 我的理解是原来的 mU 版本
+

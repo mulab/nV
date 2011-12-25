@@ -1,6 +1,8 @@
 #pragma once
 #include "Common.h"
 #include <vector>
+#include <boost/unordered_map.hpp>
+#include <boost/unordered_set.hpp>
 
 namespace nV {
 class Serializer {
@@ -29,7 +31,7 @@ class Serializer {
 	struct Saving {
 		Saving() : field_index(0) {}
 		uint field_index;
-		std::unordered_map<var, uint> var_index;//Pool;
+		boost::unordered_map<var, uint> var_index;//Pool;
 		uint save(const var&, ostream&);
 		uint save(const Object&, ostream&);
 		uint save(const sym, ostream&);

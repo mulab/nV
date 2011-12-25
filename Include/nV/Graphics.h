@@ -2,6 +2,9 @@
 #include "Interface.h"
 #include <cmath>
 
+#include <boost/unordered_set.hpp>
+#include <boost/unordered_map.hpp>
+
 #undef API
 #ifdef _MSC_VER
 #ifdef GRAPHIC_EXPORTS
@@ -117,7 +120,7 @@ public:
 };
 
 // API double Evalf(Kernel&, const var&);
-// typedef std::unordered_map<sym, var> UMap;
+// typedef boost::unordered_map<sym, var> UMap;
 
 }
 }

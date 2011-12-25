@@ -1,6 +1,8 @@
 #pragma once
 #include "var.h"
 #include <vector>
+#include <boost/unordered_set.hpp>
+#include <boost/unordered_map.hpp>
 
 #undef API
 #ifdef _MSC_VER
@@ -93,7 +95,7 @@ struct Grammar {
     API static void Init();
     API Grammar();
 
-    std::unordered_set<Token> end;
+    boost::unordered_set<Token> end;
     struct Char {
         wint unicode;
         wcs named;
@@ -101,8 +103,8 @@ struct Grammar {
             unicode(_unicode), named(_named) {}
     };
     std::vector<Char> character;
-    std::unordered_map<wint, uint> unicode;
-    std::unordered_map<wstring, uint> named;
+    boost::unordered_map<wint, uint> unicode;
+    boost::unordered_map<wstring, uint> named;
 
     struct Oper {
         Token token;
@@ -118,8 +120,8 @@ struct Grammar {
     uint prec;
     std::vector<Oper> oper;
     std::vector<sym> operSymbol;
-    std::unordered_map<sym, uint> postfixSymbol, prefixSymbol, infixSymbol;
-    std::unordered_map<Token, uint> postfixToken, prefixToken, infixToken;
+    boost::unordered_map<sym, uint> postfixSymbol, prefixSymbol, infixSymbol;
+    boost::unordered_map<Token, uint> postfixToken, prefixToken, infixToken;
     uint operCOLON, operPERIOD, operPLUS, operAT;
 
     API void print(Kernel&, wostream&, wchar) const;
@@ -134,9 +136,9 @@ struct Grammar {
 }
 
 #ifndef _MSC_VER
-namespace std {
+namespace boost {
 template<>
-inline size_t hash<nV::Token>::operator()(nV::Token x) const {
+inline size_t hash<nV::Token>::operator()(const nV::Token& x) const {
     return static_cast<size_t>(x);
 }
 }

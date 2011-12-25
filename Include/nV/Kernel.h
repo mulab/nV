@@ -3,6 +3,8 @@
 #include <list>
 #include <map>
 #include <vector>
+#include <boost/unordered_set.hpp>
+#include <boost/unordered_map.hpp>
 
 namespace nV {
 struct Assign : public Object {
@@ -116,8 +118,8 @@ public:
     }
 
     // Rules Database
-    typedef std::unordered_set<sym> Attribute;
-    std::unordered_map<sym, Attribute> attributes;
+    typedef boost::unordered_set<sym> Attribute;
+    boost::unordered_map<sym, Attribute> attributes;
     API Tuple* rewrite(Tuple*);
     API Tuple* spread(const Tuple&);
     API Tuple* flatten(sym, const Tuple&) const;
@@ -125,7 +127,7 @@ public:
     API bool match(var&, const var&, Match&);
     API var replace(const var&, Match&);
     // std::set<var> mBind;
-    std::unordered_set<var> mBind;
+    boost::unordered_set<var> mBind;
     bool bound(const var& x) const {
         return mBind.count(x) != 0;
     }
@@ -139,15 +141,15 @@ public:
     }
 
     // Rule
-    std::unordered_map<sym, var> owns;
-    typedef std::unordered_map<var, var> UMap;
-    std::unordered_map<sym, UMap> certains;
+    boost::unordered_map<sym, var> owns;
+    typedef boost::unordered_map<var, var> UMap;
+    boost::unordered_map<sym, UMap> certains;
     typedef std::map<var, var> Map;
-    std::unordered_map<sym, Map> matches;
+    boost::unordered_map<sym, Map> matches;
 
     // Interface
-    std::unordered_map<sym, var> assigns;
-    std::unordered_map<sym, var> values;
+    boost::unordered_map<sym, var> assigns;
+    boost::unordered_map<sym, var> values;
 
     // assign
     API bool assign(sym, const var&);
