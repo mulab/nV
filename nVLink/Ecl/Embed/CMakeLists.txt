@@ -1,4 +1,5 @@
-include_directories(${nVLinkEcl_HEADER_DIR})
-AUX_SOURCE_DIRECTORY(. NVEMBEDECL_SRCS)
-add_library(nvembedecl SHARED ${NVEMBEDECL_SRCS})
-target_link_libraries(nvembedecl nvlinkecl nvkernel) 
+new_shared_library (nvembedecl)
+
+target_link_libraries(nvembedecl nvlinkecl nvkernel)
+
+install(FILES EclTest.n DESTINATION Link/Ecl/Embed)

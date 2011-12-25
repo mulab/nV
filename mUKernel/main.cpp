@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "common.h"
 #include <mU/Exceptions.h>
 #include <mU/Kernel.h>
 #include <mU/Parser.h>
@@ -30,8 +30,8 @@ extern "C"
 __declspec(dllexport)
 #endif
 int mU_main(int argc,char *argv[]) {
-	setlocale(LC_ALL,"");
-	std::locale::global(std::locale(""));
+//	setlocale(LC_ALL,"");
+//	std::locale::global(std::locale(""));
 	//wcerr.rdbuf(0);
 	Initialize();
 	Get(path() + _W("mU.ini"));
@@ -41,8 +41,8 @@ int mU_main(int argc,char *argv[]) {
 			Get(to_wstring(argv[i], strlen(argv[i])));
 		return 0;
 	}
-    wcin.imbue(std::locale(""));
-    wcout.imbue(std::locale(""));
+//    wcin.imbue(std::locale(""));
+//    wcout.imbue(std::locale(""));
     if (!backend_mode)
       {
 	wcout<<

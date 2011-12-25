@@ -19,7 +19,7 @@ var Serializer::load(istream& i) {
 	return loading.load(i);
 }
 uint Serializer::Saving::save(const var& x, ostream& o) {
-	typedef std::unordered_map<var, uint>::iterator Iterator;
+	typedef boost::unordered_map<var, uint>::iterator Iterator;
 	std::pair<Iterator, bool>
     r = var_index.insert(std::make_pair(x, 0));	
     if (!r.second)

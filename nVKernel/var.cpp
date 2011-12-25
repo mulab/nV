@@ -42,24 +42,24 @@ void Key::print(wostream& o) const {
         break;
     }
 }
-std::unordered_map<uint, var> keys;
+boost::unordered_map<uint, var> keys;
 Key* key(wcs x) {
-    std::pair<std::unordered_map<uint, var>::iterator, bool>
+    std::pair<boost::unordered_map<uint, var>::iterator, bool>
     r =	keys.insert(std::make_pair(reinterpret_cast<uint>(x), null));
     if (r.second)
         r.first->second = new Key(reinterpret_cast<uint>(x));
     return static_cast<Key*>(r.first->second.ptr);
 }
 Key* key(uint x) {
-    std::pair<std::unordered_map<uint, var>::iterator, bool>
+    std::pair<boost::unordered_map<uint, var>::iterator, bool>
     r = keys.insert(std::make_pair((x << 1) + 1, null));
     if (r.second)
         r.first->second = new Key((x << 1) + 1);
     return static_cast<Key*>(r.first->second.ptr);
 }
-std::unordered_set<wstring> wstrs;
-std::unordered_map<sym, wcs> names;
-std::unordered_map<sym, Context> contexts;
+boost::unordered_set<wstring> wstrs;
+boost::unordered_map<sym, wcs> names;
+boost::unordered_map<sym, Context> contexts;
 sym root = 0, sys;
 const var null(0);
 Symbol::~Symbol() {
@@ -72,7 +72,7 @@ void Symbol::ruin(Var* x) {
     delete static_cast<Symbol*>(x);    
 }
 wcs Symbol::name() const {
-    std::unordered_map<sym, wcs>::const_iterator
+    boost::unordered_map<sym, wcs>::const_iterator
     iter = names.find(this);
     if (iter != names.end())
         return iter->second;
@@ -116,7 +116,7 @@ sym Symbol::symbol(wcs x) const {
     return t;
 }
 var Symbol::get(wcs x) const {
-    std::unordered_map<sym, Context>::const_iterator
+    boost::unordered_map<sym, Context>::const_iterator
     iter = contexts.find(this);
     if (iter != contexts.end()) {
         Context::const_iterator
@@ -156,10 +156,10 @@ void Object::ruin(Var* x) {
 }
 namespace Primary {
 void(* const TypeRuin[TypeSize])(Var*) = {
-    Object::ruin,
-    Key::ruin,
-    Symbol::ruin,
-    Tuple::ruin
+	nV::Object::ruin,
+    nV::Key::ruin,
+    nV::Symbol::ruin,
+    nV::Tuple::ruin
 };
 }
 bool var::ahead::operator()(const var& x, const var& y) const {

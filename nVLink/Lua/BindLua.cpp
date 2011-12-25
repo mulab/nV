@@ -1,6 +1,6 @@
 #include "LinkLua.h"
-#include <luabind/luabind.hpp>
-#include <luabind/object.hpp>
+#include "luabind/luabind.hpp"
+#include "luabind/object.hpp"
 #ifdef _MSC_VER
 #ifdef _DEBUG
 #pragma comment(lib,"libluabindd")

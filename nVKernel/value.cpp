@@ -2,7 +2,7 @@
 
 namespace nV {
 var Kernel::value(sym x) {
-    std::unordered_map<sym, var>::const_iterator
+    boost::unordered_map<sym, var>::const_iterator
     iter = owns.find(x);
     if (iter != owns.end())
         return lazy(iter->second);
@@ -49,7 +49,7 @@ var Kernel::value(Tuple& x) {
         pop();
         return r;
     }
-    std::unordered_map<sym, var>::const_iterator
+    boost::unordered_map<sym, var>::const_iterator
     iter = values.find(h.symbol());
     if (iter != values.end()) {
         pop();
@@ -70,7 +70,7 @@ var Kernel::value(const var& x) {
     return x;
 }
 bool Kernel::certain(var& r, sym h, const Tuple& x) {
-    std::unordered_map<sym, UMap>::const_iterator
+    boost::unordered_map<sym, UMap>::const_iterator
     iter = certains.find(h);
     if (iter != certains.end()) {
         UMap::const_iterator
@@ -83,7 +83,7 @@ bool Kernel::certain(var& r, sym h, const Tuple& x) {
     return false;
 }
 bool Kernel::match(var& r, sym h, const Tuple& x) {
-    std::unordered_map<sym, Map>::const_iterator
+    boost::unordered_map<sym, Map>::const_iterator
     iter = matches.find(h);
     if (iter != matches.end()) {
         Map::const_iterator

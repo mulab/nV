@@ -33,7 +33,7 @@ bool Kernel::assign(const Tuple& x, const var& y) {
         else
             return false;
     }
-    std::unordered_map<sym, var>::const_iterator
+    boost::unordered_map<sym, var>::const_iterator
     iter = assigns.find(h.symbol());
     if (iter != assigns.end())
         return iter->second.cast<Assign>()(*this, x, y);

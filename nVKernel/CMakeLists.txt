@@ -1,11 +1,5 @@
-AUX_SOURCE_DIRECTORY(. NVKERNEL_SRCS)
-add_library(nvkernel SHARED ${NVKERNEL_SRCS})
+new_shared_library(nvkernel)
 
-if(WIN32)
-    target_link_libraries(nvkernel gmp)
-elseif(UNIX)
-    target_link_libraries(nvkernel gmp dl boost_system)
-else()
-    message(FATAL_ERROR "building on an unsupported operating system")
-endif()
-
+target_link_libraries(nvkernel ${Boost_LIBRARIES})
+target_link_libraries(nvkernel ${gmp_LIBRARIES})
+add_definitions(-DKERNEL_EXPORTS)

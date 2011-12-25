@@ -1,4 +1,10 @@
-include_directories(${nVLinkJava_HEADER_DIR})
-AUX_SOURCE_DIRECTORY(. NVEMBEDJAVA_SRCS)
-add_library(nvembedjava SHARED ${NVEMBEDJAVA_SRCS})
+new_shared_library(nvembedjava)
+
 target_link_libraries(nvembedjava nvlinkjava nvkernel)
+
+install(FILES
+    awtTest.u
+    EmbedJava.n
+    plotTest.u
+
+    DESTINATION Link/Java/Embed)

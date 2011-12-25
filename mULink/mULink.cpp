@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "common.h"
 #include <nV/mUObject.h>
 #ifdef _MSC_VER
 #pragma comment(lib,"nVKernel")

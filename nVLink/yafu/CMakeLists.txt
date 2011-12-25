@@ -1,13 +1,6 @@
-cmake_minimum_required(VERSION 2.6)
+new_shared_library(nvlinkyafu)
 
-project(nVLinkYAFU CXX)
+target_link_libraries(nvlinkyafu nvkernel ${yafu_LIBRARIES})
 
-include_directories(${nVLinkYAFU_SOURCE_DIR}/../../Include)
-link_directories(${nVLinkYAFU_SOURCE_DIR}/../../Lib)
-
-#add_subdirectory(Bind)
-#add_subdirectory(Embed)
-
-AUX_SOURCE_DIRECTORY(. NVLINKYAFU_SRCS)
-add_library(nvlinkyafu SHARED ${NVLINKYAFU_SRCS})
-target_link_libraries(nvlinkyafu nvkernel yafu)
+install(FILES LinkYAFU.n yafu.u
+    DESTINATION Link/yafu)

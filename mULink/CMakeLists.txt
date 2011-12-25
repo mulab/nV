@@ -1,4 +1,10 @@
-file(GLOB MULINK_SRCS "*.cpp")
-add_library(mulink SHARED ${MULINK_SRCS})
-add_precompiled_header(mulink ${CMAKE_CURRENT_SOURCE_DIR}/StdAfx.h)
+new_shared_library(mulink)
+
+add_common_to_target(mulink)
 target_link_libraries(mulink nvkernel mukernel nvparser)
+
+install(FILES
+    EmbedmU.n
+    EmbednV.m
+    DESTINATION mULink
+)

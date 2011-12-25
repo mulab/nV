@@ -1,15 +1,13 @@
-cmake_minimum_required(VERSION 2.6)
-
-project(nVLinkJava CXX)
-
-include_directories(${nVLinkJava_SOURCE_DIR}/../../Include)
-link_directories(${nVLinkJava_SOURCE_DIR}/../.. ${nVLinkJava_SOURCE_DIR}/../../Lib)
-#find_package(JNI)
-include(JNIConfig.cmake)
+include_directories(${JNI_INCLUDE_DIRS})
 
 add_subdirectory(Bind)
 add_subdirectory(Embed)
+add_subdirectory(Java)
 
-AUX_SOURCE_DIRECTORY(. NVLINKJAVA_SRCS)
-add_library(nvlinkjava SHARED ${NVLINKJAVA_SRCS})
-target_link_libraries(nvlinkjava nvkernel jvm)
+new_shared_library(nvlinkjava
+    Java.cpp
+    JavaObject.cpp
+    nV_VarPtr.cpp
+)
+
+target_link_libraries(nvlinkjava nvkernel nvparser ${JAVA_JVM_LIBRARY})

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "common.h"
 #include <mU/Interface.h>
 #ifdef _WIN32
 #include <ShellAPI.h>
@@ -20,6 +20,8 @@ string cpath(const char* x) {
 #else
     return string("lib") + string(x) + string(".dll");
 #endif
+#elif __APPLE__
+	return "lib" + string(x) + ".dylib";
 #else
     return string("lib") + string(x) + string(".so");
 #endif

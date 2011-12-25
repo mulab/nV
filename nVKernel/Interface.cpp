@@ -21,6 +21,8 @@ string cpath(const char* x) {
 #else
     return string("lib") + string(x) + string(".dll");
 #endif
+#elif __APPLE__
+	return "lib" + string(x) + ".dylib";
 #else
     return string("lib") + string(x) + string(".so");
 #endif

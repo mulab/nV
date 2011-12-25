@@ -1,14 +1,8 @@
-cmake_minimum_required(VERSION 2.6)
+include_directories(${LUA_INCLUDE_DIR} .)
 
-project(nVLinkLua CXX)
+new_shared_library (nvlinklua)
+target_link_libraries(nvlinklua nvkernel
+    ${LUA_LIBRARIES}
+    ${luabind_LIBRARIES})
 
-include(LuaConfig.cmake)
-include_directories(${nVLinkLua_SOURCE_DIR} ${nVLinkLua_SOURCE_DIR}/../../Include ${BOOST_ROOT})
-link_directories(${nVLinkLua_SOURCE_DIR} ${nVLinkLua_SOURCE_DIR}/../.. ${nVLinkLua_SOURCE_DIR}/../../Lib ${BOOST_ROOT}/lib)
-
-#add_subdirectory(Bind)
-#add_subdirectory(Embed)
-
-AUX_SOURCE_DIRECTORY(. NVLINKLUA_SRCS)
-add_library(nvlinklua SHARED ${NVLINKLUA_SRCS})
-target_link_libraries(nvlinklua nvkernel lua5.1)
+install(FILES LinkLua.n DESTINATION Link/Lua)

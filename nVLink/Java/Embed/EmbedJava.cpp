@@ -55,7 +55,7 @@ CAPI void VALUE(Java)(Kernel& k, var& r, Tuple& x) {
 }
 CAPI void VALUE(Init)(Kernel& k, var& r, Tuple& x) {
     if (x.size == 1) {
-        char* argv = "";
+        char* argv = 0;
         JavaObject::Init(0, &argv);
         r = null;
         return;

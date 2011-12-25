@@ -6,7 +6,7 @@ Tuple* Kernel::rewrite(Tuple* x) {
     Tuple *r = 0;
     x->tuple[0] = eval(x->tuple[0]);
     if (x->tuple[0].isSymbol()) {
-        std::unordered_map<sym, Attribute>::const_iterator
+        boost::unordered_map<sym, Attribute>::const_iterator
         iter = attributes.find(x->tuple[0].symbol());
         if (iter != attributes.end()) {
             r = x;

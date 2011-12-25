@@ -117,7 +117,7 @@ struct MatchC {
             mFlat.push(0);
             mMatch->codes.push_back(CMatch::PUSH);
             terminal(h);
-            std::unordered_map<sym, Kernel::Attribute>::const_iterator
+            boost::unordered_map<sym, Kernel::Attribute>::const_iterator
             iter = mKernel.attributes.find(h.symbol());
             if (iter != mKernel.attributes.end()) {
                 if (iter->second.count($.Flat))
