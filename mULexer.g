@@ -4,6 +4,19 @@ options {
 	language=C;
 }
 
+@header {
+	#include <cstdio>
+	#include <cstring>
+	#include <hash_map>
+	#include <vector>
+}
+
+@members {
+	std::vector<char_t> specChars;
+	stdext::hash_map<wint_t, size_t> unicode2specChar;
+	stdext::hash_map<wstring, size_t> specName2specChar;
+}
+
 IDENTIFIER
 	: ('_' | 'a'..'z' | 'A'..'Z' | '\u0080'..'\uFFFE') ('_' | 'a'..'z' | 'A'..'Z' | '0'..'9' | '\u0080'..'\uFFFE')*
 	;
@@ -12,8 +25,7 @@ INTEGER
 	: ('0'..'9')+
 	;
 
-REAL
-	: ('0'..'9')* '.' ('0'..'9')+
+REAL: ('0'..'9')* '.' ('0'..'9')+
 	;
 
 COMMENT
@@ -205,8 +217,7 @@ GT_OP
 	: '>'
 	;
 
-STAR
-	: '*'
+STAR: '*'
 	;
 
 SLASH
@@ -217,8 +228,7 @@ PERCENT
 	: '%'
 	;
 
-PLUS
-	: '+'
+PLUS: '+'
 	;
 
 MINUS
