@@ -27,6 +27,9 @@ include_directories (BEFORE ${PROJECT_SOURCE_DIR}/Include/external)
 include_directories (${PROJECT_SOURCE_DIR}/Include)
 include_directories (${EXTRA_INCLUDE})
 
+# Project Headers
+file(GLOB_RECURSE PROJECT_HEADERS "Include/*.h")
+
 # Definitions
 add_definitions(-DUNICODE)
 
