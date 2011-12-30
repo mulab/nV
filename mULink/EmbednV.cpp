@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "common.h"
 #include <nV/mUObject.h>
 
 using namespace mU;

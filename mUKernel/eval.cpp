@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "common.h"
 #include <mU/Number.h>
 #include <mU/String.h>
 #include <mU/Pattern.h>
@@ -372,7 +372,6 @@ var EvalEx(Var expression)
 	var head = Eval(Head(expression));
 	var body;
 	var result;
-	bool found;
 	if(SymQ(head))
 	{
 		std::map<Var,attr_t>::const_iterator

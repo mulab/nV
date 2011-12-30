@@ -1,0 +1,10 @@
+<< Path["../mUScript/System/init.m"]
+
+If[${INI_USE_NTL_FLINT},
+nV`Eval["<< Path[\"../Link/NTL/LinkNTL.n\"]"];
+nV`Eval["<< Path[\"../Link/flint/LinkFLINT.n\"]"]
+]
+
+If[${INI_USE_YAFU},
+nV`Eval["<< Path[\"../Link/yafu/LinkYAFU.n\"]"]
+]

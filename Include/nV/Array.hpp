@@ -32,7 +32,7 @@ public:
 		size_t r = 2166136261U;
 		typename std::vector<T>::const_iterator iter = vec.begin();//See C++ FAQ 35.18 for why typename is needed
 		while (iter < vec.end()) {
-			r = 16777619U * r ^ std::hash<T>()(*iter);
+			r = 16777619U * r ^ boost::hash<T>()(*iter);
 			++iter;
 		}
 		return r;

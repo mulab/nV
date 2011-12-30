@@ -6,8 +6,8 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-#include <unordered_map>
-#include <unordered_set>
+#include <boost/unordered_map.hpp>
+#include <boost/unordered_set.hpp>
 #ifdef _DEBUG
 #include <typeinfo>
 #endif
@@ -211,7 +211,7 @@ inline wostream& operator<<(wostream& o, const Key& x) {
     return o;
 }
 
-API extern std::unordered_set<wstring> wstrs;
+API extern boost::unordered_set<wstring> wstrs;
 inline wcs wstr(wcs x) {
     return wstrs.insert(x).first->c_str();
 }
@@ -220,7 +220,7 @@ inline wcs wstr(const wstring& x) {
 }
 #define WSTR(x) wstr(_W(#x))
 typedef const Symbol* sym;
-API extern std::unordered_map<sym, wcs> names;
+API extern boost::unordered_map<sym, wcs> names;
 API extern sym root, sys;
 class Symbol : public Var {
 public:
@@ -364,26 +364,22 @@ API var load(istream&);
 API extern const var null;
 }
 
-namespace std {
+namespace boost {
 template<>
 inline size_t
-hash<nV::var>::operator()(
-#ifdef _MSC_VER
+boost::hash<nV::var>::operator()(
     const nV::var&
-#else
-    nV::var
-#endif
     x) const {
     return x.hash();
 }
 }
 
 namespace nV {
-API extern std::unordered_map<uint, var> keys;
+API extern boost::unordered_map<uint, var> keys;
 API Key* key(wcs);
 API Key* key(uint);
-typedef std::unordered_map<uint, var> Context;
-API extern std::unordered_map<sym, Context> contexts;
+typedef boost::unordered_map<uint, var> Context;
+API extern boost::unordered_map<sym, Context> contexts;
 class Tuple : public Var {
 	static const Tuple* unit;
 	friend API Tuple* tuple(uint);

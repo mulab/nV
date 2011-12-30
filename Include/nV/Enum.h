@@ -1,5 +1,7 @@
 #pragma once
 #include "var.h"
+#include <boost/unordered_set.hpp>
+#include <boost/unordered_map.hpp>
 
 namespace nV {
 struct Enum {
@@ -10,7 +12,7 @@ struct Enum {
     sym
     Null, Object, Key, Symbol, Tuple;
 
-    std::unordered_set<sym> Attributes;
+    boost::unordered_set<sym> Attributes;
     sym
     Constant,
     Flat,
@@ -32,7 +34,7 @@ struct Enum {
     Stub,
     Temporary;
 
-    std::unordered_set<sym> Patterns;
+    boost::unordered_set<sym> Patterns;
     sym
     Alternatives,
     Blank,
@@ -44,8 +46,8 @@ struct Enum {
     Rule,
     RuleDelayed;
 
-    std::unordered_set<sym> Objects;
-	std::unordered_set<sym> Numbers;
+    boost::unordered_set<sym> Objects;
+	boost::unordered_set<sym> Numbers;
     sym
     Integer, Rational, Real, String, Array, Complex, RealI;
 

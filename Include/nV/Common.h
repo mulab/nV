@@ -352,7 +352,7 @@ public:
         return str.compare(static_cast<const String&>(x).str);
     }
     virtual size_t hash() const {
-        return std::hash<wstring>()(str);
+        return boost::hash<wstring>()(str);
     }
     API virtual void print(wostream&) const;
     String() : Object($.String) {}

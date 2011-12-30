@@ -1,4 +1,5 @@
 #include "Kernel.h"
+#include <boost/unordered_set.hpp>
 
 namespace nV {
 class CMatch : public Match {
@@ -11,7 +12,7 @@ public:
     std::vector<var> args;
     class Unorder : public Object {
     public:
-        typedef std::unordered_multiset<var> UMSet;
+        typedef boost::unordered_multiset<var> UMSet;
         UMSet mset;
     };
     API virtual bool operator()(Kernel&, var&, const var&);

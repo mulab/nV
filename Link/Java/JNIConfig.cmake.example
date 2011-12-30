@@ -1,2 +1,0 @@
-include_directories(E:/JDK/include E:/JDK/include/win32)
-link_directories(E:/JDK/lib)

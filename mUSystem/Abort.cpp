@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "common.h"
 #include <mU/Exceptions.h>
 #include <mU/Kernel.h>
 #include <mU/Pattern.h>
