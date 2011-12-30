@@ -38,6 +38,10 @@ find_library (gmp_LIBRARIES gmp REQUIRED)
 find_library (mpfr_LIBRARIES mpfr REQUIRED)
 find_library (mpfi_LIBRARIES mpfi REQUIRED)
 
+mark_as_advanced (gmp_LIBRARIES)
+mark_as_advanced (mpfr_LIBRARIES)
+mark_as_advanced (mpfi_LIBRARIES)
+
 if (USE_JAVA)
     find_package (JNI REQUIRED)
 endif ()
@@ -45,10 +49,15 @@ endif ()
 if (USE_NTL_FLINT)
     find_library (ntl_LIBRARIES ntl REQUIRED)
     find_library (flint_LIBRARIES flint REQUIRED)
+
+    mark_as_advanced (ntl_LIBRARIES)
+    mark_as_advanced (flint_LIBRARIES)
 endif ()
 
 if (USE_YAFU)
     find_library (yafu_LIBRARIES yafu REQUIRED)
+
+    mark_as_advanced (yafu_LIBRARIES)
 endif ()
 
 if (USE_PYTHON)
@@ -58,16 +67,23 @@ endif ()
 if (USE_LUA)
     find_package (Lua51 REQUIRED)
     find_library (luabind_LIBRARIES luabind REQUIRED)
+
+    mark_as_advanced (luabind_LIBRARIES)
 endif ()
 
 if (USE_ECL)
     find_library (ecl_LIBRARIES ecl REQUIRED)
+
+    mark_as_advanced (ecl_LIBRARIES)
 endif ()
 
 if (USE_MU0)
     find_library (mU0_LIBRARIES mU0 REQUIRED)
     find_library (mU0_kernel_LIBRARIES kernel REQUIRED)
     set(mU0_LIBRARIES ${mU0_LIBRARIES} ${mU0_kernel_LIBRARIES})
+
+    mark_as_advanced(mU0_LIBRARIES)
+    mark_as_advanced(mU0_kernel_LIBRARIES)
 endif ()
 
 # subdirectory
