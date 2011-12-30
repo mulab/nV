@@ -257,8 +257,4 @@ expr
 	{
 		System.out.println("UNICODE_ESC");
 	}
-	|	WS
-	{
-		System.out.println("WS");
-	}
 	;
