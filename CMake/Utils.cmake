@@ -37,7 +37,9 @@ macro (new_shared_library project)
         file(GLOB_RECURSE ${project}_sources "*.cpp")
     endif ()
 
-    add_library(${project} SHARED ${${project}_sources} ${PROJECT_HEADERS})
+	file(GLOB_RECURSE ${project}_headers "*.h")
+
+    add_library(${project} SHARED ${${project}_sources} ${${project}_headers} ${PROJECT_HEADERS})
     target_link_libraries (${project} ${CMAKE_DL_LIBS})
     install(TARGETS ${project} DESTINATION bin)
 endmacro ()
@@ -49,6 +51,8 @@ macro (new_executable project)
         file(GLOB_RECURSE ${project}_sources "*.cpp")
     endif ()
 
-    add_executable(${project} ${${project}_sources} ${PROJECT_HEADERS})
+	file(GLOB_RECURSE ${project}_headers "*.h")
+
+    add_executable(${project} ${${project}_sources} ${${project}_headers} ${PROJECT_HEADERS})
     install(TARGETS ${project} DESTINATION bin)
 endmacro ()
