@@ -4,15 +4,17 @@ Quick Start for Windows, Visual Studio, 32bit, 不编译任何可选内容
 
       然后你需要 4 个额外的库, 它们都需要 32bit 的版本
         *) Boost
-            下载安装 Boost. 设一个环境变量 BOOST_ROOT 为你的
-            安装文件夹.
+            下载安装 Boost. 设一个（系统）环境变量 BOOST_ROOT 为你的
+            安装文件夹, 在（系统）环境变量 PATH 中添加 %BOOST_ROOT%\lib.
 
         *) GMP, MPFR, MPFI
             这 3 个库, 每个库都需要相应的 .dll 和 .lib
             文件. 把所有这些文件放在 xx/extra 下. 并
             将 xx/extra 加入 PATH 环境变量.
 
-      最后你需要下载安装一个 CMake.
+      之上两大类库我们已经有编译好的两个压缩包, 直接解压即可使用.
+	  
+	  最后你需要下载安装一个 CMake.
 
   >> CMake 配置
       打开 CMake,
@@ -34,8 +36,8 @@ Quick Start for Windows, Visual Studio, 32bit, 不编译任何可选内容
       了很多 Visual Studio 的工程文件.
 
   >> VS 编译
-      用 VS 打开 xx/build/nV.sln. 生成其中的 ALL_BUILD 工程,
-      编译所有的内容. 再生成 INSTALL 工程, 就会把编译好的文
+      用 VS 打开 xx/build/nV.sln. 生成其中的 ALL_BUILD 工程
+      （编译所有的内容）, 再生成 INSTALL 工程, 就会把编译好的文
       件安装到 xx/install.
 
   >> 运行
