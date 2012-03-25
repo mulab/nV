@@ -1,0 +1,3 @@
+ContourPlot3D[x^3 + y^2 - z^2, {x, -2, 2}, {y, -2, 2}, {z, -2, 2}]
+ContourPlot3D[ Cos[x] Sin[y] + Cos[y] Sin[z] + Cos[z] Sin[x], {x, -2 3.14, 2 3.14}, {y, -2 3.14, 2 3.14}, {z, -2 3.14, 2 3.14}]
+ContourPlot3D[x^4 + y^4 + z^4 - (x^2 + y^2 + z^2)^2 + 3 (x^2 + y^2 + z^2),{x, -2, 2},{y, -2, 2},{z,-2,2}]

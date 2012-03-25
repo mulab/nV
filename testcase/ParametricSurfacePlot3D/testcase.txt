@@ -1,0 +1,6 @@
+ParametricSurfacePlot3D[{Sin[u] Cos[v], Sin[u] Sin[v], Cos[u]}, {u, 0, 3.14}, {v, 0, 6.3}]
+ParametricSurfacePlot3D[{{4 + (3 + Cos[v]) Sin[u], 4 + (3 + Cos[v]) Cos[u], 4 + Sin[v]}, {8 + (3 + Cos[v]) Cos[u], 3 + Sin[v], 4 + (3 + Cos[v]) Sin[u]}}, {u, 0, 6.28}, {v, 0, 6.28}]
+ParametricSurfacePlot3D[{1.16^v Cos[v] (1 + Cos[u]), -1.16^v Sin[v] (1 + Cos[u]), -2 1.16^v (1 + Sin[u])}, {u, 0, 6.28}, {v, -15, 6}]
+ParametricSurfacePlot3D[{u - 1/3 u^3 + u v^2, -v - u^2 v + 1/3 v^3, u^2 - v^2}, {u, -2, 2}, {v, -2, 2}]
+ParametricSurfacePlot3D[{Cos[u + v], Sin[u + v], Tan[u + v]}, {u, -2, 2}, {v, -2, 2}]
+ParametricSurfacePlot3D[{v Cos[u], v Sin[u], 1/(u v)}, {u, 0, 6.28}, {v, 0, 1}]
