@@ -1,0 +1,5 @@
+ParametricRegionPlot[{(v + u) Cos[u], (v + u) Sin[u]}, {u, 0, 12.56}, {v, 0, 5}]
+ParametricRegionPlot[{{2 r Cos[t], r Sin[t]}, {r Cos[t], 2 r Sin[t]}}, {t,0,2}, {r, 0, 1}]
+ParametricRegionPlot[{r r Sqrt[t] Cos[t],r r Sin[t]}, {t, 0, 6.3}, {r, 1, 2}]
+ParametricRegionPlot[{Tan[r+t], r+t}, {t, -2,2}, {r, -2, 2}]
+ParametricRegionPlot[{t, 1/(r + t)}, {t, -1, 2}, {r, -1, 2}]

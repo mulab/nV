@@ -1,0 +1,8 @@
+ParametricPlot3D[{Sqrt[u] Cos[u], Sqrt[u] Sin[u], 1/u}, {u, 0, 2 3.14}]
+ParametricPlot3D[{(2 + Cos[8 u]) Cos[u], (2 + Cos[8 u]) Sin[u], Sin[8 u]}, {u, 0, 2 3.13}]
+ParametricPlot3D[{Sin[u], Cos[u], Tan[u]}, {u, 0, 1}]
+ParametricPlot3D[{Sin[u], Cos[u], u/10.0}, {u, 0, 20}]
+ParametricPlot3D[{Cos[u], Sin[u], Sqrt[u] + Sin[5 u]/5.0}, {u, 0, 4 3.14}]
+ParametricPlot3D[{Cos[ u], Sin[ u], Sin[30 Sin[u]]}, {u, 0, 2 3.14}]
+ParametricPlot3D[{Cos[ u + 10^17] Sin[10 u], Sin[u + 10^17] Sin[10 u], Cos[10 u]}, {u, 0, 2 3.14}]
+
