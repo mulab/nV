@@ -6,6 +6,7 @@ Quick Start for Windows, Visual Studio, 32bit, 不编译任何可选内容
         *) Boost
             下载安装 Boost. 设一个（系统）环境变量 BOOST_ROOT 为你的
             安装文件夹, 在（系统）环境变量 PATH 中添加 %BOOST_ROOT%\lib.
+		
 
         *) GMP, MPFR, MPFI
             这 3 个库, 每个库都需要相应的 .dll 和 .lib
@@ -20,6 +21,7 @@ Quick Start for Windows, Visual Studio, 32bit, 不编译任何可选内容
       打开 CMake,
           源文件文件夹设为 xx/nV
           build 文件夹设为 xx/build
+		  *注意将文件放于全英文目录下，否则会出现乱码，进而导致编译失败
 
       点击 Configure 按钮. CMake 会提示问你生成什么样的工程
       文件, 选择和你的 Visual Studio 版本相应的, 注意不要选
