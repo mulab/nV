@@ -1,0 +1,96 @@
+﻿在maTHmU调试Albi代码发现问题如下，代码见Calculus目录下
+mUScript\Integrate\Integrate.m
+启动命令改为
+Get[Calculus`CWD <> "Albi/init.m"];
+IntegrateU[f_, x_]:=Calculus`Albi`Risch`pmint[f,x]
+
+Albi代码直接将Calculus下的Albi拷贝进来
+
+行号都是大致位置
+
+****************************************************************
+【Riboo.m】
+在Calculus目录下注明了一处Bug
+
+
+****************************************************************
+【Misc.m】
+112-118
+TanToTrig[tan[y_]/(1 + tan[y_]^2)] := (1/2) Sin[2y];
+TanToTrig[2 tan[y_]/(1 + tan[y_]^2)] := Sin[2y];
+TanToTrig[(1 - tan[y_]^2)/(1 + tan[y_]^2)]:= Cos[2y];
+TanToTrig[1+tan[x_]^2]:= Sec[x]^2;
+TanToTrig[(1 + tan[y_]^2)/(1 - tan[y_]^2)]:=Sec[2y];
+TanToTrig[(1 + tan[y_]^2)/(2 tan[y_])]:=Csc[2y];
+TanToTrig[(1 - tan[y_]^2)/(2 tan[y_])]:= Cot[2y];
+TanToTrig[e_]:=e
+
+经过调试，发现问题在于/的使用，像TanToTrig[Tan[y_]] := (1/2) Sin[2y]是可行的
+
+152 RationalNumberQ[___] := False
+    修正为RationalNumberQ[_] := False
+    准确的说是三个下划线的情况没有实现
+
+214 CLog[a_ Log[b_]] := Log[b^a];
+    修正为CLog[a_Log[b_]] := Log[b^a];去掉一个空格
+
+
+****************************************************************
+【RischDE.m】
+592 RischDE[___]:= NoSolution;
+    修正为RischDE[_]:= NoSolution;
+    准确的说是三个下划线的情况没有实现
+
+
+****************************************************************
+【ParametricProblems.m】
+
+90  ParamRdeSpecialDenominator[___]:= NoSolution
+    修正为ParamRdeSpecialDenominator[_]:= NoSolution
+    准确的说是三个下划线的情况没有实现
+344行  {h, DeleteCases[A, {0..}]}
+384行  {h, DeleteCases[A, {0..}]}
+407行  {h, DeleteCases[A, {0..}]}
+462行  {H, DeleteCases[AA, {0..}]}
+550行	indx = Intersection[Position[h, 0, {1}], Position[Transpose[AA], {0..}, {1}] ];
+另外的bugs参见前一文档
+
+
+*****************************************************************
+【RischDE.m】
+
+562 ParamRischDE[___]:=NoSolution;
+    修正为ParamRischDE[_]:=NoSolution;
+    准确的说是三个下划线的情况没有实现
+
+588 LimitedIntegrateReduce[___]:= NoSolution
+    修正为LimitedIntegrateReduce[_]:= NoSolution
+    准确的说是三个下划线的情况没有实现
+
+667 LimitedIntegrate[___] := NoSolution
+    修正为LimitedIntegrate[_] := NoSolution
+    准确的说是三个下划线的情况没有实现
+
+****************************************************************
+【SymbolicIntBook.m】
+65 OrderNu[___] := $Failed
+   修正为OrderNu[_] := $Failed
+   准确的说是三个下划线的情况没有实现
+
+
+
+****************************************************************
+【pmint】
+178 getSpecial[___] := Null;
+    修正为getSpecial[_] := Null;
+    准确的说是三个下划线的情况没有实现
+
+****************************************************************
+【Integrate.m】
+IntegrateList出问题了
+
+
+***************************************************************
+<< Path["../Polynomial/mUPolynomial.m"]出问题了
+在执行$SolutionFormula这一行的时候出现问题了
+
