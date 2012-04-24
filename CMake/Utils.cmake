@@ -19,7 +19,10 @@
 
 
 # PCHSupport requires CMAKE_BUILD_TYPE to be set
-set(CMAKE_BUILD_TYPE "Release")
+if (NOT CMAKE_BUILD_TYPE)
+    message(FATAL_ERROR "CMAKE_BUILD_TYPE is not set, but it's required by PCHSupport")
+endif (NOT CMAKE_BUILD_TYPE)
+
 include(PCHSupport)
 
 macro (add_common_to_target target)
