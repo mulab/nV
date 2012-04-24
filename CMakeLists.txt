@@ -4,7 +4,7 @@ project(nV CXX)
 
 # Configurable options
 
-set(PROJECT_BUILD_TYPE Debug)
+set(CMAKE_BUILD_TYPE Debug)
 
 set(CMAKE_PREFIX_PATH ""
     CACHE STRING "We will try to find all external libraries here")
@@ -19,7 +19,7 @@ set(USE_LUA       "NO" CACHE STRING "nVLink - Lua")
 set(USE_ECL       "NO"  CACHE STRING "nVLink - Ecl")
 set(USE_MU0       "NO"  CACHE STRING "nVLink - mU0")
 
-set(PROJECT_STAGE_DIR ${PROJECT_BINARY_DIR}/${PROJECT_BUILD_TYPE})
+set(PROJECT_STAGE_DIR ${PROJECT_BINARY_DIR}/${CMAKE_BUILD_TYPE})
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_STAGE_DIR}/bin)
 if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
     set(LIBRARY_OUTPUT_PATH ${PROJECT_STAGE_DIR}/bin)
