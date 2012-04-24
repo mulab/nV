@@ -44,7 +44,12 @@ macro (new_shared_library project)
 
     add_library(${project} SHARED ${${project}_sources} ${${project}_headers} ${PROJECT_HEADERS})
     target_link_libraries (${project} ${CMAKE_DL_LIBS})
-    install(TARGETS ${project} DESTINATION bin)
+    
+    if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+        install(TARGETS ${project} DESTINATION bin)
+    else ()
+        install(TARGETS ${project} DESTINATION lib)
+    endif ()
 endmacro ()
 
 macro (new_executable project)
@@ -58,4 +63,14 @@ macro (new_executable project)
 
     add_executable(${project} ${${project}_sources} ${${project}_headers} ${PROJECT_HEADERS})
     install(TARGETS ${project} DESTINATION bin)
+endmacro ()
+
+macro (new_mu_script script package)
+    configure_file(${script} ${MUSCRIPT_OUTPUT_PATH}/${package}/${script} COPYONLY)
+    install(FILES ${script} DESTINATION ${MUSCRIPT_RELATIVE_DIR}/${package}/)
+endmacro ()
+
+macro (new_nv_script script package)
+    configure_file(${script} ${NVSCRIPT_OUTPUT_PATH}/${package}/${script} COPYONLY)
+    install(FILES ${script} DESTINATION ${NVSCRIPT_RELATIVE_DIR}/${package}/)
 endmacro ()

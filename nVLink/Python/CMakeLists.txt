@@ -18,5 +18,5 @@ new_shared_library (pythoninnv
 )
 target_link_libraries(pythoninnv nvinpython nvkernel ${PYTHON_LIBRARIES})
 
-install(FILES pythoninnv.n DESTINATION Link/Python)
-install(FILES setup.py DESTINATION Link/Python)
+new_nv_script(pythoninnv.n nVLink/Python)
+install(FILES setup.py DESTINATION nVLink/Python)

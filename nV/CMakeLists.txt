@@ -16,7 +16,6 @@ else ()
     set (INI_USE_YAFU False)
 endif ()
 
-configure_file (nV.ini.in nV.ini)
+configure_file (nV.ini.in ${EXECUTABLE_OUTPUT_PATH}/nV.ini)
 
-install (FILES ${CMAKE_CURRENT_BINARY_DIR}/nV.ini DESTINATION bin)
-install (FILES nV.reg DESTINATION nV)
+install (FILES ${EXECUTABLE_OUTPUT_PATH}/nV.ini DESTINATION bin)

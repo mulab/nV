@@ -5,4 +5,5 @@ target_link_libraries(nvlinklua nvkernel
     ${LUA_LIBRARIES}
     ${luabind_LIBRARIES})
 
-install(FILES LinkLua.n DESTINATION Link/Lua)
+new_nv_script(LinkLua.n nVLink/Lua)
+

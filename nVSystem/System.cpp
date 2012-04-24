@@ -14,7 +14,7 @@ CAPI void Install(Kernel& k) {
     cvalue(k, cnoload("nvsystem"), SYS(CInterface));
     var r;
     k.beginContext(sys);
-    Input(k, r, path() + _W("../System/System.n"));
+    Input(k, r, path() + _W("../lib/nV/System/System.n"));
 }
 CAPI void Uninstall(Kernel& k) {
     wcout << "#System# Uninstall Successfully!" << endl;

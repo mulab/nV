@@ -11,4 +11,5 @@ target_link_libraries(nvnumber
 )
 add_definitions(-DNUMBER_EXPORTS)
 
-install(FILES mUNumber.m Number.n DESTINATION Number)
+new_mu_script(mUNumber.m Number)
+new_nv_script(Number.n Number)

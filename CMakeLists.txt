@@ -2,11 +2,9 @@ cmake_minimum_required(VERSION 2.8)
 
 project(nV CXX)
 
-set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMake)
-
-include (Utils)
-
 # Configurable options
+
+set(PROJECT_BUILD_TYPE Debug)
 
 set(CMAKE_PREFIX_PATH ""
     CACHE STRING "We will try to find all external libraries here")
@@ -20,6 +18,24 @@ set(USE_PYTHON    "NO"  CACHE STRING "nVLink - Python")
 set(USE_LUA       "NO" CACHE STRING "nVLink - Lua")
 set(USE_ECL       "NO"  CACHE STRING "nVLink - Ecl")
 set(USE_MU0       "NO"  CACHE STRING "nVLink - mU0")
+
+set(PROJECT_STAGE_DIR ${PROJECT_BINARY_DIR}/${PROJECT_BUILD_TYPE})
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_STAGE_DIR}/bin)
+if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    set(LIBRARY_OUTPUT_PATH ${PROJECT_STAGE_DIR}/bin)
+else ()
+    set(LIBRARY_OUTPUT_PATH ${PROJECT_STAGE_DIR}/lib)
+endif ()
+set(MUSCRIPT_RELATIVE_DIR "lib/mU/")
+set(NVSCRIPT_RELATIVE_DIR "lib/nV/")
+set(MUSCRIPT_OUTPUT_PATH ${PROJECT_STAGE_DIR}/${MUSCRIPT_RELATIVE_DIR})
+set(NVSCRIPT_OUTPUT_PATH ${PROJECT_STAGE_DIR}/${NVSCRIPT_RELATIVE_DIR})
+
+# Import utility macros
+
+set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMake)
+
+include (Utils)
 
 # Overall -I s
 
