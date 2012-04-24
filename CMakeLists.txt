@@ -13,11 +13,11 @@ set(CMAKE_PREFIX_PATH ""
 set(EXTRA_INCLUDE ""
     CACHE STRING "extra directories to find *.h files")
 
-set(USE_JAVA      "YES" CACHE STRING "nVLink - Java")
-set(USE_NTL_FLINT "YES" CACHE STRING "nVLink - ntl & flint")
+set(USE_JAVA      "NO" CACHE STRING "nVLink - Java")
+set(USE_NTL_FLINT "NO" CACHE STRING "nVLink - ntl & flint")
 set(USE_YAFU      "NO"  CACHE STRING "nVLink - yafu")
 set(USE_PYTHON    "NO"  CACHE STRING "nVLink - Python")
-set(USE_LUA       "YES" CACHE STRING "nVLink - Lua")
+set(USE_LUA       "NO" CACHE STRING "nVLink - Lua")
 set(USE_ECL       "NO"  CACHE STRING "nVLink - Ecl")
 set(USE_MU0       "NO"  CACHE STRING "nVLink - mU0")
 
