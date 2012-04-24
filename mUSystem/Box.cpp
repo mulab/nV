@@ -115,9 +115,9 @@ void BoxPrint(Var x, wostream &f, size_t y) {
                     f << L']';
                     return;
                 }
-				const parser::oper_t *op_ptr = parser::lookup_oper(s);
-				if (op_ptr && op_ptr->postfix) {
-                    const parser::oper_t &op = *op_ptr;
+				const parser::oper_t *postfix_op_ptr = parser::lookup_postfix_oper(s);
+				if (postfix_op_ptr) {
+                    const parser::oper_t &op = *postfix_op_ptr;
                     f << L"RowBox[{";
                     if (op.prec < y) {
                         f << L"\"(\",";
@@ -135,8 +135,9 @@ void BoxPrint(Var x, wostream &f, size_t y) {
                     return;
                 }
 
-				if (op_ptr && op_ptr->prefix) {
-					const parser::oper_t &op = *op_ptr;
+				const parser::oper_t *prefix_op_ptr = parser::lookup_prefix_oper(s);
+				if (prefix_op_ptr) {
+					const parser::oper_t &op = *prefix_op_ptr;
                     f << L"RowBox[{";
                     if (op.prec < y) {
                         f << L"\"(\",";
@@ -305,9 +306,9 @@ else if(h == tag_##x)\
                     f << L']';
                     return;
                 }
-				const parser::oper_t *op_ptr = parser::lookup_oper(s);
-				if (op_ptr && !op_ptr->postfix && !op_ptr->prefix) {
-                    const parser::oper_t &op = *op_ptr;
+				const parser::oper_t *infix_op_ptr = parser::lookup_infix_oper(s);
+				if (infix_op_ptr) {
+                    const parser::oper_t &op = *infix_op_ptr;
                     if (h == TAG(Power)) {
                         //SuperscriptBox[%(0), %(1)]
                         f << L"SuperscriptBox[";
@@ -350,9 +351,9 @@ else if(h == tag_##x)\
                     return;
                 }
             } else {
-				const parser::oper_t *op_ptr = parser::lookup_oper(s);
-				if (op_ptr && !op_ptr->postfix && !op_ptr->prefix) {
-                    const parser::oper_t &op = *op_ptr;
+				const parser::oper_t *infix_op_ptr = parser::lookup_infix_oper(s);
+				if (infix_op_ptr) {
+                    const parser::oper_t &op = *infix_op_ptr;
                     f << L"RowBox[{";
                     if (op.prec < y) {
                         f << L"\"(\"";
@@ -399,7 +400,7 @@ else if(h == tag_##x)\
             var e = At(Body(h), 0);
             f << L"SuperscriptBox[";
             BoxPrint(At(b, 0), f,
-                     parser::lookup_oper(TAG(Differential))->prec);
+                     parser::lookup_postfix_oper(TAG(Differential))->prec);
             f << L',';
             if (IntQ(e)) {
                 int se = Z::SI(e);

@@ -207,10 +207,10 @@ void Print(Var x, wostream &f, size_t y)
 					}
 					else
 					{
-						const parser::oper_t *op_ptr = parser::lookup_oper(s);
-						if (op_ptr && op_ptr->postfix) 
+						const parser::oper_t *postfix_op_ptr = parser::lookup_postfix_oper(s);
+						if (postfix_op_ptr) 
 						{
-							const parser::oper_t &op = *op_ptr;
+							const parser::oper_t &op = *postfix_op_ptr;
 							if(op.prec < y)
 							{
 								f << L'(';
@@ -226,9 +226,10 @@ void Print(Var x, wostream &f, size_t y)
 							return;
 						}
 
-						if (op_ptr && op_ptr->prefix) 
+						const parser::oper_t *prefix_op_ptr = parser::lookup_prefix_oper(s);
+						if (prefix_op_ptr) 
 						{
-							const parser::oper_t &op = *op_ptr;
+							const parser::oper_t &op = *prefix_op_ptr;
 							if(op.prec < y)
 							{
 								f << L'(';
@@ -277,9 +278,9 @@ void Print(Var x, wostream &f, size_t y)
 						Print(At(b,1),f);
 						return;
 					}
-					const parser::oper_t *op_ptr = parser::lookup_oper(s);
-					if (op_ptr && !op_ptr->prefix && !op_ptr->postfix) {
-						const parser::oper_t &op = *op_ptr;
+					const parser::oper_t *infix_op_ptr = parser::lookup_infix_oper(s);
+					if (infix_op_ptr) {
+						const parser::oper_t &op = *infix_op_ptr;
 						if(op.prec < y) f << L'(';
 						Print(At(b,0),f,op.rassoc ? op.prec : op.prec + 1);
 						if(h == TAG(Plus))
@@ -301,9 +302,9 @@ void Print(Var x, wostream &f, size_t y)
 				}
 				else
 				{
-					const parser::oper_t *op_ptr = parser::lookup_oper(s);
-					if (op_ptr && !op_ptr->prefix && !op_ptr->postfix) {
-						const parser::oper_t &op = *op_ptr;
+					const parser::oper_t *infix_op_ptr = parser::lookup_infix_oper(s);
+					if (infix_op_ptr) {
+						const parser::oper_t &op = *infix_op_ptr;
 						if(op.prec < y) f << L'(';
 						Print(At(b,0),f,op.prec);
 						if(h == TAG(Plus))
@@ -343,7 +344,7 @@ void Print(Var x, wostream &f, size_t y)
 				if(IntQ(e) && Z::Sgn(e) > 0)
 				{
 					Print(At(b,0),f,
-						parser::lookup_oper(TAG(Differential))->prec);
+						parser::lookup_postfix_oper(TAG(Differential))->prec);
 					f << wstring(Z::UI(e),L'\'');
 					return;
 				}

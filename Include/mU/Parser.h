@@ -50,7 +50,9 @@ public:
 			prefix(_prefix),rassoc(_rassoc),
 			prec(s_prec),symbol(Sym(name, System)) {}
 	};
-	DLL static const oper_t *lookup_oper(Var); //运算符的输出显示，如Plus到+
+	DLL static const oper_t *lookup_postfix_oper(Var); //运算符的输出显示，如Plus到+
+	DLL static const oper_t *lookup_prefix_oper(Var);
+	DLL static const oper_t *lookup_infix_oper(Var);
 	DLL static size_t max_prec() { return s_prec; }
 
 private:
@@ -77,7 +79,7 @@ private:
 
 	DLL static std::vector<oper_t> s_oper; //存所有运算符
 	DLL static std::map<token_t,size_t> s_postfix_token, s_prefix_token, s_infix_token; //从token_t枚举值到s_oper下标映射
-	DLL static stdext::hash_map<Var,size_t> s_oper_symbol; //从某个符号到s_oper下标映射
+	DLL static stdext::hash_map<Var,size_t> s_postfix_symbol, s_prefix_symbol, s_infix_symbol; //从某个符号到s_oper下标映射
 	DLL static std::set<token_t> s_end; //用来判断expression扫描是否结束
 	DLL static size_t operPLUS, operSTAR;
 	DLL static int precInequality;

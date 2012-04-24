@@ -10,7 +10,7 @@ DLL stdext::hash_map<wstring,size_t> parser::s_name;
 DLL size_t parser::s_prec = 1;
 DLL std::vector<parser::oper_t> parser::s_oper;
 DLL std::map<parser::token_t,size_t> parser::s_postfix_token, parser::s_prefix_token, parser::s_infix_token;
-DLL stdext::hash_map<Var,size_t> parser::s_oper_symbol;
+DLL stdext::hash_map<Var,size_t> parser::s_postfix_symbol, parser::s_prefix_symbol, parser::s_infix_symbol;
 DLL std::set<parser::token_t> parser::s_end;
 DLL size_t parser::operPLUS, parser::operSTAR;
 DLL int parser::precInequality;
@@ -131,19 +131,20 @@ void parser::init()
 
 	for(size_t i = 0; i < s_oper.size(); ++i)
 	{
-		s_oper_symbol[s_oper[i].symbol] = i;
-		
 		if(s_oper[i].postfix)
 		{
 			s_postfix_token[s_oper[i].token] = i;
+			s_postfix_symbol[s_oper[i].symbol] = i;
 		}
 		else if(s_oper[i].prefix)
 		{
 			s_prefix_token[s_oper[i].token] = i;
+			s_prefix_symbol[s_oper[i].symbol] = i;
 		}
 		else
 		{
 			s_infix_token[s_oper[i].token] = i;
+			s_infix_symbol[s_oper[i].symbol] = i;
 		}
 	}
 	s_end.insert(EOI);
@@ -196,10 +197,31 @@ const wchar *parser::character_name(wchar x)
 	else
 		return 0;
 }
-const parser::oper_t *parser::lookup_oper(Var s)
+
+const parser::oper_t *parser::lookup_postfix_oper(Var s)
 {
-	stdext::hash_map<Var,size_t>::const_iterator iter = s_oper_symbol.find(s);
-	if (iter != s_oper_symbol.end()) {
+	stdext::hash_map<Var,size_t>::const_iterator iter = s_postfix_symbol.find(s);
+	if (iter != s_postfix_symbol.end()) {
+		return &s_oper[iter->second];
+	}
+
+	return 0;
+}
+
+const parser::oper_t *parser::lookup_prefix_oper(Var s)
+{
+	stdext::hash_map<Var,size_t>::const_iterator iter = s_prefix_symbol.find(s);
+	if (iter != s_prefix_symbol.end()) {
+		return &s_oper[iter->second];
+	}
+
+	return 0;
+}
+
+const parser::oper_t *parser::lookup_infix_oper(Var s)
+{
+	stdext::hash_map<Var,size_t>::const_iterator iter = s_infix_symbol.find(s);
+	if (iter != s_infix_symbol.end()) {
 		return &s_oper[iter->second];
 	}
 
