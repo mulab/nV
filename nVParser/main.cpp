@@ -1,6 +1,7 @@
 #include <nV/Interface.h>
 #include <nV/Parser.h>
 #include <nV/utils.h>
+#include <nV/Config.h>
 #include <cstring>
 
 namespace nV {
@@ -97,7 +98,11 @@ int nV_main(int argc, char *argv[], Kernel* kernel = 0) {
 	Kernel& k = *pKernel;
 	Parser& p = *(pKernel->parser);
 	wifstream f;
-	open(p, f, wcs2mbs(path() + _W("nV.ini")).c_str());
+#ifdef _WIN32
+	open(p, f, NV_HOME "/conf/nV.ini");
+#elif
+	open(p, f, NV_HOME "/etc/nV.ini");
+#endif
 	//open(p, f, "nV.ini");
 	if (argc > 1) {
 		for (int i = 1; i < argc; ++i)

@@ -61,7 +61,7 @@ HMODULE GetCurrentModule() {
 }
 #endif
 wstring path() {
-	return mbs2wcs(MU_HOME) + L"/lib/mU/";
+	return _W(MU_HOME "/lib/mU/");
 }
 bool shell(wcs x) {
 #ifdef _WIN32

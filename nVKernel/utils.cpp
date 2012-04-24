@@ -71,7 +71,7 @@ HMODULE GetCurrentModule() {
 }
 #endif
 wstring path() {
-	return mbs2wcs(NV_HOME) + L"/lib/nV/";
+	return _W(NV_HOME "/lib/nV/");
 }
 bool shell(wcs x) {
 #ifdef _WIN32
