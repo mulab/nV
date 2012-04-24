@@ -16,14 +16,14 @@ string cstr(Var x) {
 string cpath(const char* x) {
 #ifdef _WIN32
 #ifdef _MSC_VER
-    return string(x) + string(".dll");
+    return string(MU_HOME) + "/bin/" + string(x) + string(".dll");
 #else
-    return string("lib") + string(x) + string(".dll");
+    return string(MU_HOME) + "/bin/lib" + string(x) + string(".dll");
 #endif
 #elif __APPLE__
-	return "lib" + string(x) + ".dylib";
+	return string(MU_HOME) + "/lib/lib" + string(x) + ".dylib";
 #else
-    return string("lib") + string(x) + string(".so");
+    return string(MU_HOME) + "/lib/lib" + string(x) + string(".so");
 #endif
 }
 void* cload(const char* x) {

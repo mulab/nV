@@ -16,6 +16,6 @@ else ()
     set (INI_USE_YAFU False)
 endif ()
 
-configure_file (mU.ini.in ${EXECUTABLE_OUTPUT_PATH}/mU.ini)
+configure_file (mU.ini.in ${CONF_OUTPUT_PATH}/mU.ini)
 
-install(FILES ${EXECUTABLE_OUTPUT_PATH}/mU.ini DESTINATION bin)
+install(FILES ${CONF_OUTPUT_PATH}/mU.ini DESTINATION ${CONF_RELATIVE_DIR})

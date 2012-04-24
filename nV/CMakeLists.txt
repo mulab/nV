@@ -16,6 +16,6 @@ else ()
     set (INI_USE_YAFU False)
 endif ()
 
-configure_file (nV.ini.in ${EXECUTABLE_OUTPUT_PATH}/nV.ini)
+configure_file (nV.ini.in ${CONF_OUTPUT_PATH}/nV.ini)
 
-install (FILES ${EXECUTABLE_OUTPUT_PATH}/nV.ini DESTINATION bin)
+install (FILES ${CONF_OUTPUT_PATH}/nV.ini DESTINATION ${CONF_RELATIVE_DIR})

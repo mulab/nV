@@ -4,6 +4,7 @@
 #include <sstream>
 #include <nV/Kernel.h>
 #include <nV/utils.h>
+#include <nV/Config.h>
 
 #ifdef _MSC_VER
 #pragma warning(push,1)
@@ -70,29 +71,7 @@ HMODULE GetCurrentModule() {
 }
 #endif
 wstring path() {
-#ifdef _WIN32
-    wchar buf[MAX_PATH];
-    memset(buf, 0, MAX_PATH);
-    GetModuleFileNameW(GetCurrentModule(), buf, MAX_PATH);
-    wcsrchr(buf, _W('\\'))[1] = 0;
-    return buf;
-#else
-	// static char buf[0x100];
-	// memset(buf,0,0x100);
-	// readlink("/proc/self/exe",buf,0x100);	// FIXME: should be wrapped with API_CALL
-	// strrchr(buf,L'/')[1] = 0;
-	// return wstring(buf,buf + strlen(buf));
-	static char buf[0x100];
-	memset(buf,0,0x100);
-	Dl_info info;
-	if (dladdr( (void *) &path, &info ) != 0){
-		const char* name=info.dli_fname; 
-		strcpy(buf,name);
-		strrchr(buf,L'/')[1] = 0;
-		return wstring(buf,buf + strlen(buf));
-	}
-	return L"";
-#endif
+	return mbs2wcs(NV_HOME) + L"/lib/nV/";
 }
 bool shell(wcs x) {
 #ifdef _WIN32

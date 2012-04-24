@@ -1,3 +1,4 @@
+#include <nV/Config.h>
 #include <nV/Interface.h>
 #include <nV/utils.h>
 #ifdef _WIN32
@@ -17,14 +18,14 @@ string cstr(const var& x) {
 string cpath(const char* x) {
 #ifdef _WIN32
 #ifdef _MSC_VER
-    return string(x) + string(".dll");
+    return string(NV_HOME) + "/lib/" + string(x) + string(".dll");
 #else
-    return string("lib") + string(x) + string(".dll");
+    return string(NV_HOME) + "/lib/lib" + string(x) + string(".dll");
 #endif
 #elif __APPLE__
-	return "lib" + string(x) + ".dylib";
+	return string(NV_HOME) + "/lib/lib" + string(x) + ".dylib";
 #else
-    return string("lib") + string(x) + string(".so");
+    return string(NV_HOME) + "/lib/lib") + string(x) + string(".so");
 #endif
 }
 void* cload(const char* x) {
