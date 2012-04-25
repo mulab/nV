@@ -9,6 +9,8 @@ namespace S
 	API void Add(Var,Var,Var);
 	API void AddTo(Var,Var);
 	API int Cmp(Var,Var);
+	API int Cmp(Var,uint,uint,Var);
+	API int Cmp(Var,uint,uint,Var,uint,uint);
 	API uint Length(Var);
 	API void Insert(Var,Var,uint);
 	API var Substr(Var,uint,uint);

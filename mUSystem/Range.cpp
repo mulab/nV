@@ -1,4 +1,3 @@
-//By TXD
 #include "common.h"
 #include <mU/Number.h>
 #include <mU/System.h>

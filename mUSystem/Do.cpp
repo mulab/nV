@@ -198,6 +198,7 @@ CAPI CPROC(System_StringTake)
 	}
 	return 0;
 }
+/*
 CAPI CPROC(System_StringDrop)
 {
 	var c = At(x,0);
@@ -233,6 +234,7 @@ CAPI CPROC(System_StringDrop)
 	}
 	return 0;
 }
+*/
 CAPI CPROC(System_Defer)
 {
 	if (Size(x) == 1)

@@ -21,6 +21,14 @@ int Cmp(Var x, Var y)
 {
 	return STR_REP(x).compare(STR_REP(y));
 }
+int Cmp(Var x, uint pos1, uint n1, Var y)
+{
+	return STR_REP(x).compare(pos1, n1, STR_REP(y));
+}
+int Cmp(Var x, uint pos1, uint n1, Var y, uint pos2, uint n2)
+{
+	return STR_REP(x).compare(pos1, n1, STR_REP(y), pos2, n2);
+}
 uint Length(Var x)
 {
 	return STR_REP(x).length();

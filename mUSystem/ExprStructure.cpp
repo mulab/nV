@@ -215,6 +215,11 @@ mU::SequenceSpec::LevelIterator::LevelIterator(const SequenceSpec &spec, size_t 
 	{
 		switch (Size(level_spec))
 		{
+		case 1:
+			min_ = current_ = get_int(At(level_spec, 0), dim);
+			max_ = get_int(At(level_spec, 0), dim);
+			step_ = 1;
+			break;
 		case 2:
 			min_ = current_ = get_int(At(level_spec, 0), dim);
 			max_ = get_int(At(level_spec, 1), dim);

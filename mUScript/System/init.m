@@ -91,6 +91,7 @@ End[]
 << NotebookDirectory[] <> "Sum.m"
 << NotebookDirectory[] <> "D.m"
 << NotebookDirectory[] <> "Range.m"
+<< NotebookDirectory[] <> "String.m"
 (*<< NotebookDirectory[] <> "TeX.m"*)
 
 << Path["../mULink/EmbednV.m"]
