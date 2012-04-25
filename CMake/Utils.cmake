@@ -21,6 +21,7 @@
 # PCHSupport requires CMAKE_BUILD_TYPE to be set
 if (NOT CMAKE_BUILD_TYPE)
     message(FATAL_ERROR "CMAKE_BUILD_TYPE is not set, but it's required by PCHSupport")
+    message(FATAL_ERROR "make sure you have set CMAKE_BUILD_TYPE in config.cmake")
 endif (NOT CMAKE_BUILD_TYPE)
 
 include(PCHSupport)

@@ -100,7 +100,7 @@ int nV_main(int argc, char *argv[], Kernel* kernel = 0) {
 	wifstream f;
 #ifdef _WIN32
 	open(p, f, NV_HOME "/conf/nV.ini");
-#elif
+#else
 	open(p, f, NV_HOME "/etc/nV.ini");
 #endif
 	//open(p, f, "nV.ini");

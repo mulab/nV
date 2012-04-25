@@ -36,7 +36,7 @@ int mU_main(int argc,char *argv[]) {
 	Initialize();
 #ifdef _WIN32
 	Get(_W(MU_HOME "/conf/mU.ini"));
-#elif
+#else
 	Get(_W(MU_HOME "/etc/mU.ini"));
 #endif
 	//Get(_W("mU.ini"));

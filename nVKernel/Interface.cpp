@@ -25,7 +25,7 @@ string cpath(const char* x) {
 #elif __APPLE__
 	return string(NV_HOME) + "/lib/lib" + string(x) + ".dylib";
 #else
-    return string(NV_HOME) + "/lib/lib") + string(x) + string(".so");
+    return string(NV_HOME) + "/lib/lib" + string(x) + string(".so");
 #endif
 }
 void* cload(const char* x) {

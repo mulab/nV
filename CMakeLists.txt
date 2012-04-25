@@ -4,20 +4,7 @@ project(nV CXX)
 
 # Configurable options
 
-set(CMAKE_BUILD_TYPE Debug)
-
-set(CMAKE_PREFIX_PATH ""
-    CACHE STRING "We will try to find all external libraries here")
-set(EXTRA_INCLUDE ""
-    CACHE STRING "extra directories to find *.h files")
-
-set(USE_JAVA      "NO" CACHE STRING "nVLink - Java")
-set(USE_NTL_FLINT "NO" CACHE STRING "nVLink - ntl & flint")
-set(USE_YAFU      "NO"  CACHE STRING "nVLink - yafu")
-set(USE_PYTHON    "NO"  CACHE STRING "nVLink - Python")
-set(USE_LUA       "NO" CACHE STRING "nVLink - Lua")
-set(USE_ECL       "NO"  CACHE STRING "nVLink - Ecl")
-set(USE_MU0       "NO"  CACHE STRING "nVLink - mU0")
+include (config.cmake)
 
 if (MSVC_IDE)
 	set(PROJECT_STAGE_DIR "${PROJECT_BINARY_DIR}/stage")
@@ -64,14 +51,14 @@ if (MSVC_IDE)
 		configure_file(Include/mU/common.h.in Include/${release_configuration}/mU/common.h)
 		configure_file(Include/nV/Config.h.in Include/${release_configuration}/nV/Config.h)
 	endforeach ()
-	set (MU_HOME ${PROJECT_BINARY_DIR})
-	set (NV_HOME ${PROJECT_BINARY_DIR})
+	set (MU_HOME ${PROJECT_STAGE_DIR})
+	set (NV_HOME ${PROJECT_STAGE_DIR})
 	configure_file(Include/mU/common.h.in Include/Debug/mU/common.h)
 	configure_file(Include/nV/Config.h.in Include/Debug/nV/Config.h)
 else ()
 	if (${CMAKE_BUILD_TYPE} STREQUAL "Debug")
-		set (MU_HOME ${PROJECT_BINARY_DIR})
-		set (NV_HOME ${PROJECT_BINARY_DIR})
+		set (MU_HOME ${PROJECT_STAGE_DIR})
+		set (NV_HOME ${PROJECT_STAGE_DIR})
 		configure_file(Include/mU/common.h.in Include/mU/common.h)
 		configure_file(Include/nV/Config.h.in Include/nV/Config.h)
 	else ()

@@ -38,18 +38,18 @@ Attributes[With] = {HoldAll}
 
 End[]
 
-<< Path["../lib/nV/Number/Number.n"]
-<< Path["../lib/nV/Polynomial/Polynomial.n"]
-<< Path["../lib/nV/Graphics/Graphics.n"]
-<< Path["../lib/nV/String/String.n"]
+<< Path["Number/Number.n"]
+<< Path["Polynomial/Polynomial.n"]
+<< Path["Graphics/Graphics.n"]
+<< Path["String/String.n"]
 
-<< Path["../lib/nV/Calculus/Simplify.n"]
-(*<< Path["../lib/nV/Calculus/D.n"]
-<< Path["../lib/nV/Calculus/Integrate.n"]*)
+<< Path["Calculus/Simplify.n"]
+(*<< Path["Calculus/D.n"]
+<< Path["Calculus/Integrate.n"]*)
 
-<< Path["../lib/nV/mULink/EmbedmU.n"]
-(*<< Path["../lib/nV/nVLink/Lua/LinkLua.n"]
-<< Path["../lib/nV/nVLink/NTL/LinkNTL.n"]
-<< Path["../lib/nV/nVLink/flint/LinkFLINT.n"]
-<< Path["../lib/nV/nVLink/Java/Embed/EmbedJava.n"]
-<< Path["../lib/nV/nVLink/Ecl/Embed/EmbedEcl.n"]*)
+<< Path["mULink/EmbedmU.n"]
+(*<< Path["nVLink/Lua/LinkLua.n"]
+<< Path["nVLink/NTL/LinkNTL.n"]
+<< Path["nVLink/flint/LinkFLINT.n"]
+<< Path["nVLink/Java/Embed/EmbedJava.n"]
+<< Path["nVLink/Ecl/Embed/EmbedEcl.n"]*)
