@@ -8,6 +8,7 @@ FullSimplify[x_]:=Simplify[x]
 Usage[x_Symbol] := x::usage
 mU := True
 PossibleZeroQ[x_] := Simplify[x] == 0
+ZeroQ[x_] := PossibleZeroQ[x]
 
 End[]
 
