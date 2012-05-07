@@ -35,9 +35,9 @@ int mU_main(int argc,char *argv[]) {
 	//wcerr.rdbuf(0);
 	Initialize();
 #ifdef _WIN32
-	Get(_W(MU_HOME) _W("/conf/mU.ini"));
+	Get(mbs2wcs(mU_Home() + "/conf/mU.ini"));
 #else
-	Get(_W(MU_HOME) _W("/etc/mU.ini"));
+	Get(mbs2wcs(mU_Home() + "/etc/mU.ini"));
 #endif
 	//Get(_W("mU.ini"));
 	if(argc > 1) {

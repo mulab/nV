@@ -29,20 +29,20 @@ string cpath(const char* x) {
 void* cload(const char* x) {
 	string s = cpath(x);
 #ifdef _WIN32
-	void *r = LoadLibraryA((MU_HOME "/bin/" + s).c_str());
+	void *r = LoadLibraryA((mU_Home() + "/bin/" + s).c_str());
 	return r ? r : LoadLibraryA(s.c_str());
 #else
-	void * r = dlopen((MU_HOME "/lib/" + s).c_str(), RTLD_LAZY);
+	void * r = dlopen((mU_Home() + "/lib/" + s).c_str(), RTLD_LAZY);
 	return r ? r : dlopen(s.c_str(), RTLD_LAZY);
 #endif
 }
 void* cnoload(const char* x) {
 	string s = cpath(x);
 #ifdef _WIN32
-	void *r = GetModuleHandleA((MU_HOME "/bin/" + s).c_str());
+	void *r = GetModuleHandleA((mU_Home() + "/bin/" + s).c_str());
 	return r ? r : GetModuleHandleA(s.c_str());
 #else
-	void *r = dlopen((MU_HOME "/lib/" + s).c_str(), RTLD_LAZY | RTLD_NOLOAD);
+	void *r = dlopen((mU_Home() + "/lib/" + s).c_str(), RTLD_LAZY | RTLD_NOLOAD);
 	return r ? r : dlopen(s.c_str(), RTLD_LAZY | RTLD_NOLOAD);
 #endif
 }

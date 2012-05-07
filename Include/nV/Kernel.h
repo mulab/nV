@@ -1,5 +1,7 @@
 #pragma once
 #include "Common.h"
+#include "nV/Config.h"
+#include <cstdlib>
 #include <list>
 #include <map>
 #include <vector>
@@ -44,6 +46,12 @@ public:
     std::vector<var> mStack;
 
     API Kernel();
+
+	inline static string nv_home()
+	{
+		const char *home_dir = getenv("NV_HOME");
+		return home_dir ? home_dir : NV_HOME;
+	}
 
     // symbol & context
     API sym symbol(wcs);

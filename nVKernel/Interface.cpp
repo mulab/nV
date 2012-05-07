@@ -31,20 +31,20 @@ string cpath(const char* x) {
 void* cload(const char* x) {
 	string s = cpath(x);
 #ifdef _WIN32
-	void *r = LoadLibraryA((NV_HOME "/bin/" + s).c_str());
+	void *r = LoadLibraryA((Kernel::nv_home() + "/bin/" + s).c_str());
 	return r ? r : LoadLibraryA(s.c_str());
 #else
-    void *r = dlopen((NV_HOME "/lib/" + s).c_str(), RTLD_LAZY);
+    void *r = dlopen((Kernel::nv_home() + "/lib/" + s).c_str(), RTLD_LAZY);
 	return r ? r : dlopen(s.c_str(), RTLD_LAZY);
 #endif
 }
 void* cnoload(const char* x) {
 	string s = cpath(x);
 #ifdef _WIN32
-	void *r = GetModuleHandleA((NV_HOME "/bin/" + s).c_str());
+	void *r = GetModuleHandleA((Kernel::nv_home() + "/bin/" + s).c_str());
     return r ? r : GetModuleHandleA(s.c_str());
 #else
-	void *r = dlopen((NV_HOME "/lib/" + s).c_str(), RTLD_LAZY | RTLD_NOLOAD);
+	void *r = dlopen((Kernel::nv_home() + "/lib/" + s).c_str(), RTLD_LAZY | RTLD_NOLOAD);
     return r ? r : dlopen(s.c_str(), RTLD_LAZY | RTLD_NOLOAD);
 #endif
 }

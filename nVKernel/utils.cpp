@@ -71,7 +71,7 @@ HMODULE GetCurrentModule() {
 }
 #endif
 wstring path() {
-	return _W(NV_HOME) _W("/lib/nV/");
+	return mbs2wcs(Kernel::nv_home() + "/lib/nV/");
 }
 bool shell(wcs x) {
 #ifdef _WIN32

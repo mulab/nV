@@ -99,9 +99,9 @@ int nV_main(int argc, char *argv[], Kernel* kernel = 0) {
 	Parser& p = *(pKernel->parser);
 	wifstream f;
 #ifdef _WIN32
-	open(p, f, NV_HOME "/conf/nV.ini");
+	open(p, f, (Kernel::nv_home() + "/conf/nV.ini").c_str());
 #else
-	open(p, f, NV_HOME "/etc/nV.ini");
+	open(p, f, (Kernel::nv_home() + "/etc/nV.ini").c_str());
 #endif
 	//open(p, f, "nV.ini");
 	if (argc > 1) {
