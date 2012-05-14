@@ -25,9 +25,9 @@ namespace nV {
   API var Minus(Kernel&, const var&);
   API var Divide(Kernel&, const var&);
   API var Divide(Kernel&, const var&, const var&);
-  API var Plus(Kernel&, const Tuple&);//åˆå¹¶åŒç±»é¡¹
+  API var Plus(Kernel&, const Tuple&);//ºÏ²¢Í¬ÀàÏî
   API var Plus(Kernel&, const var&, const var&);
-  API var Times(Kernel&, const Tuple&);//å•é¡¹å¼ä¹˜æ³•
+  API var Times(Kernel&, const Tuple&);//µ¥ÏîÊ½³Ë·¨
   API var Times(Kernel&, const var&, const var&);
   API var Expand(Kernel&, const var&);
   API var Mul(Kernel&, const var&, const var&);
