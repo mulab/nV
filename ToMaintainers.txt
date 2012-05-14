@@ -1,44 +1,44 @@
-è¿™é‡Œæè¿°å¦‚ä½•ç»´æŠ¤ CMake é…ç½®æ–‡ä»¶. å¦‚æžœä½ ä¸éœ€è¦å¢žåŠ æˆ–å‡å°‘æºæ–‡
-ä»¶, è€Œåªæ˜¯ä¿®æ”¹å·²æœ‰çš„æºæ–‡ä»¶, é‚£ä¹ˆä½ å¯ä»¥ä¸ç”¨å…³å¿ƒè¿™ç¯‡æ–‡æ¡£.
+ÕâÀïÃèÊöÈçºÎÎ¬»¤ CMake ÅäÖÃÎÄ¼þ. Èç¹ûÄã²»ÐèÒªÔö¼Ó»ò¼õÉÙÔ´ÎÄ
+¼þ, ¶øÖ»ÊÇÐÞ¸ÄÒÑÓÐµÄÔ´ÎÄ¼þ, ÄÇÃ´Äã¿ÉÒÔ²»ÓÃ¹ØÐÄÕâÆªÎÄµµ.
 
-æ³¨æ„ä¸è¦ä¿®æ”¹ç”Ÿæˆå‡ºçš„ VS å·¥ç¨‹æ–‡ä»¶, è€Œåº”è¯¥åŽ»ä¿®æ”¹ ç”Ÿæˆè¿™äº› VS
-å·¥ç¨‹æ–‡ä»¶çš„ CMake é…ç½®æ–‡ä»¶.
+×¢Òâ²»ÒªÐÞ¸ÄÉú³É³öµÄ VS ¹¤³ÌÎÄ¼þ, ¶øÓ¦¸ÃÈ¥ÐÞ¸Ä Éú³ÉÕâÐ© VS
+¹¤³ÌÎÄ¼þµÄ CMake ÅäÖÃÎÄ¼þ.
 
-* å¢žåŠ /å‡å°‘ .cpp æ–‡ä»¶
-    éœ€è¦çœ‹ç›¸åº”æ–‡ä»¶å¤¹ä¸‹çš„ CMakeLists.txt é‡Œæ˜¯å¦æœ‰ä¸€ä¸ª .cpp æ–‡
-    ä»¶çš„åˆ—è¡¨. å¦‚æžœæœ‰è¿™ä¸ªåˆ—è¡¨, ä½ éœ€è¦æ ¹æ®æƒ…å†µè¿›è¡Œç»´æŠ¤. å¦‚æžœæ²¡
-    æœ‰, é‚£ä¹ˆ .cpp æ–‡ä»¶æ˜¯è‡ªåŠ¨é€’å½’ (åŒ…å«å­æ–‡ä»¶å¤¹ä¸‹çš„æ–‡ä»¶) çš„åœ¨
-    å½“å‰æ–‡ä»¶å¤¹ä¸‹æ‰¾çš„, ä¸€èˆ¬ä¸éœ€è¦åšä¿®æ”¹.
+* Ôö¼Ó/¼õÉÙ .cpp ÎÄ¼þ
+    ÐèÒª¿´ÏàÓ¦ÎÄ¼þ¼ÐÏÂµÄ CMakeLists.txt ÀïÊÇ·ñÓÐÒ»¸ö .cpp ÎÄ
+    ¼þµÄÁÐ±í. Èç¹ûÓÐÕâ¸öÁÐ±í, ÄãÐèÒª¸ù¾ÝÇé¿ö½øÐÐÎ¬»¤. Èç¹ûÃ»
+    ÓÐ, ÄÇÃ´ .cpp ÎÄ¼þÊÇ×Ô¶¯µÝ¹é (°üº¬×ÓÎÄ¼þ¼ÐÏÂµÄÎÄ¼þ) µÄÔÚ
+    µ±Ç°ÎÄ¼þ¼ÐÏÂÕÒµÄ, Ò»°ã²»ÐèÒª×öÐÞ¸Ä.
 
-    çŽ°åœ¨å¤§éƒ¨åˆ† CMakeLists.txt éƒ½æ˜¯è‡ªåŠ¨é€’å½’çš„æ‰¾ .cpp çš„, æ‰€ä»¥
-    ä¸€èˆ¬éƒ½ä¸éœ€è¦ä¿®æ”¹ CMakeLists.txt
+    ÏÖÔÚ´ó²¿·Ö CMakeLists.txt ¶¼ÊÇ×Ô¶¯µÝ¹éµÄÕÒ .cpp µÄ, ËùÒÔ
+    Ò»°ã¶¼²»ÐèÒªÐÞ¸Ä CMakeLists.txt
 
-* å¢žåŠ /å‡å°‘ .h æ–‡ä»¶
-    å¦‚æžœæ˜¯æ”¾åœ¨ Include æ–‡ä»¶å¤¹é‡Œ, ä¸€èˆ¬ä¸ä¼šæœ‰é—®é¢˜. å¦‚æžœæ˜¯å…¶ä»–
-    åœ°æ–¹, æœ‰å¯èƒ½éœ€è¦ä¿®æ”¹ CMakeLists.txt, å¢žåŠ /å‡å°‘
+* Ôö¼Ó/¼õÉÙ .h ÎÄ¼þ
+    Èç¹ûÊÇ·ÅÔÚ Include ÎÄ¼þ¼ÐÀï, Ò»°ã²»»áÓÐÎÊÌâ. Èç¹ûÊÇÆäËû
+    µØ·½, ÓÐ¿ÉÄÜÐèÒªÐÞ¸Ä CMakeLists.txt, Ôö¼Ó/¼õÉÙ
     include_directories()
 
-    .h çš„æŸ¥æ‰¾é¡ºåºä¸º:
+    .h µÄ²éÕÒË³ÐòÎª:
         Include/external
         Include
         ${EXTRA_INCLUDE}
-        å…¶ä»–
+        ÆäËû
 
-* å¢žåŠ /å‡å°‘ 'èµ„æº'æ–‡ä»¶, åŒ…æ‹¬.m
-    æœ‰å¯èƒ½éœ€è¦ä¿®æ”¹ ç›¸åº”æ–‡ä»¶å¤¹ä¸‹çš„ CMakeLists.txt çš„ install()
+* Ôö¼Ó/¼õÉÙ '×ÊÔ´'ÎÄ¼þ, °üÀ¨.m
+    ÓÐ¿ÉÄÜÐèÒªÐÞ¸Ä ÏàÓ¦ÎÄ¼þ¼ÐÏÂµÄ CMakeLists.txt µÄ install()
 
-* å¢žåŠ /å‡å°‘ target
-    CMake/Utils.cmake é‡Œæœ‰ä¸€äº›è¾…åŠ©çš„ macro. ä½¿ç”¨æ–¹æ³•è§æ–‡ä»¶é‡Œ
-    çš„æ³¨é‡Š.
+* Ôö¼Ó/¼õÉÙ target
+    CMake/Utils.cmake ÀïÓÐÒ»Ð©¸¨ÖúµÄ macro. Ê¹ÓÃ·½·¨¼ûÎÄ¼þÀï
+    µÄ×¢ÊÍ.
 
-* å¤–éƒ¨åº“
-    CMake å¯¹éƒ¨åˆ†å¸¸è§çš„åº“æä¾› FindXXX.cmake, å¯¹äºŽè¿™äº›åº“ä½¿ç”¨
-    find_package() æ¥è¿›è¡ŒæŸ¥æ‰¾ä½ç½®.
+* Íâ²¿¿â
+    CMake ¶Ô²¿·Ö³£¼ûµÄ¿âÌá¹© FindXXX.cmake, ¶ÔÓÚÕâÐ©¿âÊ¹ÓÃ
+    find_package() À´½øÐÐ²éÕÒÎ»ÖÃ.
 
-    è€Œå¯¹äºŽå…¶ä»–çš„åº“, æœ‰3ä¸ªé€‰æ‹©
-        1 æ‰¾åˆ°é è°±çš„ FindXXX.cmake, æ”¾åœ¨ CMake æ–‡ä»¶å¤¹é‡Œ,
-          ç„¶åŽä½¿ç”¨ find_package()
-        2 ä½¿ç”¨ find_library(), å¹¶ä¸”è®©ç”¨æˆ·åœ¨ EXTRA_INCLUDE é‡Œ
-          æä¾›å¤´æ–‡ä»¶ä½ç½®
-        3 è‡ªå·±å†™ FindXXX.cmake (å°½é‡é¿å…)
-    çŽ°åœ¨çš„æƒ…å†µæ˜¯, å…¨éƒ¨ä½¿ç”¨ç¬¬2ä¸ªé€‰æ‹©
+    ¶ø¶ÔÓÚÆäËûµÄ¿â, ÓÐ3¸öÑ¡Ôñ
+        1 ÕÒµ½¿¿Æ×µÄ FindXXX.cmake, ·ÅÔÚ CMake ÎÄ¼þ¼ÐÀï,
+          È»ºóÊ¹ÓÃ find_package()
+        2 Ê¹ÓÃ find_library(), ²¢ÇÒÈÃÓÃ»§ÔÚ EXTRA_INCLUDE Àï
+          Ìá¹©Í·ÎÄ¼þÎ»ÖÃ
+        3 ×Ô¼ºÐ´ FindXXX.cmake (¾¡Á¿±ÜÃâ)
+    ÏÖÔÚµÄÇé¿öÊÇ, È«²¿Ê¹ÓÃµÚ2¸öÑ¡Ôñ
