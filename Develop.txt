@@ -1,0 +1,320 @@
+目录
+1. 引言
+2. 第三方库和开发工具的介绍
+3. 在 Windows 下开发的入门指南
+4. 在 Linux 下开发的入门指南
+5. 注意事项
+6. 开发环境配置的更多说明
+
+====================================================================
+
+1. 引言
+
+新开发者建议首先阅读 2.1 和 2.2 节，了解必需的开发工具和第三方库。然后，根据要在其
+上进行开发的操作系统平台，选读第 3 或第 4 节的入门指南。需要增加/删除源代码文件
+（ C++ 头文件或源文件、 mU 脚本文件、 nV 脚本文件等）或进行其他的源代码目录结构改
+动操作的开发者请务必阅读第 5 节中的注意事项。
+
+====================================================================
+
+2. 开发工具和第三方库的介绍
+
+2.1 必需的开发工具
+
+在各种操作系统平台上，我们主要支持如下的集成开发环境（及编译器）
+    * 在 Windows 操作系统上，我们主要支持使用 Visual Studio（2008 或更高版本）
+    进行开发；
+    * 在 Linux 操作系统上，我们主要支持使用 Eclipse/CDT（3.7 或更高版本）和 g++
+    （4.6 或更高版本）进行开发；
+    * 在 Mac OS X 操作系统上，我们主要支持使用 XCode 进行开发。
+
+在各种操作系统平台上，我们统一使用 CMake（ 2.8 或更高版本）生成集成开发环境所需的工程
+项目文件。 CMake 项目的官方网站在：
+http://www.cmake.org/
+
+2.2 必需的第三方库
+
+我们的软件依赖于下面这些第三方库
+
+    * Boost
+      一些基本的通用功能支持：智能指针、多线程、文件系统操作等等
+      官方网站：
+      http://www.boost.org
+      官方网站上有较详尽的编译、安装说明。
+      
+    * GMP / MPFR / MPFI
+      提供高精度的整数、有理数、浮点数和浮点数区间的基本运算（四则运算、常见函数）
+      功能
+      GMP： GNU 的高精度整数、有理数、浮点数运算库，官方网站在：
+           http://gmplib.org/
+      MPFR：提供比 GMP 更完整的高精度浮点数运算功能，官方网站在：
+            http://www.mpfr.org/
+      MPFI：提供高精度浮点数区间的运算功能，官方网站在：
+            http://perso.ens-lyon.fr/nathalie.revol/software.html
+            建议使用 1.5 或更高版本
+    
+2.3 其他依赖项（可选）
+
+    * USE_JAVA
+        JNI: Java Native Interface
+
+    * USE_NTL_FLINT
+        NTL: A Library for doing Number Theory
+             http://www.shoup.net/ntl/
+
+            我们需要 configure 时, NTL_GMP_LIP=on
+
+        flint: Fast Library for Number Theory
+               http://www.flintlib.org/
+
+            2.2 版本在 GMP 64 位的检测上, 在我的环境下有点问题
+                把 longlong.h 里的 __GMP_BITS_PER_MP_LIMB 替换成 GMP_LIMB_BITS
+
+    * USE_YAFU
+        yafu: Yet Another Factorization Utility
+            http://sourceforge.net/projects/yafu/
+
+            最终发现, mathmu 用的是一个改过的 yafu
+            它增加了 nVLink/yafu/yafu/export.h 里的 3 个函数
+            所以我就不管了
+
+            yafu 本来只提供可执行文件的编译, 需要改 Makefile 编译出一个 shared library
+            把 ggnfs disable 需要在 include/factor.h 里手动把 USE_NFS 揪掉
+
+        yafu 的编译可能额外需要 以下2个库
+            GMP-ECM: Elliptic Curve Method for Integer Factorization
+                http://ecm.gforge.inria.fr/
+        
+            ggnfs: GPL'd implementation of the General Number Field Sieve
+                http://www.math.ttu.edu/~cmonico/software/ggnfs/
+
+                我这里有一些和 64 位相关的问题, 我放弃了
+
+    * USE_Python
+        Python
+            目前不能编译, nVLink/Python/nVinPython.cpp, 428 行, 有一个
+                pinpython.code()
+            的调用, 但是 nVParser 没有这个函数
+
+    * USE_Lua
+        Lua 5.1
+
+        Luabind: "Luabind is a library that helps you create bindings between C++ and Lua"
+            http://www.rasterbar.com/products/luabind.html
+
+        boost-build
+            Luabind 编译可能需要 boost-build
+
+    * USE_ECL (untested)
+        ECL: "an implementation of the Common Lisp language"
+            http://ecls.sourceforge.net/
+
+            原来的 CMake 中有这么一句注释:
+                add -lpthread for gdb after using Ecl
+
+    * USE_MU0 (untested)
+        MU0, 我的理解是原来的 mU 版本
+        
+====================================================================
+
+3. 在 Windows 下开发的入门指南
+
+以下是在 Windows 下使用 Visual Studio 开发的入门指南，这里我们不编译任何可选内容。
+
+注意目前我们只支持生成 32位 可执行文件。 
+
+假设你已经有了 nV 的整个源文件文件夹, 假设路径为 <NV_SRC_DIR>/nV。
+
+3.1 获取必需的开发工具和第三方库
+
+我们需要 4 个第三方库, 它们都需要 32位 的版本；另外还有 CMake 开发工具
+    
+    * Boost
+      从 Boost 官方网站 http://www.boost.org/ 下载Boost源代码包，按照主页左侧
+       “Getting Started” 链接指向的指南进行编译。之需要进行默认的 stage 步骤，不
+      需要 install。
+      在 Windows 系统中设一个（系统）环境变量 BOOST_ROOT 指向你的 Boost 源代码
+      包解压到的目录。 %BOOST_ROOT%\boost 目录下应该有所有的 Boost 头文件。编译
+      完成之后， %BOOST_ROOT%\stage\lib 目录下应该有所有的 Boost 库文件（.lib、
+      .dll等）
+      在（系统）环境变量 PATH 中添加 %BOOST_ROOT%\stage\lib。
+
+    * GMP, MPFR, MPFI
+      这 3 个库不提供对 Windows 系统的官方支持，你可以在我们项目trac站点的下载页面
+      下载到这些库编译好的版本（.dll 和 .lib 文件）。
+      http://trac.mathmu.cn/downloads
+      把所有这些文件放在 <NV_SRC_DIR>\extra_libs 下. 并将 
+       <NV_SRC_DIR>/extra_libs 加入 PATH 环境变量。
+	  
+	* CMake
+	  在 CMake 的官方下载页面上可以下载到 CMake 的 Windows 安装文件
+	  http://www.cmake.org/cmake/resources/software.html
+
+3.2 CMake 配置
+
+将源代码顶层目录 <NV_SRC_DIR>/nV 下的 config.cmake.example 复制一份，重命名成
+ config.cmake。
+
+打开 CMake，源文件文件夹设为 <NV_SRC_DIR>/nV，build 文件夹设为 
+<NV_SRC_DIR>/build 。注意将文件放于全英文目录下，否则会出现乱码，进而导致编译失败。
+
+点击 Configure 按钮. CMake 会提示问你生成什么样的工程文件, 选择和你的
+ Visual Studio 版本相应的, 注意不要选择 64 位的，否则可能之后无法成功编译。
+
+如果有错误信息的话, 说明有地方出了问题, 建议重新检查以上各项，修好相应的问题再继续。
+
+如果没有问题, 点击 Generate 按钮。 <NV_SRC_DIR>/build 下就应该有了很多
+ Visual Studio 的工程文件。
+
+3.3 Visual Studio 编译
+      
+用 Visual Studio 打开 <NV_SRC_DIR>/build/nV.sln，生成其中的 ALL_BUILD 工程
+（编译所有的内容）。编译前注意确认选择 Debug 作为活动配置（而非 Release、
+ MinSizeRel 等）。
+
+3.4 调试、运行
+
+将 nV 解决方案中的 mu 项目设为启动项目，你就可以在 Visual Studio 中调试、运行了。
+
+====================================================================
+
+4. 在 Linux 下开发的入门指南
+
+以下是在 Linux 下使用 Eclipse/CDT 开发的入门指南，这里我们不编译任何可选内容。 
+
+假设你已经有了 nV 的整个源文件文件夹, 假设路径为 <NV_SRC_DIR>/nV。
+
+3.1 获取必需的开发工具和第三方库
+
+我们需要 4 个必需的第三方库, 还有 g++ 编译器，Make 和 CMake 开发工具。在大多数
+ Linux 发行版中，应该都可以直接从官方提供的软件库中下载安装它们，例如在
+ Ubuntu Linux 中，可以在命令行中使用以下几条命令安装：
+
+    $ sudo apt-get update
+    $ sudo apt-get install build-essential cmake-gui
+    $ sudo apt-get install libboost1.48-dev
+    $ sudo apt-get install libgmp-dev libmpfr-dev libmpfi-dev
+    
+当然你也可以访问 2.1 和 2.2 两节中介绍的它们的官方网站，下载源代码编译安装。
+
+3.2 CMake 配置
+
+将源代码顶层目录 <NV_SRC_DIR>/nV 下的 config.cmake.example 复制一份，重命名成
+ config.cmake。注意确认 CMAKE_BUILD_TYPE 设置为 Debug。
+
+打开 CMake 图形界面，源文件文件夹 设为 <NV_SRC_DIR>/nV，build文件夹 也设为 
+<NV_SRC_DIR>/nV 。
+
+点击 Configure 按钮. CMake 会提示问你生成什么样的工程文件, 选择
+ Eclipse CDT4 - Unix Makefiles。
+
+如果有错误信息的话, 说明有地方出了问题, 建议重新检查以上各项，修好相应的问题再继续。
+
+如果没有问题, 点击 Generate 按钮。 <NV_SRC_DIR>/nV 下就应该生成出了
+ Eclipse/CDT 工程文件 .project 和 .cproject。注意它们是 Linux 下的隐藏文件。
+
+3.3 Ecipse/CDT 编译
+      
+启动 Eclipse，选择 “File菜单 > Import...菜单项”，在弹出的对话框中选择 “General > 
+ Existing Project into Workspace”，点击 “Next>” 按钮之后，在下一页中选择
+ <NV_SRC_DIR>/nV 文件夹进行导入。
+ 
+导入完成后，选中新导入的 nV 工程进行编译。
+
+3.4 调试、运行
+
+在 nV 工程中选择 “Binaries > mu”，在右键菜单中选择 “Debug As >
+ Local C/C++ Application” 即可开始调试。
+
+====================================================================
+
+5. 注意事项
+
+这里描述如何维护 CMake 配置文件。如果你不需要增加、减少源文件或进行其他源代码目录结构
+调整操作，而只是修改已有的源文件，那么你可以不用阅读这一节。
+
+注意不要修改生成出的各种工程文件，而应该去修改生成这些工程文件的 CMake 配置文件。
+
+    * 增加/减少 .cpp 文件
+      需要看相应文件夹下的 CMakeLists.txt 里是否有一个 .cpp 文件的列表。如果有这个
+      列表，你需要根据情况进行维护。如果没有，那么 .cpp 文件是自动递归 (包含子文件夹
+      下的文件) 的在当前文件夹下找的，一般不需要做修改。
+
+      现在大部分 CMakeLists.txt 都是自动递归的找 .cpp 的，所以一般都不需要修改
+       CMakeLists.txt
+
+    * 增加/减少 .h 文件
+      如果是放在 Include 文件夹里，一般不会有问题。如果是其他地方，有可能需要修改
+       CMakeLists.txt，增加/减少 include_directories()
+
+      .h 的查找顺序为:
+        Include/external
+        Include
+        ${EXTRA_INCLUDE}
+        其他
+
+    * 增加/减少脚本文件，包括 .m、.n、.u 等
+      使用 CMake/Utils.cmake 里提供的 new_mu_script 和 new_nv_script 宏，
+      使用方法参见文件里的注释。使用实例可参见 nVNumber/CMakeLists.txt。
+
+    * 增加/减少可执行文件或 .dll 模块
+      使用 CMake/Utils.cmake 里提供的 new_executable 和 new_shared_library 
+      宏。使用方法见文件里的注释。使用实例可参见 mU/CMakeLists.txt 和
+       nVString/CMakeLists.txt。
+
+    * 外部库
+      CMake 对部分常见的库提供 FindXXX.cmake，对于这些库使用
+       find_package() 来进行查找位置.
+
+      而对于其他的库，有3个选择
+        1 找到靠谱的 FindXXX.cmake，放在 CMake 文件夹里，然后使用
+          find_package()
+        2 使用 find_library()，并且让用户在 EXTRA_INCLUDE 里提供头文件位置
+        3 自己写 FindXXX.cmake (尽量避免)
+      现在的情况是，全部使用第2个选择
+
+====================================================================
+
+6. 开发环境配置的更多说明
+
+6.1 config.cmake 中配置参数的说明
+
+    * CMAKE_PREFIX_PATH
+      可选值：路径
+      CMake 程序会试图在这里找外部库。当然除了这里之外，还会在一些'系统默认'的地方
+      找, 比方说 PATH 环境变量。
+
+    * EXTRA_INCLUDE
+      可选值：路径
+      由于部分的库，只能 自动找 和 配置 用于链接的 object 文件，头文件需要在这里配
+      置。
+
+    * USE_*
+      可选值：YES/NO
+      表示是否编译相应的可选部分。设为 YES 意味着很可能需要更多的外部库。
+
+6.2 一般情况下的配置
+        
+如果你不想让 CMake 生成的文件以及编译生成的文件和源代码文件混在一起，可以把 build文件
+夹 和 源文件文件夹 区分开。在 Windows 操作系统上使用 Visual Studio 开发时，这样做
+不会带来问题。但是在 Linux 下使用 Eclipse/CDT 开发时，把 build文件夹 和 源文件文件
+夹 区分开可能带来一些不便，例如无法在 Eclipse 集成开发环境里完成 Subversion 更新和提
+交等操作。
+
+注意我们已经仔细的设置了源代码目录的 svn:ignore 属性，因此即使你不把 build文件夹 和
+ 源文件文件夹 区分开，各种自动生成的文件也不会影响你的各种 Subversion 操作。
+
+关于第三方库，在 Linux 和 Mac OS X 下，第三方库一般都会安装到系统标准位置，如头文件
+在 /usr/include 或 /usr/local/include 下，库文件在 /usr/lib 或
+ /usr/local/lib 下，编译器总能找到。在 Windows 下，第三方库一般不会安装到系统标准
+位置（也可以认为这些标准位置不存在），因此需要特别设定，有 3 个部分
+ 
+    * 头文件, 对于部分的库，这些需要加在 EXTRA_INCLUDE，另一些库可以让 CMake 自动
+      找。
+
+    * 用来链接的 .lib/.a  对于这些，需要让它们能够被 CMake 找到，比方说加在
+      CMAKE_PREFIX_PATH 里。或者也可以手动去修改 xxx_LIBRARIES 这样的 CMake 
+      变量。
+
+    * .dll 它们需要在运行的时候，能被可执行文件找到。建议将这些文件所在的目录加入
+       PATH 环境变量里。

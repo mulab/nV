@@ -1,0 +1,36 @@
+目录
+1. 在 Windows 操作系统上安装
+2. 在 Linux 操作系统上安装
+
+====================================================================
+
+1. 在 Windows 操作系统上安装
+
+你可以在项目的 trac 站点上下载到适用于 Windows 操作系统的软件安装包，请访问如下页面：
+http://trac.mathmu.cn/downloads
+
+====================================================================
+
+2. 在 Linux 操作系统上安装
+
+以下是在 Ubuntu Linux 操作系统上安装的步骤，如果你正在使用其他版本的 Linux 系统，
+其中一些命令可能需要略微调整（主要是一些软件包的名称）。
+
+2.1 安装一些支持软件和程序库
+在命令行中输入如下命令：
+    $ sudo apt-get update
+    $ sudo apt-get install build-essential cmake
+    $ sudo apt-get install libboost1.48-dev
+    $ sudo apt-get install libgmp-dev libmpfr-dev libmpfi-dev
+如果你想从官方来源下载编译上面的这些软件和程序库，你可以参看 Develop.txt 文件中的第
+ 1 节——开发工具和第三方库的介绍。
+
+2.2 编辑编译配置文件
+将源代码顶层目录中的 config.cmake.example 更名为 config.cmake ，并将其中的
+ CMAKE_BUILD_TYPE 选项值改为 Release
+
+2.3 编译安装
+    $ cmake -G "Unix Makefiles"
+    $ make
+    $ sudo make install
+所有文件将安装到系统的 /usr/local 目录下。

@@ -16,6 +16,18 @@
 #     new_executable (xx <file list>)
 #         same with new_shared_library, but creates a new
 #         target of executable
+#     
+#     new_mu_script (xx <package name>)
+#         declare a mu script named 'xx'. 'xx' must be a single file
+#         name with no leading path components.
+#         <package name> can be a path, and the script will be installed
+#         in the mU script tree as <package name>/xx
+#     
+#     new_nv_script (xx <package name>)
+#         declare a nv script named 'xx'. 'xx' must be a single file
+#         name with no leading path components.
+#         <package name> can be a path, and the script will be installed
+#         in the nV script tree as <package name>/xx
 
 
 # PCHSupport requires CMAKE_BUILD_TYPE to be set

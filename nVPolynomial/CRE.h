@@ -1,6 +1,6 @@
 #pragma once
 #include <nV/Number.h>
-#include <nV/Array.hpp>
+#include <nV/Array.h>
 #include <set>
 #include <nV/Polynomial.h>
 #include "SparseArray.h"

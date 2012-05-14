@@ -1,5 +1,5 @@
 #include <nV/System.h>
-#include <nV/Array.hpp>
+#include <nV/Array.h>
 
 using namespace nV;
 
