@@ -6,4 +6,5 @@ target_link_libraries(nvlinkflint nvkernel
     ${mpfr_LIBRARIES}
 )
 
-install(FILES LinkFLINT.n DESTINATION Link/flint)
+new_nv_script(LinkFLINT.n nVLink/flint)
+

@@ -1,5 +1,5 @@
 #pragma once
-
+#include <cstdlib>
 #include "Var.h"
 #include "Exceptions.h"
 
@@ -8,6 +8,11 @@ namespace mU {
 
 // 内核初始化函数
 API void Initialize();
+inline string mU_Home()
+{
+	const char *mu_home = getenv("MU_HOME");
+	return mu_home ? mu_home : MU_HOME;
+}
 
 // 表达式排序相关函数
 API int Compare(Var,Var);

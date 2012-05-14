@@ -1,6 +1,6 @@
 If[${INI_USE_NTL_FLINT},
-<< Path["../Link/NTL/LinkNTL.n"];
-<< Path["../Link/flint/LinkFLINT.n"]]
+<< Path["nVLink/NTL/LinkNTL.n"];
+<< Path["nVLink/flint/LinkFLINT.n"]]
 
 If[${INI_USE_YAFU},
-<< Path["../Link/yafu/LinkYAFU.n"]]
+<< Path["nVLink/yafu/LinkYAFU.n"]]

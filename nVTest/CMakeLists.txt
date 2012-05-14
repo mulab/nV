@@ -1,1 +1,1 @@
-install(DIRECTORY . DESTINATION Test)
+

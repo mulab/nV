@@ -34,7 +34,11 @@ int mU_main(int argc,char *argv[]) {
 //	std::locale::global(std::locale(""));
 	//wcerr.rdbuf(0);
 	Initialize();
-	Get(path() + _W("mU.ini"));
+#ifdef _WIN32
+	Get(mbs2wcs(mU_Home() + "/conf/mU.ini"));
+#else
+	Get(mbs2wcs(mU_Home() + "/etc/mU.ini"));
+#endif
 	//Get(_W("mU.ini"));
 	if(argc > 1) {
 		for(size_t i = 1; i < argc; ++i)

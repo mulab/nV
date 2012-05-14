@@ -16,6 +16,6 @@ else ()
     set (INI_USE_YAFU False)
 endif ()
 
-configure_file (mU.ini.in mU.ini)
+configure_file (mU.ini.in ${CONF_OUTPUT_PATH}/mU.ini)
 
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/mU.ini DESTINATION bin)
+install(FILES ${CONF_OUTPUT_PATH}/mU.ini DESTINATION ${CONF_RELATIVE_DIR})

@@ -84,7 +84,7 @@ CAPI void mUInstall() {
 	var S = Sym(_W("CProc"),System);
 	CProcs[S] = (CProc)cfunc(M, S);
 	Begin(System);
-	Get(path() + _W("../mUScript/System/init.m"));
+	Get(path() + _W("System/init.m"));
 	
 	Initialized = true;
 }

@@ -2,33 +2,74 @@ cmake_minimum_required(VERSION 2.8)
 
 project(nV CXX)
 
+# Configurable options
+
+include (config.cmake)
+
+if (MSVC_IDE)
+	set(PROJECT_STAGE_DIR "${PROJECT_BINARY_DIR}/stage")
+else ()
+	set(PROJECT_STAGE_DIR "${PROJECT_BINARY_DIR}/${CMAKE_BUILD_TYPE}")
+endif ()
+
+set(EXECUTABLE_OUTPUT_PATH "${PROJECT_STAGE_DIR}/bin")
+if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    set(LIBRARY_OUTPUT_PATH "${PROJECT_STAGE_DIR}/bin")
+	set(CONF_RELATIVE_DIR "conf/")
+else ()
+    set(LIBRARY_OUTPUT_PATH "${PROJECT_STAGE_DIR}/lib")
+	set(CONF_RELATIVE_DIR "etc/")
+endif ()
+set(CONF_OUTPUT_PATH "${PROJECT_STAGE_DIR}/${CONF_RELATIVE_DIR}")
+set(MUSCRIPT_RELATIVE_DIR "lib/mU/")
+set(NVSCRIPT_RELATIVE_DIR "lib/nV/")
+set(MUSCRIPT_OUTPUT_PATH "${PROJECT_STAGE_DIR}/${MUSCRIPT_RELATIVE_DIR}")
+set(NVSCRIPT_OUTPUT_PATH "${PROJECT_STAGE_DIR}/${NVSCRIPT_RELATIVE_DIR}")
+
+# Import utility macros
+
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMake)
 
 include (Utils)
-
-# Configurable options
-
-set(CMAKE_PREFIX_PATH ""
-    CACHE STRING "We will try to find all external libraries here")
-set(EXTRA_INCLUDE ""
-    CACHE STRING "extra directories to find *.h files")
-
-set(USE_JAVA      "NO" CACHE STRING "nVLink - Java")
-set(USE_NTL_FLINT "NO" CACHE STRING "nVLink - ntl & flint")
-set(USE_YAFU      "NO"  CACHE STRING "nVLink - yafu")
-set(USE_PYTHON    "NO"  CACHE STRING "nVLink - Python")
-set(USE_LUA       "NO" CACHE STRING "nVLink - Lua")
-set(USE_ECL       "NO"  CACHE STRING "nVLink - Ecl")
-set(USE_MU0       "NO"  CACHE STRING "nVLink - mU0")
 
 # Overall -I s
 
 include_directories (BEFORE ${PROJECT_SOURCE_DIR}/Include/external)
 include_directories (${PROJECT_SOURCE_DIR}/Include)
+if (MSVC_IDE)
+	include_directories(${PROJECT_BINARY_DIR}/Include/$(Configuration))
+else ()
+	include_directories(${PROJECT_BINARY_DIR}/Include)
+endif ()
 include_directories (${EXTRA_INCLUDE})
 
 # Project Headers
-file(GLOB_RECURSE PROJECT_HEADERS "Include/*.h")
+if (MSVC_IDE)
+	set (MU_HOME ${CMAKE_INSTALL_PREFIX})
+	set (NV_HOME ${CMAKE_INSTALL_PREFIX})
+	foreach (release_configuration "Release" "RelWithDebInfo" "MinSizeRel")
+		configure_file(Include/mU/common.h.in Include/${release_configuration}/mU/common.h)
+		configure_file(Include/nV/Config.h.in Include/${release_configuration}/nV/Config.h)
+	endforeach ()
+	set (MU_HOME ${PROJECT_STAGE_DIR})
+	set (NV_HOME ${PROJECT_STAGE_DIR})
+	configure_file(Include/mU/common.h.in Include/Debug/mU/common.h)
+	configure_file(Include/nV/Config.h.in Include/Debug/nV/Config.h)
+else ()
+	if (${CMAKE_BUILD_TYPE} STREQUAL "Debug")
+		set (MU_HOME ${PROJECT_STAGE_DIR})
+		set (NV_HOME ${PROJECT_STAGE_DIR})
+		configure_file(Include/mU/common.h.in Include/mU/common.h)
+		configure_file(Include/nV/Config.h.in Include/nV/Config.h)
+	else ()
+		set (MU_HOME ${CMAKE_INSTALL_PREFIX})
+		set (NV_HOME ${CMAKE_INSTALL_PREFIX})
+		configure_file(Include/mU/common.h.in Include/mU/common.h)
+		configure_file(Include/nV/Config.h.in Include/nV/Config.h)
+	endif ()
+endif ()
+
+file(GLOB_RECURSE PROJECT_HEADERS "Include/*.h" "${PROJECT_BINARY_DIR}/Include/*.h")
 
 # Definitions
 add_definitions(-DUNICODE)
@@ -87,6 +128,30 @@ if (USE_MU0)
 
     mark_as_advanced(mU0_LIBRARIES)
     mark_as_advanced(mU0_kernel_LIBRARIES)
+endif ()
+
+# NSIS installer script
+if (MSVC_IDE)
+	string(REPLACE ".lib" ".dll" Boost_THREAD_LIBRARY_RELEASE_DLL ${Boost_THREAD_LIBRARY_RELEASE})
+	file(TO_NATIVE_PATH ${Boost_THREAD_LIBRARY_RELEASE_DLL} Boost_THREAD_LIBRARY_RELEASE_DLL)
+	string(REPLACE ".lib" ".dll" Boost_SYSTEM_LIBRARY_RELEASE_DLL ${Boost_SYSTEM_LIBRARY_RELEASE})
+	file(TO_NATIVE_PATH ${Boost_SYSTEM_LIBRARY_RELEASE_DLL} Boost_SYSTEM_LIBRARY_RELEASE_DLL)
+	string(REPLACE ".lib" ".dll" Boost_DATE_TIME_LIBRARY_RELEASE_DLL ${Boost_DATE_TIME_LIBRARY_RELEASE})
+	file(TO_NATIVE_PATH ${Boost_DATE_TIME_LIBRARY_RELEASE_DLL} Boost_DATE_TIME_LIBRARY_RELEASE_DLL)
+	string(REPLACE ".lib" ".dll" Boost_REGEX_LIBRARY_RELEASE_DLL ${Boost_REGEX_LIBRARY_RELEASE})
+	file(TO_NATIVE_PATH ${Boost_REGEX_LIBRARY_RELEASE_DLL} Boost_REGEX_LIBRARY_RELEASE_DLL)
+	
+	string(REPLACE ".lib" ".dll" gmp_LIBRARIES_DLL ${gmp_LIBRARIES})
+	file(TO_NATIVE_PATH ${gmp_LIBRARIES_DLL} gmp_LIBRARIES_DLL)
+
+	string(REPLACE ".lib" ".dll" mpfr_LIBRARIES_DLL ${mpfr_LIBRARIES})
+	file(TO_NATIVE_PATH ${mpfr_LIBRARIES_DLL} mpfr_LIBRARIES_DLL)
+
+	string(REPLACE ".lib" ".dll" mpfi_LIBRARIES_DLL ${mpfi_LIBRARIES})
+	file(TO_NATIVE_PATH ${mpfi_LIBRARIES_DLL} mpfi_LIBRARIES_DLL)
+
+	configure_file(EnvVarUpdate.nsh EnvVarUpdate.nsh COPYONLY)
+	configure_file(setup.nsi.in setup.nsi @ONLY)
 endif ()
 
 # subdirectory

@@ -1,3 +1,4 @@
+#include <nV/Config.h>
 #include <nV/Interface.h>
 #include <nV/utils.h>
 #ifdef _WIN32
@@ -19,28 +20,32 @@ string cpath(const char* x) {
 #ifdef _MSC_VER
     return string(x) + string(".dll");
 #else
-    return string("lib") + string(x) + string(".dll");
+    return "lib" + string(x) + string(".dll");
 #endif
 #elif __APPLE__
 	return "lib" + string(x) + ".dylib";
 #else
-    return string("lib") + string(x) + string(".so");
+    return "lib" + string(x) + string(".so");
 #endif
 }
 void* cload(const char* x) {
+	string s = cpath(x);
 #ifdef _WIN32
-    return LoadLibraryA(cpath(x).c_str());
+	void *r = LoadLibraryA((Kernel::nv_home() + "/bin/" + s).c_str());
+	return r ? r : LoadLibraryA(s.c_str());
 #else
-    string s = cpath(x);
-    return dlopen(s.c_str(), RTLD_LAZY);
+    void *r = dlopen((Kernel::nv_home() + "/lib/" + s).c_str(), RTLD_LAZY);
+	return r ? r : dlopen(s.c_str(), RTLD_LAZY);
 #endif
 }
 void* cnoload(const char* x) {
+	string s = cpath(x);
 #ifdef _WIN32
-    return GetModuleHandleA(cpath(x).c_str());
+	void *r = GetModuleHandleA((Kernel::nv_home() + "/bin/" + s).c_str());
+    return r ? r : GetModuleHandleA(s.c_str());
 #else
-    string s = cpath(x);
-    return dlopen(s.c_str(), RTLD_LAZY | RTLD_NOLOAD);
+	void *r = dlopen((Kernel::nv_home() + "/lib/" + s).c_str(), RTLD_LAZY | RTLD_NOLOAD);
+    return r ? r : dlopen(s.c_str(), RTLD_LAZY | RTLD_NOLOAD);
 #endif
 }
 void cunload(void* x) {

@@ -17,7 +17,7 @@ Value[Java`Java,`Cast,`Class,`Init,`New,`Object,`Object`cast,`Object`new],
 ]
 
 `Init["-verbose:jni",
-"-Djava.class.path=" <> Path[] <> "..\\Link\\Java\\Java",
+"-Djava.class.path=" <> Path[] <> "nVLink\\Java\\Java",
 "-Djava.library.path=" <> Path[]]
 
 End[]

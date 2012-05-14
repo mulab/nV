@@ -38,18 +38,18 @@ Attributes[With] = {HoldAll}
 
 End[]
 
-<< Path["../Number/Number.n"]
-<< Path["../Polynomial/Polynomial.n"]
-<< Path["../Graphics/Graphics.n"]
-<< Path["../String/String.n"]
+<< Path["Number/Number.n"]
+<< Path["Polynomial/Polynomial.n"]
+<< Path["Graphics/Graphics.n"]
+<< Path["String/String.n"]
 
-<< Path["../Calculus/Simplify.n"]
-(*<< Path["../Calculus/D.n"]
-<< Path["../Calculus/Integrate.n"]*)
+<< Path["Calculus/Simplify.n"]
+(*<< Path["Calculus/D.n"]
+<< Path["Calculus/Integrate.n"]*)
 
-<< Path["../mULink/EmbedmU.n"]
-(*<< Path["../Link/Lua/LinkLua.n"]
-<< Path["../Link/NTL/LinkNTL.n"]
-<< Path["../Link/flint/LinkFLINT.n"]
-<< Path["../Link/Java/Embed/EmbedJava.n"]
-<< Path["../Link/Ecl/Embed/EmbedEcl.n"]*)
+<< Path["mULink/EmbedmU.n"]
+(*<< Path["nVLink/Lua/LinkLua.n"]
+<< Path["nVLink/NTL/LinkNTL.n"]
+<< Path["nVLink/flint/LinkFLINT.n"]
+<< Path["nVLink/Java/Embed/EmbedJava.n"]
+<< Path["nVLink/Ecl/Embed/EmbedEcl.n"]*)

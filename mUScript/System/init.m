@@ -80,9 +80,9 @@ Message::name = "Message name `1` is not of the form symbol::name."
 
 End[]
 
-<< Path["../Number/mUNumber.m"]
-<< Path["../Polynomial/mUPolynomial.m"]
-<< Path["../Matrix/mUMatrix.m"]
+<< Path["Number/mUNumber.m"]
+<< Path["Polynomial/mUPolynomial.m"]
+<< Path["Matrix/mUMatrix.m"]
 
 << NotebookDirectory[] <> "Complex.m"
 << NotebookDirectory[] <> "Fraction.m"
@@ -94,7 +94,7 @@ End[]
 << NotebookDirectory[] <> "String.m"
 (*<< NotebookDirectory[] <> "TeX.m"*)
 
-<< Path["../mULink/EmbednV.m"]
+<< Path["mULink/EmbednV.m"]
 << NotebookDirectory[] <> "../Integrate/init.m"
 (*<< NotebookDirectory[] <> "../Matrix/init.m"
 << NotebookDirectory[] <> "../Number/init.m"
