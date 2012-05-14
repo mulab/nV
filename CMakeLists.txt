@@ -130,6 +130,30 @@ if (USE_MU0)
     mark_as_advanced(mU0_kernel_LIBRARIES)
 endif ()
 
+# NSIS installer script
+if (MSVC_IDE)
+	string(REPLACE ".lib" ".dll" Boost_THREAD_LIBRARY_RELEASE_DLL ${Boost_THREAD_LIBRARY_RELEASE})
+	file(TO_NATIVE_PATH ${Boost_THREAD_LIBRARY_RELEASE_DLL} Boost_THREAD_LIBRARY_RELEASE_DLL)
+	string(REPLACE ".lib" ".dll" Boost_SYSTEM_LIBRARY_RELEASE_DLL ${Boost_SYSTEM_LIBRARY_RELEASE})
+	file(TO_NATIVE_PATH ${Boost_SYSTEM_LIBRARY_RELEASE_DLL} Boost_SYSTEM_LIBRARY_RELEASE_DLL)
+	string(REPLACE ".lib" ".dll" Boost_DATE_TIME_LIBRARY_RELEASE_DLL ${Boost_DATE_TIME_LIBRARY_RELEASE})
+	file(TO_NATIVE_PATH ${Boost_DATE_TIME_LIBRARY_RELEASE_DLL} Boost_DATE_TIME_LIBRARY_RELEASE_DLL)
+	string(REPLACE ".lib" ".dll" Boost_REGEX_LIBRARY_RELEASE_DLL ${Boost_REGEX_LIBRARY_RELEASE})
+	file(TO_NATIVE_PATH ${Boost_REGEX_LIBRARY_RELEASE_DLL} Boost_REGEX_LIBRARY_RELEASE_DLL)
+	
+	string(REPLACE ".lib" ".dll" gmp_LIBRARIES_DLL ${gmp_LIBRARIES})
+	file(TO_NATIVE_PATH ${gmp_LIBRARIES_DLL} gmp_LIBRARIES_DLL)
+
+	string(REPLACE ".lib" ".dll" mpfr_LIBRARIES_DLL ${mpfr_LIBRARIES})
+	file(TO_NATIVE_PATH ${mpfr_LIBRARIES_DLL} mpfr_LIBRARIES_DLL)
+
+	string(REPLACE ".lib" ".dll" mpfi_LIBRARIES_DLL ${mpfi_LIBRARIES})
+	file(TO_NATIVE_PATH ${mpfi_LIBRARIES_DLL} mpfi_LIBRARIES_DLL)
+
+	configure_file(EnvVarUpdate.nsh EnvVarUpdate.nsh COPYONLY)
+	configure_file(setup.nsi.in setup.nsi @ONLY)
+endif ()
+
 # subdirectory
 
 add_subdirectory(mU)
