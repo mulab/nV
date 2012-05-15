@@ -13,6 +13,13 @@ http://trac.mathmu.cn/downloads
 
 2. 在 Linux 操作系统上安装
 
+2.1 使用现有的安装包
+
+你可以在项目的 trac 站点上下载到适用于 Ubuntu 操作系统的软件安装包，请访问如下页面：
+http://trac.mathmu.cn/downloads
+
+2.2 从源代码编译安装
+
 以下是在 Ubuntu Linux 操作系统上安装的步骤，如果你正在使用其他版本的 Linux 系统，
 其中一些命令可能需要略微调整（主要是一些软件包的名称）。
 

@@ -13,17 +13,7 @@ set (CPACK_PACKAGING_INSTALL_PREFIX ${CMAKE_INSTALL_PFREFIX})
 
 set (CPACK_GENERATOR "DEB")
 set (CPACK_DEBIAN_PACKAGE_HOMEPAGE "http://www.mathmu.cn/")
-set (CPACK_DEBIAN_PACKAGE_DEPENDS
-    "libboost-date-time1.46.1"
-    "libboost-regex1.46.1"
-    "libboost-system1.46.1"
-    "libboost-thread1.46.1"
-    "libc6 (>= 2.11)"
-    "libgcc1 (>= 1:4.1.1)"
-    "libgmp10"
-    "libmpfi0 (>=1.5)"
-    "libmpfr4"
-    "libstdc++6 (>= 4.6)")
+set (CPACK_DEBIAN_PACKAGE_DEPENDS "libboost-date-time1.46.1, libboost-regex1.46.1, libboost-system1.46.1, libboost-thread1.46.1, libc6 (>= 2.11), libgcc1 (>= 1:4.1.1), libgmp10, libmpfi0 (>=1.5), libmpfr4, libstdc++6 (>= 4.6)")
 set (CPACK_DEBIAN_PACKAGE_SECTION "math")
 
 include (CPack)
