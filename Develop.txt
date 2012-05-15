@@ -254,8 +254,11 @@ http://www.cmake.org/
         其他
 
     * 增加/减少脚本文件，包括 .m、.n、.u 等
-      使用 CMake/Utils.cmake 里提供的 new_mu_script 和 new_nv_script 宏，
-      使用方法参见文件里的注释。使用实例可参见 nVNumber/CMakeLists.txt。
+      mUScript目录下的所有脚本按照在指定文件夹下自动递归查找方式列举，不必手工一一
+      列出，增加新的子文件夹时，参照 mUScript/CMakeLists.txt 已有的示例增改。
+      其他目录下零散放置的脚本文件，使用 CMake/Utils.cmake 里提供的
+       new_mu_script 和 new_nv_script 宏，使用方法参见文件里的注释。使用实例可
+      参见 nVNumber/CMakeLists.txt。
 
     * 增加/减少可执行文件或 .dll 模块
       使用 CMake/Utils.cmake 里提供的 new_executable 和 new_shared_library 

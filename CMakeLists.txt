@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 2.8)
 
 project(nV CXX)
+set (VERSION_MAJOR "0")
+set (VERSION_MINOR "5")
+set (VERSION_PATCH "0")
 
 # Configurable options
 
@@ -184,3 +187,6 @@ add_subdirectory(nVLink)
 #  set(CMAKE_EXE_LINKER_FLAGS_RELEASE "-ltcmalloc")
 #  set(CMAKE_SHARED_LINKER_FLAGS_RELEASE="-ltcmalloc")
 #endif()
+
+# generating packages with CPack
+include (Packaging)
