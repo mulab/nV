@@ -46,8 +46,11 @@ CAPI CPROC(System_StringDrop)
 	return 0;
 }
 
-//多条规则
-//被替换者为空字符串
+//基本实现了Mathematica样例中的功能，除了由于转义字符功能不够完善，执行以下代码：
+// StringDrop["\[FilledDiamond]\[Alpha]\[Beta]\[Gamma]\[LongLeftRightArrow]\[ScriptCapitalA]\[ScriptCapitalB]\[ScriptCapitalC]\[ReturnIndicator]", -4]
+//出现如下结果：
+//\:25c6
+//并且程序崩溃
 
 bool StringMatch_1(Var s, Var sub, uint n)
 {
@@ -89,8 +92,7 @@ var StringReplace_uni_str(Var c, Var rul, uint step)
 	return s;
 }
 
-CPROC_INT2(System_StringReplace, 2, 3)
-//CPROC_INT2_OPT(System_StringReplace, 2, 3, (IgnoreCase, False))
+CPROC_INT2_OPT(System_StringReplace, 2, 3, (IgnoreCase, False))
 {
 	var c = At(x, 0);
 	uint step = 0;
@@ -115,3 +117,7 @@ CPROC_INT2(System_StringReplace, 2, 3)
 	}
 	return 0;
 }
+
+//对于最基本的子串替换，实现情况良好。
+//包括多个字符串的情形，以及限制替换次数的情形。
+//尚不支持任何字符串模式
