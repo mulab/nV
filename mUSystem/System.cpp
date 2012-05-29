@@ -75,6 +75,8 @@ CAPI void mUInstall() {
     //SET_TAG_ATTR(Task,HoldAll)
     SET_TAG_ATTR(Table,HoldAll)
     SET_TAG_ATTR(Do,HoldAll)
+	SET_TAG_ATTR(Protect,HoldAll)
+	SET_TAG_ATTR(Unprotect,HoldAll)
 	SET_TAG_ATTR(AbortProtect, HoldAll)
 	SET_TAG_ATTR(CheckAbort, HoldAll)
 	SET_TAG_ATTR(Catch, HoldFirst)

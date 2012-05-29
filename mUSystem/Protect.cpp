@@ -25,7 +25,7 @@ CAPI CPROC(System_Protect)
 		for (int i = 0; i < Size(list); ++i)
 		{
 			var elem = At(list, i);
-			if (Type(elem) != TYPE(str) || Type(elem) != TYPE(sym))
+			if (Type(elem) != TYPE(str) && Type(elem) != TYPE(sym))
 			{
 				throw LogicError(L"Protect expects strings, "
 								L"symbols and lists of those.");

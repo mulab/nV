@@ -41,7 +41,7 @@ int mU_main(int argc,char *argv[]) {
 #endif
 	//Get(_W("mU.ini"));
 	if(argc > 1) {
-		for(size_t i = 1; i < argc; ++i)
+		for(int i = 1; i < argc; ++i)
 			Get(to_wstring(argv[i], strlen(argv[i])));
 		return 0;
 	}
