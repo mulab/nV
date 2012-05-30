@@ -22,7 +22,7 @@ CAPI CPROC(System_Protect)
 
 	try {
 		FlattenAll(list, x);
-		for (int i = 0; i < Size(list); ++i)
+		for (size_t i = 0; i < Size(list); ++i)
 		{
 			var elem = At(list, i);
 			if (Type(elem) != TYPE(str) && Type(elem) != TYPE(sym))
@@ -31,7 +31,7 @@ CAPI CPROC(System_Protect)
 								L"symbols and lists of those.");
 			}
 		}
-		for (int i = 0; i < Size(list); ++i)
+		for (size_t i = 0; i < Size(list); ++i)
 		{
 			var elem = At(list, i);
 			switch (Type(elem))
@@ -65,7 +65,7 @@ CAPI CPROC(System_Unprotect)
 
 	try {
 		FlattenAll(list, x);
-		for (int i = 0; i < Size(list); ++i)
+		for (size_t i = 0; i < Size(list); ++i)
 		{
 			var elem = At(list, i);
 			if (Type(elem) != TYPE(str) && Type(elem) != TYPE(sym))
@@ -74,7 +74,7 @@ CAPI CPROC(System_Unprotect)
 								L"symbols and lists of those.");
 			}
 		}
-		for (int i = 0; i < Size(list); ++i)
+		for (size_t i = 0; i < Size(list); ++i)
 		{
 			var elem = At(list, i);
 			switch (Type(elem))
@@ -190,7 +190,7 @@ CAPI CPROC(System_Min)
 	bool has_numeric_elems = false;
 	std::set<Var, Less2> non_numeric_elems;
 
-	for (int i = 0; i < length; ++i)
+	for (size_t i = 0; i < length; ++i)
 	{
 		Var elem = At(list, i);
 		if (NumericOrInfQ(elem))
@@ -245,7 +245,7 @@ CAPI CPROC(System_Max)
 	bool has_numeric_elems = false;
 	std::set<Var, Less2> non_numeric_elems;
 
-	for (int i = 0; i < length; ++i)
+	for (size_t i = 0; i < length; ++i)
 	{
 		Var elem = At(list, i);
 		if (NumericOrInfQ(elem))
@@ -314,7 +314,7 @@ var Dimensions(Var expr, mU::uint depth, Var parent_head)
 		var first_result = Dimensions(At(vec, 0),
 									depth == 0 ? 0 : depth - 1, head);
 		int first_size = Size(first_result);
-		for (int i = 1; i < Size(vec); ++i)
+		for (size_t i = 1; i < Size(vec); ++i)
 		{
 			var curr_result = Dimensions(At(vec, i),
 										depth == 0 ? 0 : depth - 1, head);

@@ -463,7 +463,7 @@ mU::uint LeafCount(Var expr)
 	else if (ListQ(expr))
 	{
 		uint total = 0;
-		for (int i = 0; i < Size(expr); ++i)
+		for (size_t i = 0; i < Size(expr); ++i)
 		{
 			total += LeafCount(At(expr, i));
 		}

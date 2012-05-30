@@ -219,7 +219,7 @@ CAPI CPROC_INT(System_Rest, 1)
 		break;
 	}
 	var rest = Vec();
-	for (int i = 1; i < Size(vec); ++i)
+	for (size_t i = 1; i < Size(vec); ++i)
 	{
 		Push(rest, At(vec, i));
 	}
