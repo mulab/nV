@@ -120,6 +120,15 @@ CAPI CPROC(System_Extract)
 {
 	var expr = At(x, 0);
 	var lists = At(x, 1);
+	if (IntQ(lists))
+	{
+		lists = Vec(lists);
+	}
+
+	if (!VecQ(lists))
+	{
+		throw LogicError(_W("wrong type of 2nd argument to Extract"));
+	}
 	size_t len = Size(lists);
 	if (len > 0 && !VecQ(At(lists, 0)))
 	{
