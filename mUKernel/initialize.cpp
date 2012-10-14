@@ -26,7 +26,7 @@ Constant, Flat, HoldAll, HoldAllComplete, HoldFirst,
 HoldRest, Listable, Locked, NHoldAll, NHoldFirst,
 NHoldRest, NumericFunction, OneIdentity, Orderless, Protected,
 ReadProtected, SequenceHold, Stub, Temporary,
-Heads, SameTest, IgnoreCase,
+Heads, SameTest, IgnoreCase, LongForm,
 TAG(Symbol), TAG(General), TAG(List), TAG(String), TAG(Integer), TAG(Rational), TAG(Real),
 TAG(Postfix), TAG(Prefix), TAG(Differential),
 TAG(Minus), TAG(Divide), TAG(Plus), TAG(Times), TAG(Power),
@@ -109,6 +109,7 @@ void Initialize()
 	DEF_SYSTEM_SYM(Heads)
 	DEF_SYSTEM_SYM(SameTest)
 	DEF_SYSTEM_SYM(IgnoreCase)
+	DEF_SYSTEM_SYM(LongForm)
 
 	DEF_SYSTEM_TAG_SYM(Symbol)
 	DEF_SYSTEM_TAG_SYM(General)

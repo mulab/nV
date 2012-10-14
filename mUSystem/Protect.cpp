@@ -16,6 +16,87 @@ CPROC_INT(System_UpValues, 1)
 	return GetUpValues(At(x, 0));
 }
 
+CPROC_INT_OPT(System_Information, 1, (LongForm, True))
+{
+	Var symbol = At(x, 0);
+	options_t::const_iterator i = opt.find(LongForm);
+	assert(i != opt.end());
+	bool longForm = i->second == True;
+
+	if (!SymQ(symbol))
+	{
+		throw LogicError(L"the only argument to Information should be a symbol");
+	}
+
+	if (Properties.count(symbol) && Properties[symbol].count(TAG(usage)))
+	{
+		Println(Properties[symbol][TAG(usage)], wcout);
+	}
+
+	if (longForm)
+	{
+
+		if (Attributes.count(symbol))
+		{
+			const attr_t &attributes = Attributes[symbol];
+			const size_t n = attributes.size();
+			size_t i = 0;
+
+			if (n > 0)
+			{
+				Print(Str(L"Attributes["), wcout);
+				Print(symbol, wcout);
+				Print(Str(L"] = {"), wcout);
+
+				for (attr_t::const_iterator j = attributes.begin();
+						j != attributes.end(); ++j)
+				{
+					Print(*j, wcout);
+
+					if (i < n-1)
+					{
+						Print(Str(L", "), wcout);
+					}
+					++i;
+				}
+
+				Println(Str(L"}"), wcout);
+			}
+		}
+
+		if (OwnValues.count(symbol))
+		{
+			var ownValue = OwnValues[symbol];
+			Print(symbol, wcout);
+			Print(Str(L" := "), wcout);
+			Println(ownValue, wcout);
+		}
+
+		var downValues = GetDownValues(symbol);
+		assert(VecQ(downValues));
+		for (size_t i = 0; i < Size(downValues); ++i)
+		{
+			Println(At(downValues, i), wcout);
+		}
+
+		var upValues = GetUpValues(symbol);
+		assert(VecQ(upValues));
+		for (size_t i = 0; i < Size(upValues); ++i)
+		{
+			Println(At(upValues, i), wcout);
+		}
+
+		if (CProcs.count(symbol))
+		{
+			Print(symbol, wcout);
+			Println(Str(L" has CProc"), wcout);
+		}
+
+	}
+
+	return Null;
+}
+
 CAPI CPROC(System_Protect)
 {
 	var list = Vec();

@@ -26,6 +26,7 @@ void parser::init()
 	DEF_OPER(SEMICOLON,_W("CompoundExpression"),_W(";"))
 	++s_prec;
 	DEF_OPER(QUESTIONMARK,L"Usage",L"?",false,true)
+	DEF_OPER(QUESTIONMARK_QUESTIONMARK,L"Information",L"??",false,true)
 	DEF_OPER(LEFT_OP,L"Get",L"<<",false,true)
 	DEF_OPER(RIGHT_OP,L"Put",L">>")
 	DEF_OPER(RIGHT_GT,L"PutAppend",L">>>")

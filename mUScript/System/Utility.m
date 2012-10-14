@@ -5,7 +5,7 @@ Begin["System`"]
 {\[Infinity],\[Pi],E,I} = {Infinity,Pi,E,I}
 Simplify[x_] := Expand[x]
 FullSimplify[x_]:=Simplify[x]
-Usage[x_Symbol] := x::usage
+Usage[x_Symbol] := Information[x, LongForm->False]
 mU := True
 PossibleZeroQ[x_] := Simplify[x] == 0
 ZeroQ[x_] := PossibleZeroQ[x]

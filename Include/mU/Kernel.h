@@ -332,7 +332,7 @@ HoldRest, Listable, Locked, NHoldAll, NHoldFirst,
 // FIXME: predefined symbols should be protected
 NHoldRest, NumericFunction, OneIdentity, Orderless, Protected,
 ReadProtected, SequenceHold, Stub, Temporary, 
-Heads, SameTest, Automatic, IgnoreCase,
+Heads, SameTest, Automatic, IgnoreCase, LongForm,
 TAG(Symbol), TAG(General), TAG(List), TAG(String), TAG(Integer), TAG(Rational), TAG(Real),
 TAG(Postfix), TAG(Prefix), TAG(Differential), TAG(Minus), TAG(Divide), TAG(Plus),
 TAG(Times), TAG(Power), TAG(Return), TAG(Continue), TAG(Break), TAG(Set), TAG(Rule),
