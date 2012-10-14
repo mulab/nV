@@ -8,6 +8,8 @@
  * */
 
 #pragma once
+#include <climits>
+#include <external/gmp.h>
 
 namespace mU {
 struct var_t;
