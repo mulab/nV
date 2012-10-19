@@ -1,0 +1,40 @@
+可以实现的符号矩阵运算 by tb
+Dot (.) — 矩阵积，自动处理行向量和列向量
+Inverse — 矩阵逆 (线性系统用 LinearSolve)
+    
+Transpose — 转置 (，用 Esc tr Esc 输入)
+ConjugateTranspose — 共轭转置 (，用 Esc ct Esc 输入)
+Tr — 矩阵的迹
+Det — 行列式
+KroneckerProduct — 矩阵的直积 (外积)
+
+MatrixPower 给出 m 的 n 次矩阵幂.
+
+Minors[m] 用来给出矩阵 m 的子式。
+
+Norm[expr] 给出一个数字或数组的模。
+
+MatrixForm — 二维形式显示矩阵
+MatrixPlot — 着色元素，可视化一个矩阵
+
+NullSpace[m] 给出一个向量列表，它形成矩阵 m 的零空间的基。
+
+RowReduce[m] 给出矩阵 m 的行简化形式。
+UpperTriangularize[m] 将 m 中除了上三角的所有元素外，全部替换为零。
+LowerTriangularize
+
+矩阵测试：
+MatrixQ  HermitianMatrixQ SymmetricMatrixQ PositiveDefiniteMatrixQ
+
+可能可以实现：
+Eigenvalues, Eigenvectors — 具体或近似的特征值或特征向量
+Eigensystem — 特征值和特征向量
+CharacteristicPolynomial — 符号的特征多项式
+
+PseudoInverse[m] 求一个矩阵的伪逆。
+
+矩阵分解：
+SingularValueDecomposition[m] 给出一个数值矩阵 m 的奇异值分解，形式为矩阵列表 {u, w, v}， w 是一个对角矩阵， m 可以写为 u.w.Conjugate[Transpose[v]]。
+QRDecomposition[m] 给出数值矩阵 m 的 QR 分解。
+LUDecomposition[m] 产生一个矩阵 m 的 LU 分解表示。
+CholeskyDecomposition[m] 给出 m 矩阵的 Cholesky 分解。
