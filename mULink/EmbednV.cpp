@@ -28,10 +28,14 @@ CAPI CPROC_INT(nV_Eval, 1) {
 	}
 	return new nvobj_t(nvobj_t::kernel->eval(nV::from_mu(At(x,0))));
 }
+
+namespace {
+	char nv_main_argv0[] = "nV";
+}
 CAPI CPROC(nV_Main) {
 	int argc = Size(x) + 1;
 	if (argc == 1) {
-		char* argv[] = {"nV"};
+		char* argv[] = {nv_main_argv0};
 		nvobj_t::Main(argc, argv);
 	}
 	return Null;

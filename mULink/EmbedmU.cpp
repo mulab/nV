@@ -40,10 +40,15 @@ CAPI void VALUE(Eval)(Kernel& k, var& r, Tuple& x) {
 		r = new mUObject(mU::SafeEval(to_mu(x[1])));		
     }
 }
+
+namespace {
+	char mu_main_argv0[] = "mU";
+}
+
 CAPI void VALUE(Main)(Kernel& k, var& r, Tuple& x) {
     int argc = x.size;
     if (argc == 1) {
-        char* argv[] = {"mU"};
+        char* argv[] = {mu_main_argv0};
         mUObject::Main(argc, argv);
     }
 }
