@@ -91,6 +91,8 @@ mark_as_advanced (mpfi_LIBRARIES)
 
 if (USE_JAVA)
     find_package (JNI REQUIRED)
+    
+    include_directories(${JNI_INCLUDE_DIRS})
 endif ()
 
 if (USE_NTL_FLINT)
