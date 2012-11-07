@@ -2,7 +2,9 @@ Begin["System`"]
 
 CInstall["nvnumber"]
 
-CProc["nvnumber",FactorInteger,SeedRandom,RandomInteger,RandomPrime,NextPrime,IntegerLength,GCD,LCM,ExtendedGCD,ChineseRemainder,PrimeQ,Radical]
+CProc["nvnumber",FactorInteger,SeedRandom,RandomInteger,RandomPrime,NextPrime,IntegerLength,GCD,LCM,ExtendedGCD,ChineseRemainder,PrimeQ,CoprimeQ,Radical]
+
+SetAttributes[CoprimeQ, {Listable, Orderless, Protected}]
 
 CProc["nvnumber",Factorial,Binomial,Fibonacci,Lucas,EulerGamma,Catalan,Log,Log2,Log10,Exp,Cos,Sin,Tan,Sec,Csc,Cot,ArcCos,ArcSin,ArcTan,Cosh,Sinh,Tanh,Sech,Csch,Coth,ArcCosh,ArcSinh,ArcTanh,Gamma,LogGamma,Zeta,Erf,Erfc,Sqrt,Pow,Pi,E]
 

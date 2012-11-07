@@ -150,6 +150,7 @@ var Thread(Var h, Var b)
 		{
 			var t = At(b,j);
 			if(VecQ(t))
+				// FIXME: bug here, what about empty list t?
 #undef min
 				At(c,j) = At(t,std::min(i,Size(t) - 1));
 			else

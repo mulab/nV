@@ -567,6 +567,25 @@ list ExtendedGCD(VAR n1, VAR n2) {
 INT CoprimeQ(VAR n1, VAR n2) {
 	return (GCD(n1, n2)==1);
 }
+
+bool CoprimeQ(LIST l) {
+	UINT n = l.size();
+
+	for (int i = 0; i < n; ++i)
+	{
+		for (int j = i + 1; j < n; ++j)
+		{
+			VAR n1 = l.at(i);
+			VAR n2 = l.at(j);
+			if (!CoprimeQ(n1, n2))
+			{
+				return false;
+			}
+		}
+	}
+
+	return true;
+}
 /** \brief 求二次无理数的连分数展式前\f$n\f$项.
 	\param d 非负整数且非完全平方.
 	\param P 整数.

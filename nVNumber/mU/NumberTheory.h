@@ -44,6 +44,7 @@ Z LCM(VAR n1, VAR n2);
 Z LCM(LIST n);
 
 INT CoprimeQ(VAR n1, VAR n2);
+bool CoprimeQ(LIST l);
 
 INT Divisible(VAR n, VAR m);
 Z Quotient(VAR m, VAR n);

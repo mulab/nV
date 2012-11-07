@@ -1,6 +1,7 @@
 #include "common.h"
 #include <mU/Number.h>
 #include <mU/Kernel.h>
+#include <mU/Exceptions.h>
 #include "NumberTheory.h"
 
 namespace Old = maTHmU::Modules::NumberTheory;
@@ -157,4 +158,84 @@ CPROC_ATOMIC(System_Radical)
 CPROC_ATOMIC(System_PrimeQ)
 {
 	return IntQ(At(x,0)) && Old::PrimeQ(ToZ(At(x,0))) ? True : False;
+}
+
+CPROC_ATOMIC(System_CoprimeQ)
+{
+	using maTHmU::Modules::NumberTheory::CoprimeQ;
+	using maTHmU::list;
+
+	// TODO: we don't need to handle lists, because we are Listable
+	size_t n = Size(x);
+	bool has_list = false;
+	size_t dim = 0;
+
+	for (int i = 0; i < n; ++i)
+	{
+		Var arg = At(x, i);
+		if (VecQ(arg))
+		{
+			size_t n2 = Size(arg);
+			if (has_list && n2 != dim)
+			{
+				throw LogicError(L"all list arguments of CoprimeQ should have the same length");
+			}
+			for (int j = 0; j < n2; ++j)
+			{
+				if (!IntQ(At(arg, j)))
+				{
+					throw LogicError(L"we only accept integer or list of integers in CoprimeQ");
+				}
+			}
+
+			dim = n2;
+			has_list = true;
+		}
+		else if (!IntQ(arg))
+		{
+			throw LogicError(L"we only accept integer or list of integers in CoprimeQ");
+		}
+	}
+
+	if (n==0)
+	{
+		return False;
+	}
+	else if (n==1)
+	{
+		Var arg = At(x, 0);
+		return Z::Cmp(arg, 1)==0 || Z::Cmp(arg, -1)==0 ? True : False;
+	}
+
+	if (has_list)
+	{
+		var results = Vec();
+		for (int i = 0; i < dim; ++i)
+		{
+			list instance;
+			for (int j = 0; j < n; ++j)
+			{
+				Var arg = At(x, j);
+				if (VecQ(arg))
+				{
+					Var item = At(arg, i);
+					assert(IntQ(item));
+					instance.push(item);
+				}
+				else
+				{
+					assert(IntQ(arg));
+					instance.push(arg);
+				}
+			}
+
+			Push(results, CoprimeQ(instance) ? True : False);
+		}
+
+		return results;
+	}
+	else
+	{
+		return CoprimeQ(Tolist(x)) ? True : False;
+	}
 }

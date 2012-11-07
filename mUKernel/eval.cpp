@@ -347,6 +347,7 @@ bool HandleAttributes(var &result, Var expression, const attr_t &attributes,
 	}
 	if(attributes.count(Listable))
 	{
+		// TODO: handle the case where all list must be of same length, e.g. CoprimeQ
 		var t = Thread(head,body);
 		if(t)
 		{
