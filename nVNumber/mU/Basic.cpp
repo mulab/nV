@@ -570,6 +570,13 @@ INT CoprimeQ(VAR n1, VAR n2) {
 
 bool CoprimeQ(LIST l) {
 	UINT n = l.size();
+	assert(n>0);
+
+	if (n==1)
+	{
+		VAR n = l.at(0);
+		return mpz_cmp_si(PTR(n), 1)==0 || mpz_cmp_si(PTR(n), -1)==0;
+	}
 
 	for (int i = 0; i < n; ++i)
 	{

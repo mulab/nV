@@ -167,6 +167,12 @@ CPROC_ATOMIC(System_CoprimeQ)
 
 	// TODO: we don't need to handle lists, because we are Listable
 	size_t n = Size(x);
+
+	if (n==0)
+	{
+		return False;
+	}
+
 	bool has_list = false;
 	size_t dim = 0;
 
@@ -195,16 +201,6 @@ CPROC_ATOMIC(System_CoprimeQ)
 		{
 			throw LogicError(L"we only accept integer or list of integers in CoprimeQ");
 		}
-	}
-
-	if (n==0)
-	{
-		return False;
-	}
-	else if (n==1)
-	{
-		Var arg = At(x, 0);
-		return Z::Cmp(arg, 1)==0 || Z::Cmp(arg, -1)==0 ? True : False;
 	}
 
 	if (has_list)
