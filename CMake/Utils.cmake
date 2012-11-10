@@ -39,11 +39,13 @@ endif (NOT CMAKE_BUILD_TYPE)
 include(PCHSupport)
 
 macro (add_common_to_target target)
-    add_native_precompiled_header(
-        ${target}
-        ${CMAKE_CURRENT_SOURCE_DIR}/common.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/common.cpp
-    )
+	if (PCHSupport_FOUND)
+		add_native_precompiled_header(
+		    ${target}
+		    ${CMAKE_CURRENT_SOURCE_DIR}/common.h
+		    ${CMAKE_CURRENT_SOURCE_DIR}/common.cpp
+		)
+	endif (PCHSupport_FOUND)
 endmacro ()
 
 macro (new_shared_library project)
@@ -87,3 +89,4 @@ macro (new_nv_script script package)
     configure_file(${script} ${NVSCRIPT_OUTPUT_PATH}/${package}/${script} COPYONLY)
     install(FILES ${script} DESTINATION ${NVSCRIPT_RELATIVE_DIR}/${package}/)
 endmacro ()
+
