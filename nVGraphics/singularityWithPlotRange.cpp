@@ -126,7 +126,7 @@ namespace nV {
 				}
 				spy = ymax - ymin;
 				graphScale = spy / spx;
-                if(graphScale < MIN_GRAPHSCALE_MINIMUM) {
+                if(graphScale < MIN_GRAPHSCALE_MINIMUM_CURVE) {
                     break;
                 }
 				if(count >= MAX_DELETE_AMOUNT) {

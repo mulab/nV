@@ -3,7 +3,7 @@
 
 namespace nV {
     namespace Graphics {
-/* edge: LB, LT, LN, LF, RB, RT, RN, RF, BN, BF, TN, TF */
+/* edge: LB, LT, LN, LF, RB_SURFACE, RT_SURFACE, RN, RF, BN, BF, TN, TF */
 //static int corner1[12] = {LBN,LTN,LBN,LBF,RBN,RTN,RBN,RBF,LBN,LBF,LTN,LTF};
 //static int corner2[12] = {LBF,LTF,LTN,LTF,RBF,RTF,RTN,RTF,RBN,RBF,RTN,RTF};
 static int leftface[12] = {_B, _L, _L, _F, _R, _T, _N, _R, _N, _B, _T, _F};
@@ -20,10 +20,10 @@ ImplicitSurface::ImplicitSurface(F3P* f3p, double xmin, double xmax, double ymin
     m_start.x = (xmax + xmin) / 2;
     m_start.y = (ymax + ymin) / 2;
     m_start.z = (zmax + zmin) / 2;
-    sizex = spx / CUBE_NUM;
-    sizey = spy / CUBE_NUM;
-    sizez = spz / CUBE_NUM;
-    m_bounds = (CUBE_NUM - 1) / 2;
+    sizex = spx / CUBE_NUM_SURFACE;
+    sizey = spy / CUBE_NUM_SURFACE;
+    sizez = spz / CUBE_NUM_SURFACE;
+    m_bounds = (CUBE_NUM_SURFACE - 1) / 2;
     /* allocate hash tables and build cube polygon table: */
     m_centers = new CENTERLIST*[HASHSIZE*2];
     for (int i = 0; i < HASHSIZE*2; i++) {
@@ -393,22 +393,22 @@ int ImplicitSurface::nextcwedge (int edge, int face) {
         return (face == _L) ? LB : TN;
     case LF:
         return (face == _L) ? LT : BF;
-    case RB:
+    case RB_SURFACE:
         return (face == _R) ? RN : BF;
-    case RT:
+    case RT_SURFACE:
         return (face == _R) ? RF : TN;
     case RN:
-        return (face == _R) ? RT : BN;
+        return (face == _R) ? RT_SURFACE : BN;
     case RF:
-        return (face == _R) ? RB : TF;
+        return (face == _R) ? RB_SURFACE : TF;
     case BN:
-        return (face == _B) ? RB : LN;
+        return (face == _B) ? RB_SURFACE : LN;
     case BF:
         return (face == _B) ? LB : RF;
     case TN:
         return (face == _T) ? LT : RN;
     case TF:
-        return (face == _T) ? RT : LF;
+        return (face == _T) ? RT_SURFACE : LF;
     }
 }
 
@@ -471,7 +471,7 @@ void ImplicitSurface::converge (Point3d *p1, Point3d *p2, double v, Point3d *p) 
         p->x = 0.5 * (pos.x + neg.x);
         p->y = 0.5 * (pos.y + neg.y);
         p->z = 0.5 * (pos.z + neg.z);
-        if (i++ == RES) return;
+        if (i++ == RES_SURFACE) return;
         if ((getFunctionValueSafely(f, p->x, p->y, p->z)) > 0.0) {
             pos.x = p->x;
             pos.y = p->y;

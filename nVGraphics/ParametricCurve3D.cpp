@@ -259,7 +259,7 @@ void ParametricCurve3D::addVerts(LineStrip* lineStrip, ArrayList<double> &arrayT
     unsigned int i = 0;
     while (i < (*lineStrip).vert.size() - 1) {
         double dis = std::sqrt(((lineStrip->vert[i+1].x - lineStrip->vert[i].x) / spx) * ((lineStrip->vert[i+1].x - lineStrip->vert[i].x) / spx) + ((lineStrip->vert[i+1].y - lineStrip->vert[i].y) / spy) * ((lineStrip->vert[i+1].y - lineStrip->vert[i].y) / spy) + ((lineStrip->vert[i+1].z - lineStrip->vert[i].z) / spz) * ((lineStrip->vert[i+1].z - lineStrip->vert[i].z) / spz));
-        if (dis < MIN_DELTA_DIS_3D) {
+        if (dis < MIN_DELTA_DIS_CURVE_3D) {
             i++;
             vcaled.add(getVector(arrayT[i], dt));
             continue;
@@ -267,7 +267,7 @@ void ParametricCurve3D::addVerts(LineStrip* lineStrip, ArrayList<double> &arrayT
         Vector3D v1 = *(vcaled[i]);
         Vector3D v2 = *(getVector(arrayT[i+1], -dt));
         double dangle = std::acos((v1 * v2) / std::sqrt(v1 * v1) / std::sqrt(v2 * v2));
-        if (dangle > ADD_POINT_ANGLE_3D) {
+        if (dangle > ADD_POINT_ANGLE_CURVE_3D) {
             double t = (arrayT[i] + arrayT[i+1]) / 2;
             double x = fx->getSingleData(t);
             double y = fy->getSingleData(t);
@@ -393,7 +393,7 @@ void ParametricCurve3D::makeplotrange(F1P *f, bool havenanrange, std::vector<dom
 
         getyrange(ymax_f, ymin_f, graphScale_f, spx_f, spy_f, vert, flag, nanflag);
 
-        if(graphScale_f < MIN_GRAPHSCALE_MINIMUM) {
+        if(graphScale_f < MIN_GRAPHSCALE_MINIMUM_CURVE) {
             break;
         }
         if(count >= MAX_DELETE_AMOUNT) {

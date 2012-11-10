@@ -270,7 +270,7 @@ void Surface::makeplotrange(F2P *f3d_f, double &zmin_f, double &zmax_f, double d
         spz = zmax - zmin;
         graphScalex = spz / spx;
         graphScaley = spz / spy;
-        if(!(graphScalex > MIN_GRAPHSCALE_MINIMUM && graphScaley > MIN_GRAPHSCALE_MINIMUM)) {
+        if(!(graphScalex > MIN_GRAPHSCALE_MINIMUM_SURFACE && graphScaley > MIN_GRAPHSCALE_MINIMUM_SURFACE)) {
             break;
         }
         if(count >= MAX_DELETE_AMOUNT) {
@@ -301,7 +301,7 @@ void Surface::trySplitPolygonX(unsigned int id, int depth) {
     }
 
     double dangle = std::acos((1 + netk1 * netk2) / std::sqrt(1 + netk1 * netk1) / std::sqrt(1 + netk2 * netk2));
-    if (dangle > ADD_POINT_ANGLE) {	//need to add data
+    if (dangle > ADD_POINT_ANGLE_SURFACE) {	//need to add data
         double x = (p1->x + p2->x) / 2;
         double y = vert[sur[id]->p11]->y;
         double z = f->getSingleData(x, y);
@@ -584,7 +584,7 @@ void Surface::trySplitPolygonY(unsigned int id, int depth) {
     }
 
     double dangle = std::acos((1 + netk1 * netk2) / std::sqrt(1 + netk1 * netk1) / std::sqrt(1 + netk2 * netk2));
-    if (dangle > ADD_POINT_ANGLE) {	//need to add data
+    if (dangle > ADD_POINT_ANGLE_SURFACE) {	//need to add data
         double x = p1->x;
         double y = (p1->y + p2->y) / 2;
         double z = f->getSingleData(x, y);

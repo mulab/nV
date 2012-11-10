@@ -4,7 +4,7 @@
 namespace nV {
 	namespace Graphics {
 #define ADD_POINT_ANGLE_CURVE 0.05
-#define MIN_DELTA_DIS 0.001
+#define MIN_DELTA_DIS_CURVE 0.001
 
 		typedef struct {
 			double x;

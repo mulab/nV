@@ -6,11 +6,11 @@
 namespace nV{
 namespace Graphics {
 
-#define ADD_POINT_ANGLE 0.05
+#define ADD_POINT_ANGLE_PARAM_CURVE ADD_POINT_ANGLE_CURVE
 #define MAX_DERIVATIVE 20 //before 20
 #define MAX_GRAPHSCALE 3
 #define MIN_GRAPHSCALE 0.1
-#define MIN_GRAPHSCALE_MINIMUM 0.01
+
 #define	MAX_DELETE_AMOUNT 5
 #define MAX_GET_POINT_ON_RANGE_DEPTH 20
 #define MIN_X_DIS 0.001

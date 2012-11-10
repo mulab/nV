@@ -3,8 +3,8 @@
 
 namespace nV {
 	namespace Graphics {
-#define ADD_POINT_ANGLE_3D 0.05
-#define MIN_DELTA_DIS_3D 0.001
+#define ADD_POINT_ANGLE_CURVE_3D 0.05
+#define MIN_DELTA_DIS_CURVE_3D 0.001
 
 		class Curve3D {
 

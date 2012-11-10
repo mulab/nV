@@ -260,7 +260,7 @@ namespace nV {
             while (i < lineStrip->vert.size() - 1) {
                 double dis = std::sqrt(((lineStrip->vert[i+1]->x - lineStrip->vert[i]->x) / spx) * ((lineStrip->vert[i+1]->x - lineStrip->vert[i]->x) / spx) + ((lineStrip->vert[i+1]->y - lineStrip->vert[i]->y) / spy) * ((lineStrip->vert[i+1]->y - lineStrip->vert[i]->y) / spy));
                 double disx=arrayT[i + 1] - arrayT[i];
-                if (dis < MIN_DELTA_DIS  || std::abs(disx)<=MIN_X_DIS) {
+                if (dis < MIN_DELTA_DIS_CURVE  || std::abs(disx)<=MIN_X_DIS) {
                     i++;
                     kcaled.add(getK(arrayT[i], dt) / graphScale);
                     continue;
@@ -268,7 +268,7 @@ namespace nV {
                 double netk1 = kcaled[i];
                 double netk2 = getK(arrayT[i+1], -dt) / graphScale;
                 double dangle = std::acos((1 + netk1 * netk2) / std::sqrt(1 + netk1 * netk1) / std::sqrt(1 + netk2 * netk2));
-                if (dangle > ADD_POINT_ANGLE) {
+                if (dangle > ADD_POINT_ANGLE_PARAM_CURVE) {
                     double t = (arrayT[i] + arrayT[i+1]) / 2;
                     double x = fx->getSingleData(t);
                     double y = fy->getSingleData(t);
@@ -408,7 +408,7 @@ namespace nV {
 
                 getyrange(ymax_f, ymin_f, graphScale_f, spx_f, spy_f, vert, flag, nanflag);
 
-                if(graphScale_f < MIN_GRAPHSCALE_MINIMUM) {
+                if(graphScale_f < MIN_GRAPHSCALE_MINIMUM_CURVE) {
                     break;
                 }
                 if(count >= MAX_DELETE_AMOUNT) {

@@ -804,7 +804,7 @@ namespace nV {
 
                 getyrange(ymax, ymin, graphScale, spx, spy, vert, flag, nanflag);
 
-                if(graphScale < MIN_GRAPHSCALE_MINIMUM) {
+                if(graphScale < MIN_GRAPHSCALE_MINIMUM_CURVE) {
                     break;
                 }
 				if(count >= MAX_DELETE_AMOUNT) {

@@ -72,7 +72,7 @@ namespace nV{
 			while (i < lineStrip->vert.size() - 1) {
 				double dis = std::sqrt(((lineStrip->vert[i+1]->x - lineStrip->vert[i]->x) / spx) * ((lineStrip->vert[i+1]->x - lineStrip->vert[i]->x) / spx) + ((lineStrip->vert[i+1]->y - lineStrip->vert[i]->y) / spy) * ((lineStrip->vert[i+1]->y - lineStrip->vert[i]->y) / spy));
                 double disx=lineStrip->vert[i+1]->x - lineStrip->vert[i]->x;
-				if (dis < MIN_DELTA_DIS || std::abs(disx)<=MIN_X_DIS) {
+				if (dis < MIN_DELTA_DIS_COMMON_CURVE || std::abs(disx)<=MIN_X_DIS) {
 					i++;
                     derivative = f->getDerivative(lineStrip->vert[i]->x, dx);
                     if(!isNaN(derivative)) {
@@ -91,7 +91,7 @@ namespace nV{
                     netk2 = MAX_DERIVATIVE;
                 }
 				double dangle = std::acos((1 + netk1 * netk2) / std::sqrt(1 + netk1 * netk1) / std::sqrt(1 + netk2 * netk2));
-				if (dangle > ADD_POINT_ANGLE) {	//need to add points
+				if (dangle > ADD_POINT_ANGLE_COMMON_CURVE) {	//need to add points
 					double x = (lineStrip->vert[i]->x + lineStrip->vert[i+1]->x) / 2;
 					double y = f->getSingleData(x);
                     if(!isNaN(y)) {
@@ -117,7 +117,7 @@ namespace nV{
                     double disx1=std::abs(x - lineStrip->vert[i]->x);
                     double disx2=std::abs(x - lineStrip->vert[i+1]->x);
 
-					if (((netk3 < netk1 && netk3 < netk2) || (netk3 > netk1 && netk3 > netk2)) && (dis1>MIN_DELTA_DIS&&dis2>MIN_DELTA_DIS) && (disx1>MIN_X_DIS&&disx2>MIN_X_DIS)) {
+					if (((netk3 < netk1 && netk3 < netk2) || (netk3 > netk1 && netk3 > netk2)) && (dis1>MIN_DELTA_DIS_COMMON_CURVE&&dis2>MIN_DELTA_DIS_COMMON_CURVE) && (disx1>MIN_X_DIS&&disx2>MIN_X_DIS)) {
 						double y = f->getSingleData(x);
                         if(!isNaN(y)) {
                             lineStrip->vert.add(i + 1, new Point2d(x, y));

@@ -7,6 +7,7 @@
 #   ADD_PRECOMPILED_HEADER  _targetName _inputh _inputcpp
 #   ADD_PRECOMPILED_HEADER_TO_TARGET _targetName _input _pch_output_to_use
 #   ADD_NATIVE_PRECOMPILED_HEADER _targetName _inputh _inputcpp
+# TODO: add support for clang
 
 IF(CMAKE_COMPILER_IS_GNUCXX)
 

@@ -144,7 +144,7 @@ my_div(mpf_t r, mpf_t y, mpf_t x) {
 #define min(x,y) ((x)<(y)?(x):(y))
 #define max(x,y) ((x)>(y)?(x):(y))
 
-typedef struct {
+typedef struct fac_elem_t {
     unsigned long max_facs;
     unsigned long num_facs;
     unsigned long *fac;

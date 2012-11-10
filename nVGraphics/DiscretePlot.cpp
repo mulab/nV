@@ -5,7 +5,7 @@ namespace nV {
     namespace Graphics {
 DiscretePlot::DiscretePlot(Kernel& k, const Tuple& cmd) : k(k)
 {
-	filling=FILL_AXIS;
+	filling=FILL_AXIS_DISCRETE;
     //filling = FILL_NULL;
 	colorFunctionSet=false;
 	joined=false;
@@ -593,7 +593,7 @@ void DiscretePlot::setRule(var title, var rule)
         fillcur1 = toD(N(k, k.eval(rule.tuple()[1])).object());
         fillcur2 = toD(N(k, k.eval(rule.tuple()[2])).object());
     } else if (title == SYS(FillToAxis)) {
-        filling = FILL_AXIS;
+        filling = FILL_AXIS_DISCRETE;
         fillcur1 = toD(N(k, k.eval(rule.tuple()[1])).object());
     } else if(title==SYS(NoFilling))
 	{
@@ -601,7 +601,7 @@ void DiscretePlot::setRule(var title, var rule)
 		if(rule==SYS(True))
 		    filling=FILL_NULL;
 		else
-			filling=FILL_AXIS;
+			filling=FILL_AXIS_DISCRETE;
 	}else if (title == SYS(ColorFunction)) { //has color function
         colorFunctionSet = true;
         var fun = rule;
@@ -706,7 +706,7 @@ void DiscretePlot::makePointList( )
 			}
 			spy = ymax - ymin;
 			graphScale = spy / spx;
-            if(graphScale < MIN_GRAPHSCALE_MINIMUM) {
+            if(graphScale < MIN_GRAPHSCALE_MINIMUM_CURVE) {
                    break;
             }
 			if(count >= MAX_DELETE_AMOUNT) {

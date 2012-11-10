@@ -212,7 +212,7 @@ namespace nV {
                 var graphics = makeGraphics(shape, opts);
                 return graphics;
                 //return null;
-            } else if(filling == FILL_AXIS) {
+            } else if(filling == FILL_AXIS_LIST) {
                 var vec_indices = list(0),line_indices = list(0);
                 makePointList(vec_indices, line_indices);
                 uint joinednum = 0;
@@ -381,7 +381,7 @@ namespace nV {
                 //rule.print();
                 //if (rule.($.True)) {
                 if (rule.isSymbol() && rule.compare($.True) == 0) {
-                    filling = FILL_AXIS;
+                    filling = FILL_AXIS_LIST;
                 }
                 //}
                 //fillcur1 = toD(N(k, k.eval(rule.tuple()[1])).object());

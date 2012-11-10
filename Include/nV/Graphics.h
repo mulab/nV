@@ -27,6 +27,9 @@ namespace nV {
 
 namespace Graphics {
 
+#define MIN_GRAPHSCALE_MINIMUM_CURVE 0.01
+#define MIN_GRAPHSCALE_MINIMUM_SURFACE 0.1
+
 #define HUE_HUEBASIC 67
 #define HUE_SBASIC 0.6
 #define HUE_BBASIC 0.7

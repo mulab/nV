@@ -6,7 +6,7 @@
 namespace nV {
     namespace Graphics {
 
-#define RES 10 /* # converge iterations */
+#define RES_SURFACE 10 /* # converge iterations */
 #define _L 0 /* left direction: -x, -i */
 #define _R 1 /* right direction: +x, +i */
 #define _B 2 /* bottom direction: -y, -j */
@@ -35,8 +35,8 @@ namespace nV {
 #define LT 1 /* left top edge */
 #define LN 2 /* left near edge */
 #define LF 3 /* left far edge */
-#define RB 4 /* right bottom edge */
-#define RT 5 /* right top edge */
+#define RB_SURFACE 4 /* right bottom edge */
+#define RT_SURFACE 5 /* right top edge */
 #define RN 6 /* right near edge */
 #define RF 7 /* right far edge */
 #define BN 8 /* bottom near edge */
@@ -44,7 +44,7 @@ namespace nV {
 #define TN 10 /* top near edge */
 #define TF 11 /* top far edge */
 
-#define CUBE_NUM 9
+#define CUBE_NUM_SURFACE 9
 
 double getFunctionValueSafely(F3P *f_s, double x, double y, double z);
 

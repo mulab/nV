@@ -7,15 +7,15 @@
 
 namespace nV {
     namespace Graphics {
-#define ADD_POINT_ANGLE 0.08
+#define ADD_POINT_ANGLE_POLAR_CURVE 0.08
 #define MAX_DERIVATIVE 20 //before 20
 #define MAX_GRAPHSCALE 3
 #define MIN_GRAPHSCALE 0.1
-#define MIN_GRAPHSCALE_MINIMUM 0.01
+
 #define	MAX_DELETE_AMOUNT 5
 #define MAX_GET_POINT_ON_RANGE_DEPTH 20
 #define MIN_X_DIS 0.001
-#define MIN_DELTA_DIS 0.01
+#define MIN_DELTA_DIS_POLAR_CURVE 0.01
 #define MAX_DERIVATIVE_ABSOULUTE 5000
     
 class PolarCurve : public Curve {

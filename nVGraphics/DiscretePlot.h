@@ -6,7 +6,7 @@
 namespace nV {
 	namespace Graphics {
 #define FILL_NULL 0
-#define FILL_AXIS 2
+#define FILL_AXIS_DISCRETE 2
 #define FILL_CURVE 1
 #define MAX_DERIVATIVE 20
 #define MIN_STEP 0.00000001
@@ -15,7 +15,7 @@ namespace nV {
 #define MAX_GRAPHSCALE 3
 #define MIN_GRAPHSCALE 0.1
 #define	MAX_DELETE_AMOUNT 5
-#define MIN_GRAPHSCALE_MINIMUM 0.01
+
 class DiscretePlot : public GraphicsMaker2D {
 
 private:

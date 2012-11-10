@@ -8,7 +8,6 @@ namespace nV {
 #define MAX_DERIVATIVE 20
 #define MAX_GRAPHSCALE 3
 #define MIN_GRAPHSCALE 0.1
-#define MIN_GRAPHSCALE_MINIMUM 0.01
 
 
 	class PlotWithDomain : public CommonCurveWithPlotRange {

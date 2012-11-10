@@ -3,7 +3,7 @@
 #include "GraphicsMaker2D.h"
 
 #define FILL_NULL 0
-#define FILL_AXIS 1
+#define FILL_AXIS_LIST 1
 
 #define JOINED_NULL flase
 #define JOINED true

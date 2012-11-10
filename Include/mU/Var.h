@@ -56,40 +56,29 @@ using std::flush;
 }
 
 #ifdef _MSC_VER
-#include <hash_set>
-#include <hash_map>
 #pragma comment(lib,"gmp")
-#else
-#include <ext/hash_set>
-#include <ext/hash_map>
-namespace __gnu_cxx {
-template <>
-struct hash<mU::Var>
-{
-    size_t operator()(const mU::Var &x) const
-    {
-        return (size_t)x;
-    }
-};
-template <>
-struct hash<std::string>
-{
-    size_t operator()(const std::string &x) const
-    {
-        return __stl_hash_string(x.c_str());
-    }
-};
-template <>
-struct hash<std::wstring>
-{
-    size_t operator()(const std::wstring &x) const
-    {
-        return __stl_hash_string((const char*)x.c_str());
-    }
-};
-}
-namespace stdext = __gnu_cxx;
 #endif
+
+#include <boost/unordered_set.hpp>
+#include <boost/unordered_map.hpp>
+
+inline std::size_t hash_value(const mU::Var &x)
+{
+	return reinterpret_cast<std::size_t>(x);
+}
+
+namespace stdext 
+{
+	template<typename T>
+	class hash_set : public boost::unordered_set<T>
+	{
+	};
+
+	template<typename TKey, typename TValue>
+	class hash_map : public boost::unordered_map<TKey, TValue>
+	{
+	};
+}
 
 #undef DLL
 #ifdef _WIN32

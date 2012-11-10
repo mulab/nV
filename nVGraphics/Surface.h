@@ -5,14 +5,14 @@
 
 namespace nV {
 namespace Graphics {
-//#define ADD_POINT_ANGLE 0.3
-#define ADD_POINT_ANGLE 0.1
+//#define ADD_POINT_ANGLE_SURFACE 0.3
+#define ADD_POINT_ANGLE_SURFACE 0.1
 #define MAX_SPLIT_DEPTH 2
 #define LARGE 1000000
 #define MAX_D 20
 #define MIN_DIS_3D 0.05
 #define MAX_SPLIT 3
-#define MIN_GRAPHSCALE_MINIMUM 0.1
+
 #define	MAX_DELETE_AMOUNT 5
 
 struct IndexPolygonForSurface {
