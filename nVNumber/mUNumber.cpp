@@ -1,5 +1,7 @@
 #include "common.h"
 #include <mU/Function.h>
+#include <mU/Complex.h>
+#include <mU/Kernel.h>
 #include "mU/NumberTheory.h"
 
 namespace Old = maTHmU::Modules::NumberTheory;
@@ -206,4 +208,56 @@ CPROC_ATOMIC(System_Pi)
 CPROC_ATOMIC(System_E)
 {
 	return Exp(Flt(1L));
+}
+
+CPROC_INT(System_Sign, 1)
+{
+    Var arg = At(x, 0);
+    
+    switch (Type(arg))
+    {
+        case TYPE(int):
+        case TYPE(rat):
+        case TYPE(flt):
+        {
+            const int sign = N::Sgn(arg);
+            if (sign > 0)
+            {
+                return mU::Z::One;
+            }
+            else if (sign < 0)
+            {
+                return mU::Z::NOne;
+            }
+            else
+            {
+                return mU::Z::Zero;
+            }
+            break;
+        }
+        case TYPE(obj):
+            if (Tag(arg) == SYSTEM_SYM(Complex))
+            {
+                var real = Re(arg);
+                var imaginary = Im(arg);
+                
+                assert (NumQ(real) && NumQ(imaginary));
+                
+                if (N::Sgn(real) == 0 && N::Sgn(imaginary) == 0)
+                {
+                    return mU::Z::Zero;
+                }
+                
+                var abs = Ex(SYSTEM_SYM(Sqrt), Vec(N::Add(N::Mul(real, real), N::Mul(imaginary, imaginary))));
+                
+                var invabs = Ex(TAG(Power), Vec(abs, mU::Z::NOne));
+                
+                return Eval(Ex(TAG(Times), Vec(arg, invabs)));
+            }
+            // deliberate fall-through
+        default:
+            throw LogicError(L"The first argument of Sign must be an explicit number like 1, 2/3, 2.3, or Complex[1, 3]");
+    }
+    
+    return 0;
 }

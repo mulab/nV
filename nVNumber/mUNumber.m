@@ -6,8 +6,9 @@ CProc["nvnumber",FactorInteger,SeedRandom,RandomInteger,RandomPrime,NextPrime,In
 
 SetAttributes[CoprimeQ, {Listable, Orderless, Protected}]
 
-CProc["nvnumber",Factorial,Binomial,Fibonacci,Lucas,EulerGamma,Catalan,Log,Log2,Log10,Exp,Cos,Sin,Tan,Sec,Csc,Cot,ArcCos,ArcSin,ArcTan,Cosh,Sinh,Tanh,Sech,Csch,Coth,ArcCosh,ArcSinh,ArcTanh,Gamma,LogGamma,Zeta,Erf,Erfc,Sqrt,Pow,Pi,E]
+CProc["nvnumber",Factorial,Binomial,Fibonacci,Lucas,EulerGamma,Catalan,Log,Log2,Log10,Exp,Cos,Sin,Tan,Sec,Csc,Cot,ArcCos,ArcSin,ArcTan,Cosh,Sinh,Tanh,Sech,Csch,Coth,ArcCosh,ArcSinh,ArcTanh,Gamma,LogGamma,Zeta,Erf,Erfc,Sqrt,Pow,Pi,E,Sign]
 
+SetAttributes[Sign, {Listable, NumericFunction, Protected}]
 SetAttributes[ArcCos, {NumericFunction, Protected}]
 SetAttributes[ArcCosh, {NumericFunction, Protected}]
 SetAttributes[ArcSin, {NumericFunction, Protected}]
