@@ -11,17 +11,36 @@ struct complex_t : obj_t {
 	}
 	virtual var tag() { return SYSTEM_SYM(Complex);  }
 	virtual var normal() { return Ex(SYSTEM_SYM(Complex), Vec(re, im)); }
-	virtual void print(wostream &f) { 
-		if (!ZeroQ(re))
-		{
-			Print(re, f);
-			if (!ZeroQ(im)) f << _W('+');
-		}
-		if (!ZeroQ(im))
-		{
-			if (!OneQ(im)) Print(im, f);
-			f << _W('I');
-		}
+	virtual void print(wostream &f) {
+        const bool is_real = ZeroQ(im);
+        const bool is_purely_imaginary = ZeroQ(re);
+        
+        if (is_real)
+        {
+            Print(re, f);
+        }
+        else
+        {
+            if (is_purely_imaginary)
+            {
+                if (!OneQ(im))
+                {
+                    Print(im, f);
+                }
+                f << _W('I');
+            }
+            else
+            {
+                f << _W('(');
+                Print(re, f);
+                f << _W('+');
+                if (!OneQ(im))
+                {
+                    Print(im, f);
+                }
+                f << _W("I)");
+            }
+        }
 	}
 };
 inline var& Re(Var x) {
