@@ -238,6 +238,7 @@ inline int_t::~int_t()
 }
 inline bool IntQ(Var x) { return Type(x) == TYPE(int); }
 inline var Int() { return new int_t; }
+// TODO: can we resolve the ambiguity in the call Int(1)?
 template <typename T>
 inline var Int(const T& x) { return new int_t(x); }
 inline var Int(const char *x, int y) { return new int_t(x,y); }

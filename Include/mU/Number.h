@@ -43,6 +43,10 @@ namespace Z
 	API uint UI(Var);
 	API sint SI(Var);
 	API double D(Var);
+    
+    API var Zero;
+    API var One;
+    API var NOne;
 };
 namespace Q
 {

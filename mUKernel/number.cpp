@@ -150,6 +150,10 @@ double D(Var x)
 	return mpz_get_d(T(x));
 }
 #undef T
+
+var One = Int(static_cast<mU::sint>(1));
+var NOne = Int(static_cast<mU::sint>(-1));
+var Zero = Int(static_cast<mU::sint>(0));
 }
 namespace Q {
 #define T(x) CRat(x)
@@ -364,6 +368,8 @@ var f(Var x)\
 		r = Flt();\
 		F::f(r,x);\
 		break;\
+    default:\
+        assert(false);\
 	}\
 	return r;\
 }
@@ -379,6 +385,7 @@ var f##To(Var x)\
 	case TYPE(int): Z::f(x,x); break;\
 	case TYPE(rat): Q::f(x,x); break;\
 	case TYPE(flt): F::f(x,x); break;\
+    default: assert(false);\
 	}\
 	return x;\
 }
@@ -409,6 +416,8 @@ var f(Var x, Var y)\
 			F::SetZ(r,x);\
 			F::f(r,r,y);\
 			break;\
+        default:\
+            assert(false);\
 		}\
 		break;\
 	case TYPE(rat):\
@@ -428,6 +437,8 @@ var f(Var x, Var y)\
 			F::SetQ(r,x);\
 			F::f(r,r,y);\
 			break;\
+        default:\
+            assert(false);\
 		}\
 		break;\
 	case TYPE(flt):\
@@ -447,8 +458,12 @@ var f(Var x, Var y)\
 			r = Flt();\
 			F::f(r,x,y);\
 			break;\
+        default:\
+            assert(false);\
 		}\
 		break;\
+    default:\
+        assert(false);\
 	}\
 	return r;\
 }
@@ -481,6 +496,8 @@ var f##To(Var x, Var y)\
 			F::SetZ(r,x);\
 			F::f(r,r,y);\
 			break;\
+        default:\
+            assert(false);\
 		}\
 		break;\
 	case TYPE(rat):\
@@ -500,6 +517,8 @@ var f##To(Var x, Var y)\
 			F::SetQ(r,x);\
 			F::f(r,r,y);\
 			break;\
+        default:\
+            assert(false);\
 		}\
 		break;\
 	case TYPE(flt):\
@@ -519,8 +538,12 @@ var f##To(Var x, Var y)\
 			r = x;\
 			F::f(r,x,y);\
 			break;\
+        default:\
+            assert(false);\
 		}\
 		break;\
+    default:\
+        assert(false);\
 	}\
 	return r;\
 }
@@ -550,6 +573,8 @@ int Cmp(Var x, Var y)
 			F::SetZ(r,x);
 			return F::Cmp(r,y);
 		}
+        default:
+            assert(false);
 		}
 		break;
 	case TYPE(rat):
@@ -568,6 +593,8 @@ int Cmp(Var x, Var y)
 			F::SetQ(r,x);
 			return F::Cmp(r,y);
 		}
+        default:
+            assert(false);
 		}
 		break;
 	case TYPE(flt):
@@ -586,8 +613,12 @@ int Cmp(Var x, Var y)
 			return F::Cmp(x,r);
 		}
 		case TYPE(flt): return F::Cmp(x,y);
+        default:
+            assert(false);
 		}
 		break;
+    default:
+        assert(false);
 	}
 	return 0;
 }
@@ -598,6 +629,7 @@ int Sgn(Var x)
 	case TYPE(int): return Z::Sgn(x);
 	case TYPE(rat): return Q::Sgn(x);
 	case TYPE(flt): return F::Sgn(x);
+    default: assert(false);
 	}
 	return 0;
 }
@@ -608,6 +640,7 @@ double D(Var x)
 	case TYPE(int): return Z::D(x);
 	case TYPE(rat): return Q::D(x);
 	case TYPE(flt): return F::D(x);
+    default: assert(false);
 	}
 	return 0.0;
 }

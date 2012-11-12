@@ -1,6 +1,7 @@
 #pragma once
 #include <cstdlib>
 #include "Var.h"
+#include "Number.h"
 #include "Exceptions.h"
 
 namespace mU {
@@ -360,7 +361,7 @@ TAG(Abort), TAG(Interrupt), TAG(AbortProtect), TAG(CheckAbort),
 TAG(Throw), TAG(Catch), TAG(Reap), TAG(Sow), TAG(Depth),
 TAG(Min), TAG(Max), TAG(Complex), TAG(Alternatives), TAG(Empty), TAG(Default), TAG(Inequality);
 
-const var NInfinity = Ex(TAG(Times), Vec(Int(static_cast<mU::sint>(-1)), TAG(Infinity)));
+const var NInfinity = Ex(TAG(Times), Vec(mU::Z::NOne, TAG(Infinity)));
 
 #define SET_ATTR(x,y) Attributes[x].insert(y);
 #define SET_TAG_ATTR(x,y) Attributes[TAG(x)].insert(y);
