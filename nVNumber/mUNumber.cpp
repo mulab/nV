@@ -193,7 +193,42 @@ CPROC_ATOMIC(System_Erfc)
 }
 CPROC_ATOMIC(System_Sqrt)
 {
-	if(FltQ(At(x,0))) return Sqrtf(At(x,0));
+	Var arg = At(x, 0);
+	if (FltQ(arg))
+	{
+		const int sign = F::Sgn(arg);
+		var abs = Flt();
+		F::Abs(abs, arg);
+		var root = Sqrtf(abs);
+		if (sign < 0)
+		{
+			return Complex(F::Zero, root);
+		}
+		else
+		{
+			return root;
+		}
+	}
+	if (IntQ(arg))
+	{
+		const int sign = Z::Sgn(arg);
+		var abs = Int();
+		Z::Abs(abs, arg);
+		var root = Int();
+		var remainder = Int();
+		mpz_sqrtrem(CInt(root), CInt(remainder), CInt(abs));
+		if (Z::Sgn(remainder) == 0)
+		{
+			if (sign < 0)
+			{
+				return Complex(Z::Zero, root);
+			}
+			else
+			{
+				return root;
+			}
+		}
+	}
 	return Power(At(x,0),Rat(1L,2L));
 }
 CPROC_ATOMIC(System_Pow)
