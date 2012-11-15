@@ -255,6 +255,10 @@ double D(Var x)
 	return mpq_get_d(T(x));
 }
 #undef T
+
+var Zero = Rat(static_cast<uint>(0), static_cast<uint>(1));
+var One = Rat(static_cast<uint>(1), static_cast<uint>(1));
+var NOne = Rat(static_cast<sint>(-1), static_cast<uint>(1));
 }
 namespace F {
 #define T(x) CFlt(x)
@@ -347,6 +351,10 @@ double D(Var x)
 	return mpf_get_d(T(x));
 }
 #undef T
+
+var Zero = Flt(static_cast<uint>(0));
+var One = Flt(static_cast<uint>(1));
+var NOne = Flt(static_cast<sint>(-1));
 }
 namespace N
 {
