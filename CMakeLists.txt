@@ -166,6 +166,7 @@ add_subdirectory(mUKernel)
 add_subdirectory(mUSystem)
 add_subdirectory(mUScript)
 add_subdirectory(mULink)
+add_subdirectory(mUTest)
 
 add_subdirectory(nV)
 add_subdirectory(nVKernel)
