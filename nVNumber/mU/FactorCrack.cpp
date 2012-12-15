@@ -17,7 +17,7 @@ namespace Integer = maTHmU::Objects::Integer;
 namespace maTHmU {
 namespace
 {
-	inline mpz_ptr PTR(VOID *x) { return (mpz_ptr)x; }
+	inline mpz_ptr PTR(void *x) { return (mpz_ptr)x; }
 	inline mpz_ptr PTR(VAR x) { return PTR(x.ptr); }
 	inline Z& CAST(VAR x) { return *(Z*)(&x); }
 	// 	inline var gMod(VAR x, VAR y)
@@ -1200,7 +1200,7 @@ Z ECM(list p, VAR n, VAR a, UINT B1, UINT B2) {
 	\param factors 已分解因子.
 	\param remain 剩余待分解部分.
 */
-VOID FactorDivide(list& factors,list& remain,INT mode) {
+void FactorDivide(list& factors,list& remain,INT mode) {
 	for (INT i=0;i<remain.size();i++) {
 		var m=list::cast(factors.right())[0];
 		while (Divisible(remain[i],m)) {
@@ -1223,7 +1223,7 @@ VOID FactorDivide(list& factors,list& remain,INT mode) {
 	\note 使用Pollard \f$\rho\f$方法和ECM方法.
 	\todo 增加素数幂判断.
 */
-VOID FactorCrack(list& factors,list& remain,INT mode) {
+void FactorCrack(list& factors,list& remain,INT mode) {
 	if (!remain) return;
 	var n=remain[0];
 	if (PrimeQ(n)) {

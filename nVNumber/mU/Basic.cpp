@@ -17,7 +17,7 @@ namespace Rational = maTHmU::Objects::Rational;
 namespace maTHmU {
 namespace
 {
-	inline mpz_ptr PTR(VOID *x) { return (mpz_ptr)x; }
+	inline mpz_ptr PTR(void *x) { return (mpz_ptr)x; }
 	inline mpz_ptr PTR(VAR x) { return PTR(x.ptr); }
 	inline Z& CAST(VAR x) { return *(Z*)(&x); }
 // 	inline var gMod(VAR x, VAR y)
@@ -94,7 +94,7 @@ gmp_randstate_t rstate; /**< 随机状态变量. */
 /** \brief 随机数初始化.
 	\note 需在调用::RandomInteger之前执行.
 */
-VOID Randomize() {
+void Randomize() {
 	gmp_randinit_default(rstate);
 	gmp_randseed_ui(rstate,time(NULL));
 }
@@ -102,13 +102,13 @@ VOID Randomize() {
 /** \brief 使用\f$n\f$作为随机数种子重置随机数生成器.
 	\param n 整数.
 */
-VOID SeedRandom(VAR n) {
+void SeedRandom(VAR n) {
 	gmp_randseed(rstate,PTR(n));
 }
 
 /** \brief 使用系统时间作为随机数种子重置随机数生成器.
 */
-VOID SeedRandom() {
+void SeedRandom() {
 	gmp_randseed_ui(rstate,time(NULL));
 }
 

@@ -73,29 +73,29 @@ VAR_API var New(VAR,VAR,VAR,VAR,VAR);
 VAR_API var New(VAR,VAR,VAR,VAR,VAR,VAR);
 VAR_API var Print(VAR);
 VAR_API var Mid(VAR,INT,INT);
-VAR_API VOID Append(var&,VAR);
+VAR_API void Append(var&,VAR);
 VAR_API var Join(VAR,VAR);
 VAR_API var Complement(VAR,VAR);
 VAR_API var Intersection(VAR,VAR);
 VAR_API var Union(VAR,VAR);
-VAR_API VOID Sort(VAR,LESS_OP=0);
+VAR_API void Sort(VAR,LESS_OP=0);
 VAR_API var Map(UN_OP,VAR);
 VAR_API var Map(BIN_OP,VAR,VAR);
 VAR_API var Map(TER_OP,VAR,VAR,VAR);
 VAR_API UINT Size(VAR);
-VAR_API VOID Resize(VAR,UINT);
+VAR_API void Resize(VAR,UINT);
 VAR_API var& Left(VAR);
 VAR_API var& Right(VAR);
 VAR_API var* Begin(VAR);
 VAR_API var* End(VAR);
 VAR_API var& At(VAR,INT);
-VAR_API VOID Insert(VAR,VAR,INT);
+VAR_API void Insert(VAR,VAR,INT);
 VAR_API var Erase(VAR,INT);
 VAR_API var& Push(VAR,VAR);
 VAR_API var Pop(VAR);
-VAR_API VOID Fill(VAR,VAR);
+VAR_API void Fill(VAR,VAR);
 VAR_API INT Cmp(VAR,VAR);
-VAR_API VOID Init();
+VAR_API void Init();
 //////////////////////////////////////
 }
 }

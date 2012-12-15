@@ -14,12 +14,12 @@ typedef struct
 {
 	std::vector<var> A;
 } list_t;
-inline list_t* PTR(VOID *x) { return (list_t*)x; }
+inline list_t* PTR(void *x) { return (list_t*)x; }
 inline list_t* PTR(VAR x) { return PTR(x.ptr); }
 inline UINT SIZE(VAR x) { return PTR(x)->A.size(); }
-inline VOID RESIZE(VAR x,UINT i) { PTR(x)->A.resize(i); }
+inline void RESIZE(VAR x,UINT i) { PTR(x)->A.resize(i); }
 inline var& AT(VAR x, UINT i) { return PTR(x)->A[i]; }
-inline VOID CHK(VAR x,INT& i) { if(i < 0) i = SIZE(x) + i; }
+inline void CHK(VAR x,INT& i) { if(i < 0) i = SIZE(x) + i; }
 inline list& CAST(VAR x) { return *(list*)(&x); }
 };
 using namespace Objects::List;
@@ -171,7 +171,7 @@ var Mid(VAR x, INT begin, INT end)
 	for(UINT i = begin; i < end; ++i) AT(r,i-begin) = AT(x,i);
 	return r;
 }
-VOID Append(var &x, VAR y)
+void Append(var &x, VAR y)
 {
 	UINT m = SIZE(x); RESIZE(x,m+SIZE(y));;
 	for(UINT i = 0; i < SIZE(y); ++i) AT(x,i+m) = AT(y,i);
@@ -190,9 +190,9 @@ inline INT CMP(VAR x, VAR y)
 	if(GetType(x) < GetType(y)) return -1;
 	return Interface::Cmp(x)(x,y);
 }
-inline BOOL LESS(VAR x, VAR y) { return CMP(x,y) < 0; }
+inline bool LESS(VAR x, VAR y) { return CMP(x,y) < 0; }
 }
-VOID Sort(VAR x, LESS_OP f)
+void Sort(VAR x, LESS_OP f)
 {
 	if(f == 0) f = LESS;
 	std::sort(PTR(x)->A.begin(), PTR(x)->A.end(), f);
@@ -271,17 +271,17 @@ var Union(VAR x, VAR y)
 	RESIZE(r,ri); return r;
 }
 UINT Size(VAR x) { return SIZE(x); }
-VOID Resize(VAR x, UINT i) { RESIZE(x,i); }
+void Resize(VAR x, UINT i) { RESIZE(x,i); }
 var& Left(VAR x) { return PTR(x)->A.front(); }
 var& Right(VAR x) { return PTR(x)->A.back(); }
 var* Begin(VAR x) { return SIZE(x) == 0 ? 0 : &PTR(x)->A.front(); }
 var* End(VAR x) { return SIZE(x) == 0 ? 0 : &PTR(x)->A.back() + 1; }
 var& At(VAR x, INT i) { CHK(x,i); return AT(x,i); }
-VOID Insert(VAR x, VAR y, INT i) { CHK(x,i); PTR(x)->A.insert(PTR(x)->A.begin()+i,y); }
+void Insert(VAR x, VAR y, INT i) { CHK(x,i); PTR(x)->A.insert(PTR(x)->A.begin()+i,y); }
 var Erase(VAR x, INT i) { CHK(x,i); var r = PTR(x)->A[i]; PTR(x)->A.erase(PTR(x)->A.begin()+i); return r; }
 var& Push(VAR x, VAR y) { PTR(x)->A.push_back(y); return (var&)x; }
 var Pop(VAR x) { var r = PTR(x)->A.back(); PTR(x)->A.pop_back(); return r; }
-VOID Fill(VAR x, VAR y) { PTR(x)->A.assign(SIZE(x),y); }
+void Fill(VAR x, VAR y) { PTR(x)->A.assign(SIZE(x),y); }
 INT Cmp(VAR x, VAR y)
 {
 	if(SIZE(x) > SIZE(y)) return 1;
@@ -293,9 +293,9 @@ INT Cmp(VAR x, VAR y)
 	}
 	return 0;
 }
-VOID DESTROY(VOID *x) { delete PTR(x); }
+void DESTROY(void *x) { delete PTR(x); }
 #define MYREG(op) REG(op,LIST)
-VOID Init()
+void Init()
 {
 	LIST = AddType(DESTROY);
 	MYREG(Zero);

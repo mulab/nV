@@ -8,7 +8,7 @@ namespace maTHmU {
 //////////////////////////////////////
 namespace
 {
-inline mpq_ptr PTR(VOID *x) { return (mpq_ptr)x; }
+inline mpq_ptr PTR(void *x) { return (mpq_ptr)x; }
 inline mpq_ptr PTR(VAR x) { return PTR(x.ptr); }
 inline Q& CAST(VAR x) { return *(Q*)(&x); }
 }
@@ -16,14 +16,14 @@ using namespace Objects::Rational;
 //////////////////////////////////////
 bool Q::type(VAR x) { return GetType(x) == RATIONAL; }
 Q& Q::cast(VAR x) { return CAST(x); }
-DOUBLE Q::d(VAR x) { return Double(x); }
+double Q::d(VAR x) { return Double(x); }
 Z Q::num(VAR x) { return Num(x); }
 Z Q::den(VAR x) { return Den(x); }
 Q::Q() : var(Zero()) {}
 Q::Q(INT x, UINT y) : var(New(x,y)) {}
 Q::Q(UINT x, UINT y) : var(New(x,y)) {}
-Q::Q(DOUBLE x) : var(New(x)) {}
-Q::Q(const CHAR *x, UINT base) : var(New(x,base)) {}
+Q::Q(double x) : var(New(x)) {}
+Q::Q(const char *x, UINT base) : var(New(x,base)) {}
 INT Q::sgn() const { return Sgn(*this); }
 void Q::print() const { Print(*this); printf("\n"); }
 Q Q::copy() const { return CAST(New(*this)); }
@@ -66,7 +66,7 @@ return r;\
 
 //////////////////////////////////////
 MPQ_DEF_1(New,mpq_set,VAR,PTR(x))
-MPQ_DEF_1(New,mpq_set_d,DOUBLE,x)
+MPQ_DEF_1(New,mpq_set_d,double,x)
 MPQ_DEF_1(NewZ,mpq_set_z,VAR,(mpz_ptr)PTR(x))
 MPQ_DEF_1(NewF,mpq_set_f,VAR,(mpf_ptr)PTR(x))
 MPQ_DEF_1(Abs,mpq_abs,VAR,PTR(x))
@@ -92,7 +92,7 @@ var Zero()
 	return var(r, RATIONAL);
 }
 var One() { return New(1,1); }
-DOUBLE Double(VAR x) { return mpq_get_d(PTR(x)); }
+double Double(VAR x) { return mpq_get_d(PTR(x)); }
 var NewZ(VAR x, VAR y)
 {
 	var r = Zero();
@@ -100,7 +100,7 @@ var NewZ(VAR x, VAR y)
 	mpq_set_den(PTR(r),(mpz_ptr)PTR(y));
 	return r;
 }
-var New(const CHAR *x, UINT base)
+var New(const char *x, UINT base)
 {
 	var r = Zero();
 	mpq_set_str(PTR(r), x, base);
@@ -127,15 +127,15 @@ INT Sgn(VAR x)
 {
 	return mpq_sgn(PTR(x));
 }
-VOID Reduce(VAR x)
+void Reduce(VAR x)
 {
 	mpq_canonicalize(PTR(x));
 }
 Z Num(VAR x) { Z r; mpz_set((mpz_ptr)PTR(r),mpq_numref(PTR(x))); return r; }
 Z Den(VAR x) { Z r; mpz_set((mpz_ptr)PTR(r),mpq_denref(PTR(x))); return r; }
-VOID DESTROY(VOID *x) { mpq_clear(PTR(x)); delete PTR(x); }
+void DESTROY(void *x) { mpq_clear(PTR(x)); delete PTR(x); }
 #define MYREG(op) REG(op,RATIONAL)
-VOID Init()
+void Init()
 {
 	RATIONAL = AddType(DESTROY);
 	MYREG(Zero);

@@ -6,11 +6,11 @@ namespace maTHmU {
 namespace Modules {
 namespace NumberTheory {
 //////////////////////////////////////
-VOID Init();
+void Init();
 
-VOID Randomize();
-VOID SeedRandom(VAR n);
-VOID SeedRandom();
+void Randomize();
+void SeedRandom(VAR n);
+void SeedRandom();
 Z RandomInteger(VAR n);
 Z RandomPrime(VAR n);
 Z NextPrime(VAR n);
@@ -78,8 +78,8 @@ INT PrimeQ(VAR n);
 Z ExactQuotient(VAR m, UINT n);
 INT Divisible(VAR n, UINT m);
 
-VOID FactorDivide(list& factors,list& remain,INT mode);
-VOID FactorCrack(list& factors,list& remain,INT mode);
+void FactorDivide(list& factors,list& remain,INT mode);
+void FactorCrack(list& factors,list& remain,INT mode);
 
 list FactorInteger(VAR N, INT mode);
 //////////////////////////////////////

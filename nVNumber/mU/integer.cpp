@@ -7,7 +7,7 @@ namespace maTHmU {
 //////////////////////////////////////
 namespace
 {
-inline mpz_ptr PTR(VOID *x) { return (mpz_ptr)x; }
+inline mpz_ptr PTR(void *x) { return (mpz_ptr)x; }
 inline mpz_ptr PTR(VAR x) { return PTR(x.ptr); }
 inline Z& CAST(VAR x) { return *(Z*)(&x); }
 }
@@ -19,8 +19,8 @@ INT Z::i(VAR x) { return Int(x); }
 Z::Z() : var(Zero()) {}
 Z::Z(INT x) : var(New(x)) {}
 Z::Z(UINT x) : var(New(x)) {}
-Z::Z(DOUBLE x) : var(New(x)) {}
-Z::Z(const CHAR *x, UINT base) : var(New(x,base)) {}
+Z::Z(double x) : var(New(x)) {}
+Z::Z(const char *x, UINT base) : var(New(x,base)) {}
 INT Z::sgn() const { return Sgn(*this); }
 void Z::print() const { Print(*this); printf("\n"); }
 Z Z::copy() const { return CAST(New(*this)); }
@@ -81,7 +81,7 @@ var name(type1 x, type2 y, type3 z)\
 MPZ_DEF_1(New,mpz_set,VAR,PTR(x))
 MPZ_DEF_1(New,mpz_set_ui,UINT,x)
 MPZ_DEF_1(New,mpz_set_si,INT,x)
-MPZ_DEF_1(New,mpz_set_d,DOUBLE,x)
+MPZ_DEF_1(New,mpz_set_d,double,x)
 MPZ_DEF_1(NewQ,mpz_set_q,VAR,(mpq_ptr)PTR(x))
 MPZ_DEF_1(NewF,mpz_set_f,VAR,(mpf_ptr)PTR(x))
 MPZ_DEF_1(Abs,mpz_abs,VAR,PTR(x))
@@ -129,7 +129,7 @@ var Zero()
 }
 var One() { return New(1); }
 INT Int(VAR x) { return mpz_get_si(PTR(x)); }
-var New(const CHAR *x, UINT base)
+var New(const char *x, UINT base)
 {
 	var r = Zero();
 	mpz_set_str(PTR(r), x, base);
@@ -168,7 +168,7 @@ INT Congruent(VAR x, UINT y, UINT z)
 {
 	return mpz_congruent_ui_p(PTR(x),y,z);
 }
-VOID DivMod(VAR x, VAR y, var &q, var &r)
+void DivMod(VAR x, VAR y, var &q, var &r)
 {
 	q = Zero(); r = Zero();
 	mpz_fdiv_qr(PTR(q), PTR(r), PTR(x), PTR(y));
@@ -178,24 +178,24 @@ UINT DivMod(VAR x, UINT y, var &q)
 	q = Zero();
 	return mpz_fdiv_q_ui(PTR(q), PTR(x), y);
 }
-VOID GcdExt(VAR x, VAR y, var &g, var &s, var &t)
+void GcdExt(VAR x, VAR y, var &g, var &s, var &t)
 {
 	g = Zero(); s = Zero(); t = Zero();
 	mpz_gcdext(PTR(g), PTR(s), PTR(t), PTR(x), PTR(y));
 }
-VOID RootRem(VAR x, UINT y, var& q, var& r)
+void RootRem(VAR x, UINT y, var& q, var& r)
 {
 	q = Zero(); r = Zero();
 	mpz_rootrem(PTR(q),PTR(r),PTR(x),y);
 }
-VOID SqrtRem(VAR x, var& q, var& r)
+void SqrtRem(VAR x, var& q, var& r)
 {
 	q = Zero(); r = Zero();
 	mpz_sqrtrem(PTR(q),PTR(r),PTR(x));
 }
-VOID DESTROY(VOID *x) { mpz_clear(PTR(x)); delete PTR(x); }
+void DESTROY(void *x) { mpz_clear(PTR(x)); delete PTR(x); }
 #define MYREG(op) REG(op,INTEGER)
-VOID Init()
+void Init()
 {
 	INTEGER = AddType(DESTROY);
 	MYREG(Zero);
