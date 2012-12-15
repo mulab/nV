@@ -5,7 +5,7 @@ namespace maTHmU {
 namespace Interface {
 //////////////////////////////////////
 #define DECL_FACE(op,name)\
-VAR_API op & name(UINT);\
+VAR_API op & name(uint32_t);\
 VAR_API op & name(VAR);
 
 #define REG(op,type) Interface::op(type) = op

@@ -9,9 +9,9 @@ namespace maTHmU {
 //////////////////////////////////////
 namespace {
 std::vector<DES_OP> TypeFactory(0x100);
-UINT TypeHead = 1;
-std::vector<USHORT> RefFactory(0x10000);
-UINT RefHead = 1;
+uint32_t TypeHead = 1;
+std::vector<uint16_t> RefFactory(0x10000);
+uint32_t RefHead = 1;
 struct LESS { bool operator()(const char *a,const char *b) const { return std::strcmp(a,b) < 0; } };
 std::map<const char*,var,LESS> NameFactory;
 }
@@ -21,7 +21,7 @@ std::map<const char*,var,LESS> NameFactory;
 void var::incr() const { ++RefFactory[REF(id)]; }
 void var::decr()
 {
-	UINT ref = REF(id);
+	uint32_t ref = REF(id);
 	if(ref != 0 && --RefFactory[ref] == 0)
 	{
 		clear();
@@ -35,7 +35,7 @@ void var::clear() { TypeFactory[id >> 24](ptr); ptr = 0; }
 var::var() { init(); }
 var::var(VAR x) { init(); set(x); }
 var::var(void *p) : ptr(p), id(0) {}
-var::var(void *p, UINT t) : ptr(p), id(t | RefHead)
+var::var(void *p, uint32_t t) : ptr(p), id(t | RefHead)
 {
 	RefFactory[RefHead] = 1;
 	while(++RefHead < RefFactory.size() && RefFactory[RefHead] != 0);
@@ -43,18 +43,18 @@ var::var(void *p, UINT t) : ptr(p), id(t | RefHead)
 }
 var& var::operator = (VAR x) { set(x); return *this; }
 var::~var() { decr(); }
-void SetType(var& x, UINT t) { x.id = t | REF(x.id); }
-UINT GetType(VAR x) { return TYPE(x.id); }
+void SetType(var& x, uint32_t t) { x.id = t | REF(x.id); }
+uint32_t GetType(VAR x) { return TYPE(x.id); }
 //////////////////////////////////////
-DES_OP& TypeTable(UINT i) { return TypeFactory[i >> 24]; }
-UINT AddType(DES_OP p)
+DES_OP& TypeTable(uint32_t i) { return TypeFactory[i >> 24]; }
+uint32_t AddType(DES_OP p)
 {
-	TypeFactory[TypeHead] = p; UINT t = TypeHead << 24;
+	TypeFactory[TypeHead] = p; uint32_t t = TypeHead << 24;
 	while(++TypeHead < TypeFactory.size() && TypeFactory[TypeHead] != 0);
 	if(TypeHead == TypeFactory.size()) TypeFactory.resize(2 * TypeFactory.size());
 	return t;
 }
-void RemoveType(UINT t) { t = t >> 24; if(t < TypeHead) TypeHead = t; }
+void RemoveType(uint32_t t) { t = t >> 24; if(t < TypeHead) TypeHead = t; }
 //////////////////////////////////////
 var& NameTable(const char *s) { return NameFactory[s]; }
 bool FindName(const char *s) { return NameFactory.count(s) != 0; }

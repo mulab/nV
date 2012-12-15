@@ -206,7 +206,7 @@ Z NextPrime(VAR n, VAR k) {
 	\param b 2 - 62.
 	\return 整数在\f$b\f$进制表示下的长度.
 */
-INT IntegerLength(VAR n, UINT b) {
+int32_t IntegerLength(VAR n, uint32_t b) {
 	return mpz_sizeinbase(PTR(n),b);
 }
 
@@ -255,7 +255,7 @@ Z BitNot(VAR n) {
 	\param k 非负整数.
 	\return 设置\f$n\f$的\f$2^k\f$位为1.
 */
-Z BitSet(VAR n, UINT k) {
+Z BitSet(VAR n, uint32_t k) {
 	var r=n;
 	mpz_setbit(PTR(r),k);
 	return Z::cast(r);
@@ -266,7 +266,7 @@ Z BitSet(VAR n, UINT k) {
 \param k 非负整数.
 \return 设置\f$n\f$的\f$2^k\f$位为0.
 */
-Z BitClear(VAR n, UINT k) {
+Z BitClear(VAR n, uint32_t k) {
 	var r=n;
 	mpz_clrbit(PTR(r),k);
 	return Z::cast(r);
@@ -277,7 +277,7 @@ Z BitClear(VAR n, UINT k) {
 \param n, k 正整数.
 \return \f$n\f$的\f$2^k\f$位.
 */
-INT BitGet(VAR n, UINT k) {
+int32_t BitGet(VAR n, uint32_t k) {
 	return mpz_tstbit(PTR(n),k);
 }
 
@@ -285,7 +285,7 @@ INT BitGet(VAR n, UINT k) {
 	\param n, k 整数. 默认\f$k=1\f$.
 	\return 将\f$n\f$左移\f$k\f$位. 当\f$k\f$为负数时为右移.
 */
-Z BitShiftLeft(VAR n, INT k) {
+Z BitShiftLeft(VAR n, int32_t k) {
 	Z r;
 	if (k<0) mpz_tdiv_q_2exp(PTR(r),PTR(n),-k);
 	else mpz_mul_2exp(PTR(r),PTR(n),k);
@@ -296,7 +296,7 @@ Z BitShiftLeft(VAR n, INT k) {
 	\param n, k 整数. 默认\f$k=1\f$.
 	\return 将\f$n\f$右移\f$k\f$位. 当\f$k\f$为负数时为左移.
 */
-Z BitShiftRight(VAR n, INT k) {
+Z BitShiftRight(VAR n, int32_t k) {
 	Z r;
 	if (k<0) mpz_mul_2exp(PTR(r),PTR(n),-k);
 	else mpz_tdiv_q_2exp(PTR(r),PTR(n),k);
@@ -308,7 +308,7 @@ Z BitShiftRight(VAR n, INT k) {
 	\retval 1 是.
 	\retval 0 否.
 */
-INT OddQ(VAR n) {
+int32_t OddQ(VAR n) {
 	return mpz_odd_p(PTR(n));
 }
 
@@ -317,7 +317,7 @@ INT OddQ(VAR n) {
 	\retval 1 是.
 	\retval 0 否.
 */
-INT EvenQ(VAR n) {
+int32_t EvenQ(VAR n) {
 	return mpz_even_p(PTR(n));
 }
 
@@ -350,7 +350,7 @@ Z Sqrt(VAR n) {
 	\note 使用\f$\mathbb{Z}/k\mathbb{Z}\f$上平方数方法.
 	以256，45，17，13，7为模, 比率99.25%, 使用汇编写的mpn_mod_34lsub1加速.
 */
-INT SquareQ(VAR n) {
+int32_t SquareQ(VAR n) {
 	return mpz_perfect_square_p(PTR(n));
 }
 
@@ -361,7 +361,7 @@ INT SquareQ(VAR n) {
 	\retval 0 否.
 	\todo 判断m非零.
 */
-INT Divisible(VAR n, VAR m) {
+int32_t Divisible(VAR n, VAR m) {
 	if (mpz_fits_uint_p(PTR(m))) {
 		return mpz_divisible_ui_p(PTR(n),mpz_get_ui(PTR(m)));
 	}
@@ -377,7 +377,7 @@ INT Divisible(VAR n, VAR m) {
 \retval 0 否.
 \todo 判断m非零.
 */
-INT Divisible(VAR n, UINT m) {
+int32_t Divisible(VAR n, uint32_t m) {
 	return mpz_divisible_ui_p(PTR(n),m);
 }
 
@@ -404,7 +404,7 @@ Z Quotient(VAR m, VAR n) {
 	\param n 非零整数.
 	\return \f$m/n\f$.
 */
-Z ExactQuotient(VAR m, UINT n) {
+Z ExactQuotient(VAR m, uint32_t n) {
 	Z r;
 	mpz_divexact_ui(PTR(r),PTR(m),n);
 	return r;
@@ -434,7 +434,7 @@ Z Mod(VAR m, VAR n) {
 	\note 使用自左向右的二进方法.
 	\todo a=0
 */
-Z Power(VAR a, UINT b) {
+Z Power(VAR a, uint32_t b) {
 	Z r;
 	if (mpz_fits_uint_p(PTR(a))) {
 		mpz_ui_pow_ui(PTR(r),mpz_get_ui(PTR(a)),b);
@@ -505,7 +505,7 @@ Z GCD(VAR n1, VAR n2) {
 */
 Z GCD(LIST n) {
 	var t=n[0];
-	for (INT i=1;i<=n.size()-1;i++)
+	for (int32_t i=1;i<=n.size()-1;i++)
 	{
 		t=GCD(t,n[i]);
 		if (Z::cast(t)==1) break;
@@ -539,7 +539,7 @@ Z LCM(VAR n1, VAR n2) {
 */
 Z LCM(LIST n) {
 	var t=n[0];
-	for (INT i=1;i<=n.size()-1;i++)
+	for (int32_t i=1;i<=n.size()-1;i++)
 	{
 		t=LCM(t,n[i]);
 	}
@@ -564,12 +564,12 @@ list ExtendedGCD(VAR n1, VAR n2) {
 \retval 1 是.
 \retval 0 否.
 */
-INT CoprimeQ(VAR n1, VAR n2) {
+int32_t CoprimeQ(VAR n1, VAR n2) {
 	return (GCD(n1, n2)==1);
 }
 
 bool CoprimeQ(LIST l) {
-	UINT n = l.size();
+	uint32_t n = l.size();
 	assert(n>0);
 
 	if (n==1)
@@ -601,7 +601,7 @@ bool CoprimeQ(LIST l) {
 	\return \f$(\sqrt{d}+P)/Q\f$的连分数展式的前\f$n\f$项\f$\{a_0,a_1,\ldots,a_{n-1}\}\f$.
 	\note 使用全整数运算的递推关系.
 */
-list ContinuedFraction(VAR d, VAR P, VAR Q, UINT n) {
+list ContinuedFraction(VAR d, VAR P, VAR Q, uint32_t n) {
 	list a;
 	var t, r, D, s;
 	if (Divisible(d-P*P,Q)) {
@@ -616,7 +616,7 @@ list ContinuedFraction(VAR d, VAR P, VAR Q, UINT n) {
 	}
 	s=(D-r*r)/t;
 	var p,q;
-	for (INT i=0;i<=n-1;i++)
+	for (int32_t i=0;i<=n-1;i++)
 	{
 		a.push((Sqrt(D)+r)/t);
 		p=a[i]*t-r;
@@ -650,9 +650,9 @@ list ContinuedFraction(VAR d, VAR P, VAR Q) {
 		p.push(P*Integer::Abs(Q));
 		q.push(Q*Integer::Abs(Q));
 	}
-	INT i=0;
-	INT j=0;
-	INT l=0;
+	int32_t i=0;
+	int32_t j=0;
+	int32_t l=0;
 	while (1) {
 		a.push((Sqrt(D)+p[i])/q[i]);
 		p.push(a[i]*q[i]-p[i]);
@@ -671,7 +671,7 @@ list ContinuedFraction(VAR d, VAR P, VAR Q) {
 				j--;
 			}
 			j++;
-			for (INT k=1;k<=l;k++) {
+			for (int32_t k=1;k<=l;k++) {
 				if (l%k==0 && p[j]==p[j+k] && q[j]==q[j+k]) {
 					l=k;
 					break;
@@ -692,7 +692,7 @@ list ContinuedFraction(VAR d, VAR P, VAR Q) {
 	\return \f$(\sqrt{d}+P)/Q\f$的前\f$n\f$个渐进分数组成的表.
 	\note 使用递推关系.
 */
-list Convergents(VAR d, VAR P, VAR Q, UINT n) {
+list Convergents(VAR d, VAR P, VAR Q, uint32_t n) {
 	list h,k;
 	h.push(Z(0));
 	h.push(Z(1));
@@ -701,7 +701,7 @@ list Convergents(VAR d, VAR P, VAR Q, UINT n) {
 	var h0=Z(0),h1=Z(1),h2,k0=Z(1),k1=Z(0),k2;
 	list a=ContinuedFraction(d,P,Q,n);
 	list r;
-	for (INT i=0;i<=n-1;i++) {
+	for (int32_t i=0;i<=n-1;i++) {
 		h2=a[i]*h1+h0;
 		k2=a[i]*k1+k0;
 		h0=h1;
@@ -721,22 +721,22 @@ list Convergents(VAR d, VAR P, VAR Q, UINT n) {
 \todo 测试效率.
 */
 Z ChineseRemainder(LIST x, LIST m) {
-	UINT n=m.size();
+	uint32_t n=m.size();
 	list y(n),p(n),u(n);
 	y[0]=Mod(x[0],m[0]);
 	var t=Z(1);
-	for (INT i=1;i<=n-1;i++) {
+	for (int32_t i=1;i<=n-1;i++) {
 		t=t*m[i-1];
 		p[i]=Mod(t,m[i]);
 		u[i]=list::cast(ExtendedGCD(p[i],m[i])[1])[0];
 		var s=y[i-1];
-		for (INT j=i-2;j>=0;j--) {
+		for (int32_t j=i-2;j>=0;j--) {
 			s=s*m[j]+y[j];
 		}
 		y[i]=Mod((x[i]-s)*u[i],m[i]);
 	}
 	var r=y[n-1];
-	for (INT i=n-2;i>=0;i--) {
+	for (int32_t i=n-2;i>=0;i--) {
 		r=r*m[i]+y[i];
 	}
 	return Z::cast(r);
@@ -781,7 +781,7 @@ Z EulerPhi(VAR n) {
 	if (Abs(n)==Z(1)) return Z(1);
 	list s=FactorInteger(Abs(n));
 	var m=Z(1);
-	for (UINT i=0;i<s.size();i++)
+	for (uint32_t i=0;i<s.size();i++)
 	{
 		m=m*Power(list::cast(s[i])[0],mpz_get_ui(PTR(list::cast(s[i])[1]))-1)*(list::cast(s[i])[0]-Z(1));
 	}
@@ -826,14 +826,14 @@ list Divisors(VAR n) {
 	list p=list::map(first,f);	/* 因子 */
 	list e=list::map(second,f);	/* 次数 */
 	list r;
-	UINT t,l;
+	uint32_t t,l;
 	r.push(Z(1));
-	for (UINT i=0;i<p.size();i++) {
+	for (uint32_t i=0;i<p.size();i++) {
 		t=0;
 		l=r.size();
-		for (UINT k=0;k<Z::cast(e[i]);k++)
+		for (uint32_t k=0;k<Z::cast(e[i]);k++)
 		{
-			for (UINT j=t;j<l;j++)
+			for (uint32_t j=t;j<l;j++)
 			{
 				r.push(r[j]*p[i]);
 			}
@@ -861,7 +861,7 @@ Z PrimeNu(VAR n) {
 	\retval 0 否.
 	\note 使用Rabin-Miller强伪素数检测.
 */
-INT PrimeQ(VAR n) {
+int32_t PrimeQ(VAR n) {
 	return mpz_probab_prime_p(PTR(n),10);
 }
 }

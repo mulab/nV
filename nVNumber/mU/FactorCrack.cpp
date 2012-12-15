@@ -69,7 +69,7 @@ namespace
 		return Modules::NumberTheory::Quotient(x,y);
 	}
 
-	inline var operator /(VAR x, UINT y)
+	inline var operator /(VAR x, uint32_t y)
 	{
 		return Modules::NumberTheory::ExactQuotient(x,y);
 	}
@@ -94,7 +94,7 @@ namespace Modules {
 namespace NumberTheory {
 
 /** 小素数表. */
-UINT const small_primes[] =
+uint32_t const small_primes[] =
 {
 	2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61,
 	67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137,
@@ -1043,17 +1043,17 @@ UINT const small_primes[] =
 	99961, 99971, 99989, 99991
 };
 
-UINT small_prime_count = 1227; /**< 试除法素数个数. */
+uint32_t small_prime_count = 1227; /**< 试除法素数个数. */
 
-UINT per_round=32; /**< 每轮运算次数. */
-UINT rounds_min=14; /**< 最小轮数. */
-UINT repeats_max=4; /**< 最大重试次数. */
+uint32_t per_round=32; /**< 每轮运算次数. */
+uint32_t rounds_min=14; /**< 最小轮数. */
+uint32_t repeats_max=4; /**< 最大重试次数. */
 
-UINT b1_min=10; /**< B1最小值. */
-UINT b2_min=50; /**< B2最小值. */
-UINT b1_inc=30; /**< B1增量. */
-UINT b2_inc=150; /**< B2增量. */
-UINT curves_max=30; /**< 最大重试次数. */
+uint32_t b1_min=10; /**< B1最小值. */
+uint32_t b2_min=50; /**< B2最小值. */
+uint32_t b1_inc=30; /**< B1增量. */
+uint32_t b2_inc=150; /**< B2增量. */
+uint32_t curves_max=30; /**< 最大重试次数. */
 
 
 
@@ -1062,11 +1062,11 @@ UINT curves_max=30; /**< 最大重试次数. */
 	\return 1或一个非平凡因子.
 	\todo Brent的改进.
 */
-Z PollardRho(VAR n,VAR a, VAR x0, UINT rounds) {
+Z PollardRho(VAR n,VAR a, VAR x0, uint32_t rounds) {
 	var x=x0, y=x0, q=Z(1), g;
-	UINT i=0;
+	uint32_t i=0;
 	while (i<=rounds) {
-		UINT k=per_round;
+		uint32_t k=per_round;
 		while (k>=1) {
 			x=Mod(x*x+a,n);
 			y=Mod(y*y+a,n);
@@ -1143,10 +1143,10 @@ list ECMProduct(LIST p1, LIST p2, VAR n) {
 \retval {x,y} 返回在椭圆曲线\f$y^2=x^3+ax+1\f$上的\f$p^e\f$.
 \retval {0,0} 算法失败.
 */
-list ECMPower (LIST p, VAR n, VAR a, UINT e) {
-	INT l=IntegerLength(Z(e),2);
+list ECMPower (LIST p, VAR n, VAR a, uint32_t e) {
+	int32_t l=IntegerLength(Z(e),2);
 	list sum=p;
-	for (INT i=l-2;i>=0;i--)
+	for (int32_t i=l-2;i>=0;i--)
 	{
 		sum=ECMSquare(sum,n,a);
 		if (Z::cast(sum[0])==Z(-1)) return list(Z(-1),sum[1]);
@@ -1167,9 +1167,9 @@ list ECMPower (LIST p, VAR n, VAR a, UINT e) {
 	\retval 0 算法失败.
 	\todo 增加素数上界，改进跳出判断
 */
-Z ECM(list p, VAR n, VAR a, UINT B1, UINT B2) {
+Z ECM(list p, VAR n, VAR a, uint32_t B1, uint32_t B2) {
 	list temp=p;
-	for (INT k=0;k<=B1;k++)	{
+	for (int32_t k=0;k<=B1;k++)	{
 		Z counts=Z(1);
 		while (counts<=small_primes[B1]) {
 			temp=ECMPower(temp,n,a,small_primes[k]);
@@ -1184,7 +1184,7 @@ Z ECM(list p, VAR n, VAR a, UINT B1, UINT B2) {
 	if (sum[0]==Z(-1)) return Z::cast(sum[1]);
 	if (sum[0]==Z(0)) return 0;
 	list diff;
-	for (INT k=B1+1;k<=B2;k++)
+	for (int32_t k=B1+1;k<=B2;k++)
 	{
 		diff=ECMPower(temp,n,a,small_primes[k+1]-small_primes[k]);
 		if (diff[0]==Z(-1)) return Z::cast(diff[1]);
@@ -1200,8 +1200,8 @@ Z ECM(list p, VAR n, VAR a, UINT B1, UINT B2) {
 	\param factors 已分解因子.
 	\param remain 剩余待分解部分.
 */
-void FactorDivide(list& factors,list& remain,INT mode) {
-	for (INT i=0;i<remain.size();i++) {
+void FactorDivide(list& factors,list& remain,int32_t mode) {
+	for (int32_t i=0;i<remain.size();i++) {
 		var m=list::cast(factors.right())[0];
 		while (Divisible(remain[i],m)) {
 			remain[i]=remain[i]/m;
@@ -1223,7 +1223,7 @@ void FactorDivide(list& factors,list& remain,INT mode) {
 	\note 使用Pollard \f$\rho\f$方法和ECM方法.
 	\todo 增加素数幂判断.
 */
-void FactorCrack(list& factors,list& remain,INT mode) {
+void FactorCrack(list& factors,list& remain,int32_t mode) {
 	if (!remain) return;
 	var n=remain[0];
 	if (PrimeQ(n)) {
@@ -1236,9 +1236,9 @@ void FactorCrack(list& factors,list& remain,INT mode) {
 	}
 
 	/* 参数来自pari/gp的ifactor1.c */
-	UINT repeats=0,rounds;
-	INT a[]={1,-1,3,5,-5,7,11,-11};
-	INT s=IntegerLength(n,2);
+	uint32_t repeats=0,rounds;
+	int32_t a[]={1,-1,3,5,-5,7,11,-11};
+	int32_t s=IntegerLength(n,2);
 
 	if (s<=42)
 		rounds=rounds_min;
@@ -1258,10 +1258,10 @@ void FactorCrack(list& factors,list& remain,INT mode) {
 		else repeats++;
 	}
 
-	UINT B1=b1_min;
-	UINT B2=b2_min;
+	uint32_t B1=b1_min;
+	uint32_t B2=b2_min;
 	if (m==Z(1)) {
-		for (INT i=1;i<=curves_max;i++) {
+		for (int32_t i=1;i<=curves_max;i++) {
 			Z a=RandomInteger(Z(1000000));
 			m=ECM(list(Z(0),Z(1)),n,a,B1,B2);
 			//B1+=b2_inc;
@@ -1291,13 +1291,13 @@ void FactorCrack(list& factors,list& remain,INT mode) {
 	\note 使用试除法后调用::FactorCrack分离因子.
 	\todo 优化试除法.
 */
-list FactorInteger(VAR N,INT mode) {
+list FactorInteger(VAR N,int32_t mode) {
 	list factors,remain;
 	var n=N;
 	if (n==Z(1)) return list(Z(1),Z(1));
 	if (n==Z(0)) return list(Z(0),Z(1));
 	if (n<Z(0)) { n=Abs(n); factors.push(list(Z(-1),Z(1))); }
-	for (INT i=0;i<small_prime_count;i++) {
+	for (int32_t i=0;i<small_prime_count;i++) {
 		if (Divisible(n,small_primes[i])) {
 			factors.push(list(Z(small_primes[i]),Z(1)));
 			n=n/small_primes[i];

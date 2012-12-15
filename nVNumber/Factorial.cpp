@@ -4,10 +4,10 @@
 
 namespace nV {
 namespace Combinatorics {
-var Factorial(uint x) {
+var Factorial(boost::uint32_t x) {
     Integer* r = new Integer();
     facz(r->mpz, x);
-    uint e = 0;
+    boost::uint32_t e = 0;
     while (x >>= 1) e += x;
     mpz_mul_2exp(r->mpz, r->mpz, e);
     return r;

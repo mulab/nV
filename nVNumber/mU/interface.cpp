@@ -7,7 +7,7 @@ namespace Interface {
 //////////////////////////////////////
 #define DEF_FACE(op,name)\
 namespace { std::vector<op> name##Factory(0x100); }\
-op & name(UINT x) { return name##Factory[x >> 24]; }\
+op & name(uint32_t x) { return name##Factory[x >> 24]; }\
 op & name(VAR x) { return name(GetType(x)); }
 
 //////////////////////////////////////

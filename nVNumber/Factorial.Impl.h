@@ -2,5 +2,6 @@
 #include <gmp.h>
 #include "Factorial.sieve.h"
 
-void facs(mpz_ptr, uint);
-void facz(mpz_ptr, uint);
+// unused code
+// void facs(mpz_ptr, boost::uint32_t);
+void facz(mpz_ptr, boost::uint32_t);

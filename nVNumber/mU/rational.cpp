@@ -20,11 +20,11 @@ double Q::d(VAR x) { return Double(x); }
 Z Q::num(VAR x) { return Num(x); }
 Z Q::den(VAR x) { return Den(x); }
 Q::Q() : var(Zero()) {}
-Q::Q(INT x, UINT y) : var(New(x,y)) {}
-Q::Q(UINT x, UINT y) : var(New(x,y)) {}
+Q::Q(int32_t x, uint32_t y) : var(New(x,y)) {}
+Q::Q(uint32_t x, uint32_t y) : var(New(x,y)) {}
 Q::Q(double x) : var(New(x)) {}
-Q::Q(const char *x, UINT base) : var(New(x,base)) {}
-INT Q::sgn() const { return Sgn(*this); }
+Q::Q(const char *x, uint32_t base) : var(New(x,base)) {}
+int32_t Q::sgn() const { return Sgn(*this); }
 void Q::print() const { Print(*this); printf("\n"); }
 Q Q::copy() const { return CAST(New(*this)); }
 void Q::reduce() const { Reduce(*this); }
@@ -47,7 +47,7 @@ Q_DEF_CMP(==)
 namespace Objects {
 namespace Rational {
 //////////////////////////////////////
-UINT RATIONAL;
+uint32_t RATIONAL;
 #define MPQ_DEF_1(name,f,type1,x1)\
 var name(type1 x)\
 {\
@@ -72,17 +72,17 @@ MPQ_DEF_1(NewF,mpq_set_f,VAR,(mpf_ptr)PTR(x))
 MPQ_DEF_1(Abs,mpq_abs,VAR,PTR(x))
 MPQ_DEF_1(Neg,mpq_neg,VAR,PTR(x))
 MPQ_DEF_1(Inv,mpq_inv,VAR,PTR(x))
-MPQ_DEF_2(New,mpq_set_si,INT,x,UINT,y)
-MPQ_DEF_2(New,mpq_set_ui,UINT,x,UINT,y)
+MPQ_DEF_2(New,mpq_set_si,int32_t,x,uint32_t,y)
+MPQ_DEF_2(New,mpq_set_ui,uint32_t,x,uint32_t,y)
 MPQ_DEF_2(Add,mpq_add,VAR,PTR(x),VAR,PTR(y))
 MPQ_DEF_2(Sub,mpq_sub,VAR,PTR(x),VAR,PTR(y))
 MPQ_DEF_2(Mul,mpq_mul,VAR,PTR(x),VAR,PTR(y))
 MPQ_DEF_2(Div,mpq_div,VAR,PTR(x),VAR,PTR(y))
-var Shift(VAR x, INT y)
+var Shift(VAR x, int32_t y)
 {
 	var r = Zero();
-	if(y >= 0) mpq_mul_2exp(PTR(r),PTR(x),(UINT)y);
-	else mpq_div_2exp(PTR(r),PTR(x),(UINT)-y);
+	if(y >= 0) mpq_mul_2exp(PTR(r),PTR(x),(uint32_t)y);
+	else mpq_div_2exp(PTR(r),PTR(x),(uint32_t)-y);
 	return r;
 }
 var Zero()
@@ -100,7 +100,7 @@ var NewZ(VAR x, VAR y)
 	mpq_set_den(PTR(r),(mpz_ptr)PTR(y));
 	return r;
 }
-var New(const char *x, UINT base)
+var New(const char *x, uint32_t base)
 {
 	var r = Zero();
 	mpq_set_str(PTR(r), x, base);
@@ -111,19 +111,19 @@ var Print(VAR x)
 	mpq_out_str(0,10,PTR(x));
 	return x;
 }
-var Sc(VAR x, INT y)
+var Sc(VAR x, int32_t y)
 {
 	return Mul(x, New(y, 1));
 }
-INT Cmp(VAR x, VAR y)
+int32_t Cmp(VAR x, VAR y)
 {
 	return mpq_cmp(PTR(x),PTR(y));
 }
-INT Equ(VAR x, VAR y)
+int32_t Equ(VAR x, VAR y)
 {
 	return mpq_equal(PTR(x),PTR(y));
 }
-INT Sgn(VAR x)
+int32_t Sgn(VAR x)
 {
 	return mpq_sgn(PTR(x));
 }

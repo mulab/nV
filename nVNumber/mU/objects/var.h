@@ -12,25 +12,27 @@
 #define VAR_API
 #endif
 
+#include <boost/cstdint.hpp>
+
 namespace maTHmU {
 //////////////////////////////////////
-typedef int INT;
-typedef unsigned int UINT;
-typedef unsigned short USHORT;
+typedef boost::int32_t int32_t;
+typedef boost::uint32_t uint32_t;
+typedef boost::uint16_t uint16_t;
 
 //////////////////////////////////////
 class var;
 typedef const var& VAR;
 //////////////////////////////////////
 class VAR_API var {
-	friend VAR_API UINT GetType(VAR);
-	friend VAR_API void SetType(var&,UINT);
+	friend VAR_API uint32_t GetType(VAR);
+	friend VAR_API void SetType(var&,uint32_t);
 public:
 	static void start();
 	var();
 	var(VAR);
 	var(void*);
-	var(void*, UINT);
+	var(void*, uint32_t);
 	var& operator = (VAR);
 	~var();
 	void* ptr;
@@ -41,20 +43,20 @@ private:
 	void decr();
 	void init();
 	void clear();
-	UINT id;
+	uint32_t id;
 };
 typedef var (*N_OP) ();
 typedef var (*UN_OP)(VAR);
 typedef var (*BIN_OP)(VAR,VAR);
 typedef var (*TER_OP)(VAR,VAR,VAR);
-typedef var (*SC_OP)(VAR,INT);
-typedef INT (*CMP_OP)(VAR,VAR);
+typedef var (*SC_OP)(VAR,int32_t);
+typedef int32_t (*CMP_OP)(VAR,VAR);
 typedef bool (*LESS_OP)(VAR,VAR);
 typedef void (*DES_OP)(void*);
 //////////////////////////////////////
-VAR_API DES_OP& TypeTable(UINT);
-VAR_API UINT AddType(DES_OP);
-VAR_API void RemoveType(UINT);
+VAR_API DES_OP& TypeTable(uint32_t);
+VAR_API uint32_t AddType(DES_OP);
+VAR_API void RemoveType(uint32_t);
 //////////////////////////////////////
 VAR_API var& NameTable(const char*);
 VAR_API bool FindName(const char*);

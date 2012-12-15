@@ -1,49 +1,49 @@
 #pragma once
 #include <vector>
 #include <algorithm>
+#include <boost/cstdint.hpp>
 
-typedef unsigned int uint;
 class sieve {
-    std::vector<uint> v;
-    void init(uint);
+    std::vector<boost::uint32_t> v;
+    void init(boost::uint32_t);
 public:
-    sieve(uint n) {
+    sieve(boost::uint32_t n) {
         init(n);
     }
-    const uint* begin() const {
+    const boost::uint32_t* begin() const {
         return v.begin().operator ->();
     }
-    const uint* end() const {
+    const boost::uint32_t* end() const {
         return v.end().operator ->();
     }
-    uint lower(uint c) const {
+    boost::uint32_t lower(boost::uint32_t c) const {
         return std::max<int>(std::upper_bound(v.begin(), v.end(), c) - v.begin() - 1, 0);
     }
-    uint upper(uint c) const {
+    boost::uint32_t upper(boost::uint32_t c) const {
         return std::min<int>(std::lower_bound(v.begin(), v.end(), c) - v.begin(), v.size() - 1);
     }
-    uint floor(uint c) const {
+    boost::uint32_t floor(boost::uint32_t c) const {
         return v[lower(c)];
     }
-    uint ceiling(uint c) const {
+    boost::uint32_t ceiling(boost::uint32_t c) const {
         return v[upper(c)];
     }
-    uint find(uint c) const {
-        uint r = lower(c);
+    boost::uint32_t find(boost::uint32_t c) const {
+        boost::uint32_t r = lower(c);
         return v[r] == c ? r : 0;
     }
-    const uint& operator [](uint i) const {
+    const boost::uint32_t& operator [](boost::uint32_t i) const {
         return v[i];
     }
-    uint count(uint low, uint high) const {
+    boost::uint32_t count(boost::uint32_t low, boost::uint32_t high) const {
         if (low > high) std::swap(low, high);
-        uint r = upper(low), s = lower(high);
+        boost::uint32_t r = upper(low), s = lower(high);
         return s + 1 - r + (v[r] == low) - (v[s] == high);
     }
-    uint size() const {
+    boost::uint32_t size() const {
         return v.size();
     }
-    void reset(uint n) {
+    void reset(boost::uint32_t n) {
         init(n);
     }
 };
