@@ -1,13 +1,36 @@
 #pragma once
 
 #include "objects.h"
+#include "mU/Var.h"
+
+namespace mU
+{
+namespace Modules
+{
+namespace NumberTheory
+{
+
+int32_t IntegerLength(Var n, uint32_t b);
+
+var BitAnd(Var n, Var m);
+var BitOr(Var n, Var m);
+var BitXor(Var n, Var m);
+var BitNot(Var n);
+var BitSet(Var n, uint32_t k);
+var BitClear(Var n, uint32_t k);
+bool BitGet(Var n, uint32_t k);
+
+var BitShiftLeft(Var n, int32_t k=1);
+var BitShiftRight(Var n, int32_t k=1);
+
+}
+}
+}
 
 namespace maTHmU {
 namespace Modules {
 namespace NumberTheory {
 //////////////////////////////////////
-void Init();
-
 void Randomize();
 void SeedRandom(VAR n);
 void SeedRandom();

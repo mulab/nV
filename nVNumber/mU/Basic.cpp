@@ -14,6 +14,24 @@
 namespace Integer = maTHmU::Objects::Integer;
 namespace Rational = maTHmU::Objects::Rational;
 
+namespace mU
+{
+namespace Modules
+{
+namespace NumberTheory
+{
+
+int32_t IntegerLength(Var n, uint32_t b)
+{
+	assert(Type(n)==TYPE(int));
+	assert(b >= 2 && b <= 62);
+	return mpz_sizeinbase(CInt(n),b);
+}
+
+}
+}
+}
+
 namespace maTHmU {
 namespace
 {
