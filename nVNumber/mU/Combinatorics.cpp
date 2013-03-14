@@ -223,7 +223,7 @@ void facz(mpz_ptr r,uint32_t N)
 
 namespace mU {
 namespace Function {
-var Factorial(uint32_t x)
+var Factorial(unsigned long x)
 {
 	var r = Int();
 	facz(CInt(r),x);
@@ -232,7 +232,7 @@ var Factorial(uint32_t x)
 	mpz_mul_2exp(CInt(r),CInt(r),e);
 	return r;
 }
-var Binomial(Var x, uint32_t y)
+var Binomial(Var x, unsigned long y)
 {
 	var r = Int();
 	mpz_bin_ui(CInt(r),CInt(x),y);
@@ -244,13 +244,13 @@ var Binomial(uint32_t x, uint32_t y)
 	mpz_bin_uiui(CInt(r),x,y);
 	return r; 
 }
-var Fibonacci(uint32_t x)
+var Fibonacci(unsigned long x)
 { 
 	var r = Int();
 	mpz_fib_ui(CInt(r),x);
 	return r; 
 }
-var Lucas(uint32_t x)
+var Lucas(unsigned long x)
 {
 	var r = Int(); 
 	mpz_lucnum_ui(CInt(r),x);
