@@ -1,0 +1,60 @@
+                             *         *    
+                             *         *    
+                             *         *    
+                             *         *    
+                             *         *    
+                             *         *   *
+                             * *     *  * * 
+                             *   * *        
+                             *              
+mU> mU> -1
+mU> mU> 1
+mU> mU> 0
+mU> mU> {-1,-1,0,1,1}
+mU> mU> $Failed
+mU> mU> mU> $Failed
+mU> mU> $Failed
+mU> mU> mU> mU> sgn x
+mU> mU> mU> $Failed
+mU> mU> $Failed
+mU> mU> $Failed
+mU> mU> SparseArray[{{1,1}->-6,{1,3}->Pi I,{3,3}->2,{4,2}->u}]
+mU> mU> mU> mU> mU> mU> $Failed
+mU> mU> mU> $Failed
+mU> mU> mU> mU> XXXXXX
+mU> mU> {{1,0,0},{0,1,0},{0,0,1}}
+mU> mU> mU> $Failed
+mU> mU> $Failed
+mU> mU> E^(I Im[z])
+mU> mU> $Failed
+mU> mU> $Failed
+mU> mU> 2
+mU> mU> $Failed
+mU> mU> $Failed
+mU> mU> 2
+mU> mU> 2-Pi-I Log[5]+2I Log[Pi-I]+2ArcTan[1/2]
+mU> mU> 0.402040706643789+0.7765323943927196I
+mU> mU> 0.4020407066436926+0.7765323943926986I
+mU> mU> $Failed
+mU> mU> Piecewise[{{-x,False},{x,True}}]
+mU> mU> (I Sqrt[2] Sqrt[1/Pi])/x
+mU> mU> 1/x
+mU> mU> $Failed
+mU> mU> (Pi Abs[x])/x
+mU> mU> $Failed
+mU> mU> Piecewise[{{-1,True},{1,Inequality[0,Less,x,Less,1]},{0,True}}]
+mU> mU> Piecewise[{{-1,False},{1,True}}]
+mU> mU> mU> 1
+mU> mU> I
+mU> mU> 0.8320502943378436+0.554700196225229I
+mU> mU> $Failed
+mU> mU> 0
+mU> mU> $Failed
+mU> mU> -1
+mU> mU> 1
+mU> mU> mU> mU> {{1,1},{-1,1}}
+mU> mU> mU> $Failed
+mU> mU> mU> mU> mU> mU> XXXXXX
+mU> mU> {(2x)/(1+x^2),(4x (1+x^2))/(1+6x^2+x^4),(2x (1+3x^2) (3+x^2))/((1+x^2) (1+14x^2+x^4)),(8x (1+x^2) (1+6x^2+x^4))/(1+28x^2+70x^4+28x^6+x^8)}
+mU> mU> XXXXXX
+mU> mU> 

@@ -1,0 +1,39 @@
+                             *         *    
+                             *         *    
+                             *         *    
+                             *         *    
+                             *         *    
+                             *         *   *
+                             * *     *  * * 
+                             *   * *        
+                             *              
+mU> mU> 6
+mU> mU> {1+x,2+x,3+x}
+mU> mU> {11,22,33}
+mU> mU> 6
+mU> mU> mU> 3.75
+mU> mU> 5-6I
+mU> mU> {a+c,b+d}
+mU> mU> {a+x,b+x,c+x}
+mU> mU> {{a+x,b+x},{c+x,d+x}}
+mU> mU> {{1+a,2+b},{3+c,4+d}}
+mU> mU> a+b+c
+mU> mU> 1+x+x^2+x^3+x^4+x^5
+mU> mU> Sum[x^i y^j,{i,3},{j,3}]
+mU> mU> â\:0088?x
+mU> mU> y â\:0088?â\:0088?x
+mU> mU> HoldForm[6]
+mU> mU> Plus[a,b,c,d]
+mU> mU> 4
+mU> mU> a+b+c+d
+mU> mU> Total[{a,b,c,d}]
+mU> mU> a+b+c+d
+mU> mU> f[b+d]
+mU> mU> {f[0],f[b],f[b+c]}
+mU> mU> f[a+b,c+d]
+mU> mU> f[a,c]+f[a,d]+f[b,c]+f[b,d]
+mU> mU> (f+g)[x]
+mU> mU> f[x]+g[x]
+mU> mU> {0,a,a+b,a+b+c}
+mU> mU> {a,a+b,a+b+c}
+mU> mU> 

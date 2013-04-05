@@ -1,0 +1,213 @@
+\documentclass[11pt]{article}
+\usepackage{CJK}
+\usepackage{indentfirst}
+\usepackage{latexsym,bm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancybox}
+\usepackage{listings}
+\usepackage{multicol}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{paralist}
+\usepackage[linesnumbered,lined,boxed,commentsnumbered,ruled]{algorithm2e}
+\usepackage{engord}
+\usepackage{booktabs}
+
+\begin{document}
+\begin{CJK*}{GBK}{song}
+\title{maTHmU内核测试--Plus}
+\maketitle
+
+
+\section{概况}
+
+测试数据数目: 29
+
+通过数据数目: 18
+
+通过百分比: 62
+
+
+
+\section{未通过数据}
+
+
+
+\subsection*{Test14:}
+
+输入: {? x }
+
+\vspace{0.2cm}
+
+输出: 
+
+\vspace{0.2cm}
+
+标准输出: {$x^5 + x^4 + x^3 + x^2 + x + 1$}
+
+\vspace{0.2cm}
+
+
+
+\subsection*{Test15:}
+
+输入: {??x  y }
+
+\vspace{0.2cm}
+
+输出:  
+
+\vspace{0.2cm}
+
+标准输出: {$y^3*x^3 + y^2*x^3 + y*x^3 + y^3*x^2 + y^2*x^2 + y*x^2 + y^3*x + y^2*x + y*x$}
+
+\vspace{0.2cm}
+
+
+
+\subsection*{Test16:}
+
+输入: {HoldForm[1 + 3 + 2]}
+
+\vspace{0.2cm}
+
+输出: { HoldForm[6]}
+
+\vspace{0.2cm}
+
+标准输出: {HoldForm[1 + 3 + 2]}
+
+\vspace{0.2cm}
+
+
+
+\subsection*{Test21:}
+
+输入: {a + b + c + d /. a + d -> x}
+
+\vspace{0.2cm}
+
+输出: { a+b+c+d}
+
+\vspace{0.2cm}
+
+标准输出: {b + c + x}
+
+\vspace{0.2cm}
+
+
+
+\subsection*{Test23:}
+
+输入: {\{f[0], f[b], f[b + c]\}}
+
+\vspace{0.2cm}
+
+输出: { \{f[0],f[b],f[b+c]\}}
+
+\vspace{0.2cm}
+
+标准输出: {f[a + b, c + d]}
+
+\vspace{0.2cm}
+
+
+
+\subsection*{Test24:}
+
+输入: {f[a + b, c + d]}
+
+\vspace{0.2cm}
+
+输出: { f[a+b,c+d]}
+
+\vspace{0.2cm}
+
+标准输出: {Distribute[f[a + b, c + d]]}
+
+\vspace{0.2cm}
+
+
+
+\subsection*{Test25:}
+
+输入: {f[a, c] + f[a, d] + f[b, c] + f[b, d]}
+
+\vspace{0.2cm}
+
+输出: { f[a,c]+f[a,d]+f[b,c]+f[b,d]}
+
+\vspace{0.2cm}
+
+标准输出: {(f + g)[x]}
+
+\vspace{0.2cm}
+
+
+
+\subsection*{Test26:}
+
+输入: {(f + g)[x]}
+
+\vspace{0.2cm}
+
+输出: { (f+g)[x]}
+
+\vspace{0.2cm}
+
+标准输出: {Through[(f + g)[x]]}
+
+\vspace{0.2cm}
+
+
+
+\subsection*{Test27:}
+
+输入: {f[x] + g[x]}
+
+\vspace{0.2cm}
+
+输出: { f[x]+g[x]}
+
+\vspace{0.2cm}
+
+标准输出: {FoldList[Plus, 0, \{a, b, c\}]}
+
+\vspace{0.2cm}
+
+
+
+\subsection*{Test28:}
+
+输入: {\{0, a, a + b, a + b + c\}}
+
+\vspace{0.2cm}
+
+输出: { \{0,a,a+b,a+b+c\}}
+
+\vspace{0.2cm}
+
+标准输出: {Accumulate[\{a, b, c\}]}
+
+\vspace{0.2cm}
+
+
+
+\subsection*{Test29:}
+
+输入: {\{a, a + b, a + b + c\}}
+
+\vspace{0.2cm}
+
+输出: { \{a,a+b,a+b+c\}}
+
+\vspace{0.2cm}
+
+标准输出: {}
+
+\vspace{0.2cm}
+
+
+\end{CJK*}
+\end{document}
